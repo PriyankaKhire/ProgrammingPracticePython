@@ -84,5 +84,14 @@ def bar(string, result):
             result = result[-1:]
             print "***** Backtracking *****"
 
+def foobar(string):
+    for i in range(0, len(string)):
+        #Remove character at index i and check for issafe
+        if (string[i] == ')' or string[i] == '('):
+            if(isSafe(string[:i]+string[i+1:])):
+                print string[:i]+string[i+1:]
+                
+    
+
 #See the out put and repair this program        
-bar("()())()", "")
+foobar("(v)())()")
