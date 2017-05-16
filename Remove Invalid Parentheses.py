@@ -93,5 +93,7 @@ def foobar(string):
                 
     
 
-#See the out put and repair this program        
+#Works for below input  
 foobar("(v)())()")
+#Fails for below input
+foobar("((()")
