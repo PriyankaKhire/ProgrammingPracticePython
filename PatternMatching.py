@@ -117,6 +117,9 @@ def foo(string, pattern, str_start_index, pat_index):
     #so if string index is == len(stirng) and pattern index < len(pattern) then reutrn flase
     if(str_start_index == len(string) and pat_index < len(pattern)):
         return False
+    #pattern reaches its end and string does not
+    if(pat_index == len(pattern) and str_start_index < len(string)):
+        return False
     #this condition indicates if boh pattern and string have reached the end of search
     if(str_start_index == len(string) and pat_index == len(pattern)):
         return True
@@ -146,13 +149,17 @@ def foo(string, pattern, str_start_index, pat_index):
             return False
 
     #Finally call recurrssion
-    if(foo(string, pattern, str_start_index, pat_index+1)):
-        return True
-    else:
-        #Update the pattern in hash table
-        hash_table[pattern[pat_index]] = string[save_start_index:len(hash_table[pattern[pat_index]])+save_start_index+1]
-        print "key: "+pattern[pat_index]+" value: "+hash_table[pattern[pat_index]]
-        print "Backtracking"
+    while(str_start_index <= len(string)):
+        if(foo(string, pattern, str_start_index, pat_index+1)):
+            print hash_table
+            return True
+        else:
+            #Update the pattern in hash table
+            hash_table[pattern[pat_index]] = string[save_start_index:len(hash_table[pattern[pat_index]])+save_start_index+1]
+            str_start_index +=1
+            print "key: "+pattern[pat_index]+" value: "+hash_table[pattern[pat_index]]
+            print "start string index is "+str(str_start_index)
+            print "Backtracking"
         
 
 #Main Program
