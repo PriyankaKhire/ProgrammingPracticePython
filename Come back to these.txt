@@ -15,3 +15,6 @@ http://thenoisychannel.com/2011/08/08/retiring-a-great-interview-problem
 
 Remove Invalid Parentheses
 http://www.geeksforgeeks.org/remove-invalid-parentheses/
+
+Pattern Matching
+http://www.geeksforgeeks.org/match-a-pattern-and-string-without-using-regular-expressions/
