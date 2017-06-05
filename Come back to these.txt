@@ -2,9 +2,6 @@ permutations of a string
 http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
 http://www.geeksforgeeks.org/permutations-string-using-iteration/
 
-Tug of War
-http://www.geeksforgeeks.org/tug-of-war/
-http://codefordummies.blogspot.com/2013/10/backtracking-tug-of-war.html
 
 Solving Cryptarithmetic Puzzles -> What the fuck is this proablem anyways :(
 http://www.geeksforgeeks.org/backtracking-set-8-solving-cryptarithmetic-puzzles/
