@@ -6,9 +6,6 @@ http://www.geeksforgeeks.org/permutations-string-using-iteration/
 Solving Cryptarithmetic Puzzles -> What the fuck is this proablem anyways :(
 http://www.geeksforgeeks.org/backtracking-set-8-solving-cryptarithmetic-puzzles/
 
-Word Break Problem
-http://www.geeksforgeeks.org/word-break-problem-using-backtracking/
-http://thenoisychannel.com/2011/08/08/retiring-a-great-interview-problem
 
 Remove Invalid Parentheses
 http://www.geeksforgeeks.org/remove-invalid-parentheses/
