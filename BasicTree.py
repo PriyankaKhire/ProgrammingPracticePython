@@ -66,6 +66,18 @@ def preorder(root):
     #Right
     preorder(root.getRight())
 
+q = []
+def levelorder(root):
+    global q
+    if root == None:
+        return
+    if(root.getLeft() != None):
+        q.append(root.getLeft().getData())
+    if (root.getRight() != None):
+        q.append(root.getRight().getData())
+    levelorder(root.getLeft())
+    levelorder(root.getRight())
+
 #Main Program
 root = createNode(1)
 node1= addLeft(2, root)
@@ -79,3 +91,6 @@ print "\n\n"
 postorder(root)
 print "\n\n"
 preorder(root)
+q.append(root.getData())
+levelorder(root)
+print q
