@@ -66,6 +66,19 @@ def preorder(root):
     #Right
     preorder(root.getRight())
 
+def diameter(root, h):
+    if root == None:
+        return h
+    left = diameter(root.getLeft(), h+1)
+    right = diameter(root.getRight(), h+1)
+    print "root is "
+    print root.getData()
+    print "height so far"+str(left)
+    if(left > right):
+        return left+1
+    return right+1
+    
+
 q = []
 def levelorder(root):
     global q
@@ -94,3 +107,5 @@ preorder(root)
 q.append(root.getData())
 levelorder(root)
 print q
+print "\n\n\n"
+print "Diameter = "+str(diameter(root, 0))
