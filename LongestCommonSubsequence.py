@@ -31,7 +31,48 @@ def backtracking(str1, str2, result, index1, index2):
             #backtrack
             result.pop()
 
+def getSequence(str1, str2, res):
+    result = ""
+    i = len(str1)
+    j = len(str2)
+    while(i >=0  and j >= 0):
+        #search up right and diagonally up
+         #if current is the letter
+        if(res[j][i] !=  res[j-1][i] and res[j][i] != res[j][i-1] and res[j][i] != res[j-1][i-1]):
+            result += str2[j-1]
+            #Go diagonal
+            i -=1
+            j-=1
+            continue
+        #if you got current letter from up
+        if (res[j][i] == res[j-1][i]):
+            #go up
+            j -=1
+            continue
+        #if you got the current letter from right
+        if(res[j][i] == res[j][i-1]):
+            #Go right
+            i-=1
+            continue
+    print result
+    print "reverse this result"
+
+#dynamic programming program understoop from tushar roy's video.
+def dp(str1, str2):
+    result = [[0 for i in range(len(str1)+1)] for j in range(len(str2)+1)]
+    for i in range(len(str1)):
+        for j in range(len(str2)):
+            if str1[i] == str2[j]:
+                result[j+1][i+1] = result[j][i]+1
+            else:
+                result[j+1][i+1] = max(result[j+1][i], result[j][i+1])
+    for i in range(len(str2)+1):
+        print result[i]
+    #Get the sequence
+    getSequence(str1, str2, result)
 #Main Program
-backtracking("abazdc", "bacbad", [], 0,0)
-print
-backtracking("bacbad", "abazdc", [], 0,0)
+#backtracking("abazdc", "bacbad", [], 0,0)
+#print
+#backtracking("bacbad", "abazdc", [], 0,0)
+dp("AGGTAB", "GXTXAYB")
+dp ("bacbad", "abazdc")
