@@ -22,6 +22,8 @@ def foo(n, s):
                 matrix[row+1][col] = matrix[row][col]
             else:
                 #add the value from top and s[row] steps behind
+                #why do we move those s[row] steps behind ?
+                #coz there is a multiple of s[row] those many steps behind and if there isnt then we still get the correct value
                 matrix[row+1][col] = matrix[row][col]+matrix[row+1][col-s[row]]
     print matrix
     print "So the total number of ways to make the change is "+str(matrix[len(s)][n])
