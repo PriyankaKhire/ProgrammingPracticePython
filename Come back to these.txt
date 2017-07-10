@@ -9,3 +9,11 @@ http://www.geeksforgeeks.org/backtracking-set-8-solving-cryptarithmetic-puzzles/
 
 Remove Invalid Parentheses
 http://www.geeksforgeeks.org/remove-invalid-parentheses/
+
+
+http://interactivepython.org/courselib/static/pythonds/BasicDS/ImplementinganUnorderedListLinkedLists.html
+
+http://www.geeksforgeeks.org/fill-two-instances-numbers-1-n-specific-way/
+
+Probably I wont do this one 
+http://www.geeksforgeeks.org/dynamic-programming-set-9-binomial-coefficient/
