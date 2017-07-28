@@ -38,6 +38,13 @@ class ClassName:
         print "like here we will create and return the class object"
         return cls("argument one", "argument two")
 
+    @staticmethod
+    def static_method():
+        print "A static method doesn't require an object instance or a class instance"
+        print "They are just normal methods who in some way are related to class"
+        print "but as mentioned above they don't require calss or object instance"
+        
+
 #Main Program
 obj1 = ClassName(1,"abc")
 print "Accessing the arguments from object instance "+str(obj1.arg1)+" "+str(obj1.arg2)
@@ -48,3 +55,9 @@ print obj1.access_class_variable()
 print "In general it's always a good idea to create getters and setters to access class variables"
 obj2 = ClassName.class_method()
 print obj2
+print "Calling static method from obj1"
+obj1.static_method()
+print "Calling static method from obj2"
+obj2.static_method()
+print "Calling static method from class instance"
+ClassName.static_method()
