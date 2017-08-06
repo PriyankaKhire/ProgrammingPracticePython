@@ -74,6 +74,15 @@ class Tree():
             print root.getData() ,
             self.preorder(root.getLLink())
             self.preorder(root.getRLink())
+    def height(self, root):
+        if root == None:
+            return 0
+        else:
+            l = self.height(root.getLLink())
+            r = self.height(root.getRLink())
+            if l > r:
+                return l+1
+            return r+1
             
 
 #Main Program
@@ -85,3 +94,5 @@ print "\n post order"
 t.postorder(r)
 print "\n pre order"
 t.preorder(r)
+print "\n height"
+print t.height(r)
