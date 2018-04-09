@@ -1,6 +1,9 @@
 #word ladder
 # https://leetcode.com/problems/word-ladder/description/
 class Solution(object):
+
+    def __init__(self):
+        self.sol = None
     
     #Returns true if 2 words differ by 1 letter
     def differentByOne(self, w1, w2):
@@ -15,23 +18,31 @@ class Solution(object):
         return False
     
     def ladder(self, output, endWord, wordList):
-        print output
-        print endWord
         if(output[-1] == endWord):
-            return len(output)
+            #print str(len(output))
+            #print output
+            if( not self.sol):
+                self.sol=len(output)
+            if((self.sol) > len(output)):
+                self.sol = len(output)
+            return 
         topWord = output[-1]
         for word in wordList:
             if(word not in output):
                 if(self.differentByOne(word, topWord)):
-                    self.ladder(output.append(word), endWord, wordList)
+                    output.append(word)
+                    self.ladder(output, endWord, wordList)
+                    #Backtrack
+                    output.pop()
             
     
     def ladderLength(self, beginWord, endWord, wordList):
         output = []
         output.append(beginWord)
-        print self.ladder(output, endWord, wordList)
+        self.ladder(output, endWord, wordList)
+        return self.sol
 
 
 #main program
 s = Solution()
-s.ladderLength("hit", "cog", ["hot","dot","dog","lot","log","cog"])
+print s.ladderLength("hit", "cog", ["hot","dot","dog","lot","log","cog"])
