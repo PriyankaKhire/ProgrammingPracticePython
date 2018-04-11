@@ -31,27 +31,31 @@ def display(m):
     for i in range(len(m)):
         print m[i]
     
-def bar(om, s, d):
-    print "---"
-    print "source "+str(s)
+def bar(m, om, s, d, numberOfMoves):
     if(s == d):
-        print om
+        print "*****"
+        display(om)
+        print "Number of Moves "+str(numberOfMoves)
+        print "*****"
         return
     validMoves = isValidMove(s, len(m), len(m[0]))
     for move in validMoves:
-        print "move "+str(move)
-        if(om[move[0]][move[1]] != 1):
-            om[move[0]][move[1]] = 1
-            display(om)
-            bar(om, move, d)
-            om[move[0]][move[1]] = 0
+        #if the matrix has 1 in the move row and column only then can we proceed
+        if(m[move[0]][move[1]] == 1):
+            #Next we haven't already been to that cell before
+            if(om[move[0]][move[1]] != 1):
+                #visit that cell
+                om[move[0]][move[1]] = 1
+                bar(m, om, move, d, numberOfMoves+1)
+                #backtrack
+                om[move[0]][move[1]] = 0           
 
 def foo(m, s, d):
     #Create output matrix of row and columns filled with 0s
     outputMatrix = [[0 for col in range(len(m[0]))] for row in range(len(m))]
     #mark solution as 1
     outputMatrix[s[0]][s[1]] = 1
-    bar(outputMatrix, s, d)
+    bar(m, outputMatrix, s, d, 0)
     
     
     
