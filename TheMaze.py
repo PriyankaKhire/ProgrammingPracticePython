@@ -10,10 +10,12 @@ class helper(object):
         self.destination = destination
         #Create output matrix of row and columns filled with 0s
         self.outputMatrix = [[0 for col in range(len(inputMatrix[0]))] for row in range(len(inputMatrix))]
+        self.directions = ['up', 'down', 'left', 'right']
 
     #Gives all valid moves for the current move avoiding borders of matrix and walls
     def possibleMoves(self, currentMove):
         output = []
+        dir_output = []
         row = currentMove[0]
         col = currentMove[1]
         #up
@@ -23,6 +25,7 @@ class helper(object):
             #if there is no wall there in maze
             if(self.inputMatrix[r][col] == 0):
                 output.append([r, col])
+                dir_output.append("up")
         #down
         r = row +1
         #if row is within bounds of the maze
@@ -30,21 +33,24 @@ class helper(object):
             #if there is no wall
             if(self.inputMatrix[r][col] == 0):
                 output.append([r, col])
+                dir_output.append("down")
         #right
         c = col +1
         if(c < len(self.inputMatrix[0])):
             if(self.inputMatrix[row][c] == 0):
                 output.append([row, c])
+                dir_output.append("right")
         #left
         c = col -1
         if(c >=0):
             if(self.inputMatrix[row][c]==0):
                 output.append([row, c])
-        return output
+                dir_output.append("left")
+        return output, dir_output
 
     #returns if current move is valid
     def isValidMove(self, move, nextMove):
-        possible_moves = self.possibleMoves(move)
+        possible_moves, dirs = self.possibleMoves(move)
         if (nextMove in possible_moves):
             return True
         return False
@@ -77,8 +83,7 @@ class helper(object):
 class dfs(helper):
 
     def __init__(self, inputMatrix, source, destination):
-        helper.__init__(self, inputMatrix, source, destination)
-        self.directions = ['up', 'down', 'left', 'right']
+        helper.__init__(self, inputMatrix, source, destination)        
 
     def logic(self, src , dest, sol, om):
         if(src == dest):
@@ -103,8 +108,57 @@ class dfs(helper):
         self.outputMatrix[self.source[0]][self.source[1]] = 1
         self.logic(self.source, self.destination, [], self.outputMatrix)
 
-    
+class bfsBase(object):
 
+    def __init__(self, direction, row, col, parent):
+        self.direction = direction
+        self.row = row
+        self.col = col
+        self.parent = parent
+        self.childern = []
+
+#Here for bfs approach we design a tree with multiple childern and a queue
+class bfs(helper):
+
+    def __init__(self, inputMatrix, source, destination):
+        helper.__init__(self, inputMatrix, source, destination)
+        self.q = []
+
+    def create_bfsBaseNode(self, row, col, direction, parent):
+        node = bfsBase(direction, row, col, parent)
+        return node
+    
+    def solution(self):
+        #Create node for the source of the maze
+        src_node = self.create_bfsBaseNode(self.source[0], self.source[1], "head", None)
+        #Push that in queue
+        self.q.append(src_node)
+        #put 1 in output matrix
+        self.outputMatrix[self.source[0]][self.source[1]] = 1
+        possible_moves, possible_directions = self.possibleMoves([2,4])
+        #correct the program where possible_moves are given after the roll
+        '''
+        #while q is not empty
+        while(self.q):
+            top = self.q.pop(0)
+            #Get the possible directions
+            possible_moves, possible_directions = self.possibleMoves([top.row, top.col])
+            #put these moves in q
+            for i in range(possible_moves):
+                move = possible_moves[i]
+                #if not previously visited before
+                if(self.outputMatrix[move[0]][move[1]] == 0):
+                    #Mark it visited
+                    self.outputMatrix[move[0]][move[1]] = 1
+                    #Create node for the move
+                    node = create_bfsBaseNode(move[0], move[1], possible_directions[i], top)
+                    #Add this node as top's childern
+                    top.childern.append(node)
+                    #Add it to queue
+                    self.q.append(node)
+                    '''
+            
+        
             
 
 #Main Program
@@ -115,5 +169,8 @@ m = [[0, 0, 1, 0, 0],
 [0, 0, 0, 0, 0]]
 s = [0,4]
 d = [4,4]
-h = dfs(m,s,d)
-h.solution()
+#h = dfs(m,s,d)
+#h.solution()
+
+b = bfs(m,s,d)
+b.solution()
