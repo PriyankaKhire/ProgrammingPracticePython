@@ -92,7 +92,7 @@ class dfs(helper):
             for row in range(len(om)):
                 print om[row]
             return
-        #print src, sol
+        print src, sol
         for d in self.directions:
             after_roll = self.roll(d, src)
             if(after_roll != src and om[after_roll[0]][after_roll[1]] == 0):
@@ -124,6 +124,15 @@ class bfs(helper):
         helper.__init__(self, inputMatrix, source, destination)
         self.q = []
 
+    #Traces the nodes bottom up to get the solution then prints it 
+    def print_solution(self, node):
+        stack = []
+        while(node.parent != None):
+            stack.append(node.direction)
+            node = node.parent
+        while stack:
+            print stack.pop()
+
     def create_bfsBaseNode(self, row, col, direction, parent):
         node = bfsBase(direction, row, col, parent)
         return node
@@ -134,34 +143,46 @@ class bfs(helper):
         #Push that in queue
         self.q.append(src_node)
         #put 1 in output matrix
-        self.outputMatrix[self.source[0]][self.source[1]] = 1
-        possible_moves, possible_directions = self.possibleMoves([2,4])
-        #correct the program where possible_moves are given after the roll
-        '''
+        self.outputMatrix[self.source[0]][self.source[1]] = 1 
         #while q is not empty
         while(self.q):
             top = self.q.pop(0)
+            #Stop condition
+            if([top.row, top.col] == self.destination):
+                print "Found the solution "
+                self.print_solution(top)
+                break
+            print "---"
+            print top.row, top.col
+            if top.parent != None:
+                print "parent row and col is "
+                print top.parent.row, top.parent.col            
+            print self.q
             #Get the possible directions
             possible_moves, possible_directions = self.possibleMoves([top.row, top.col])
+            print possible_directions
             #put these moves in q
-            for i in range(possible_moves):
-                move = possible_moves[i]
+            for i in range(len(possible_directions)):
+                #roll in the given direction
+                after_roll = self.roll(possible_directions[i], [top.row, top.col])
                 #if not previously visited before
-                if(self.outputMatrix[move[0]][move[1]] == 0):
+                if(self.outputMatrix[after_roll[0]][after_roll[1]] == 0):
+                    print "Inserting direction "+possible_directions[i]+" with after roll value "+str(after_roll)
                     #Mark it visited
-                    self.outputMatrix[move[0]][move[1]] = 1
+                    self.outputMatrix[after_roll[0]][after_roll[1]] = 1
                     #Create node for the move
-                    node = create_bfsBaseNode(move[0], move[1], possible_directions[i], top)
+                    node = self.create_bfsBaseNode(after_roll[0], after_roll[1], possible_directions[i], top)
                     #Add this node as top's childern
                     top.childern.append(node)
                     #Add it to queue
                     self.q.append(node)
-                    '''
+                    print self.q
             
         
             
 
 #Main Program
+                    '''
 m = [[0, 0, 1, 0, 0],
 [0, 0, 0, 0, 0],
 [0, 0, 0, 1, 0],
@@ -169,8 +190,18 @@ m = [[0, 0, 1, 0, 0],
 [0, 0, 0, 0, 0]]
 s = [0,4]
 d = [4,4]
-#h = dfs(m,s,d)
-#h.solution()
+'''
+m =[[0, 0, 1, 0, 0],
+[0, 0, 0, 0, 0],
+[0, 0, 0, 1, 0],
+[1, 1, 0, 1, 1],
+[0, 0, 0, 0, 0]]
+s = [0,4]
+d = [3,2]
+
+
+h = dfs(m,s,d)
+h.solution()
 
 b = bfs(m,s,d)
 b.solution()
