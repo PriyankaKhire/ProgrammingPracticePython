@@ -7,6 +7,13 @@ class partitionLables(object):
         #This hash map will have key as letter and value as start and end position of that letter
         self.hash_map = {}
 
+    def print_output(self, output):
+        for o_range in output:
+            for i in range(o_range[0], o_range[1]+1):
+                print self.s[i],
+            print "\n"
+
+        
     #Scans string s and puts it in hash table
     def scan_s(self):
         for i in range(len(self.s)):
@@ -38,18 +45,17 @@ class partitionLables(object):
                 print "we extend range"
                 extend_flag = True
                 extend_range = output_range
-'''
-            if(extend_flag == True):
-                print "extending"
-                output.remove(extend_range)
-                extend_range[1] = range_i[1]
-                output.append(extend_range)
-                return output
-            if(add_new_flag == True):
-                print "adding"
-                output.append(self.hash_map[self.s[i]])
-                return output
-'''                
+        if(extend_flag == True):
+            print "extending"
+            output.remove(extend_range)
+            extend_range[1] = range_i[1]
+            output.append(extend_range)
+            return output
+        if(add_new_flag == True):
+            print "adding"
+            output.append(self.hash_map[self.s[i]])
+            return output
+                         
 
     def partition_string(self):
         self.scan_s()
@@ -64,7 +70,7 @@ class partitionLables(object):
             print output
             print "---"
         print output
-            
+        self.print_output(output)
 
 #Main Program
 obj = partitionLables("ababcbacadefegdehijhklij")
