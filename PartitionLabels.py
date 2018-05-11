@@ -16,6 +16,41 @@ class partitionLables(object):
                 self.hash_map[self.s[i]][1] = i
         print self.hash_map
 
+    def compare_with_output(self, output, range_i, i):
+        add_new_flag = False
+        extend_flag = False
+        extend_range = []
+        print output
+        for output_range in output:
+            print output_range
+            if(output_range[0] <= range_i[0] and range_i[1] <= output_range[1]):
+                print "for output range "+str(output_range)
+                print "its within"
+                return output
+            elif(output_range[1] < range_i[0] ):
+                #output.append(self.hash_map[self.s[i]])
+                print "for output range "+str(output_range)
+                print "we add new range"
+                add_new_flag = True
+            elif(output_range[0] < range_i[0] and output_range[1] > range_i[0] and output_range[1] < range_i[1]):
+                #output_range[1] = range_i[1]
+                print "for output range "+str(output_range)
+                print "we extend range"
+                extend_flag = True
+                extend_range = output_range
+'''
+            if(extend_flag == True):
+                print "extending"
+                output.remove(extend_range)
+                extend_range[1] = range_i[1]
+                output.append(extend_range)
+                return output
+            if(add_new_flag == True):
+                print "adding"
+                output.append(self.hash_map[self.s[i]])
+                return output
+'''                
+
     def partition_string(self):
         self.scan_s()
         output = []
@@ -25,17 +60,8 @@ class partitionLables(object):
             range_i = self.hash_map[self.s[i]]
             print range_i
             print self.s[i]
-            for output_range in output:
-                print output_range
-                if(output_range[0] < range_i[0] and range_i[1] < output_range[1]):
-                    #Then range remains same
-                    print range_i
-                #Start new range
-                elif(output_range[1] < range_i[0] ):
-                    output.append(self.hash_map[self.s[i]])
-                #extend a range
-                elif(output_range[0] < range_i[0] and output_range[1] > range_i[0] and output_range[1] < range_i[1]):
-                    output_range[1] = range_i[1]
+            output = self.compare_with_output(output, range_i, i)
+            print output
             print "---"
         print output
             
