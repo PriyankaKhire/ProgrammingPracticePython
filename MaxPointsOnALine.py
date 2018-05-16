@@ -1,9 +1,17 @@
 #Max points on a line
 # https://leetcode.com/problems/max-points-on-a-line/description/
-class point(object):
+class Point(object):
     def __init__(self, a=0, b=0):
         self.x = a
         self.y = b
+class pointList(object):
+    def __init__(self, pList):
+        self.pList = []
+        for p in pList:
+            point = Point(p[0], p[1])
+            self.pList.append(point)
+    def getList(self):
+        return self.pList
         
 class firstApproach(object):
     def __init__(self, inputList):
@@ -46,17 +54,8 @@ class firstApproach(object):
 
 
 #Main Program
-'''
-p1 = point(1,1)
-p2 = point(2,2)
-p3 = point(3,3)
-fa = firstApproach([p1,p2,p3])
-'''
-p1 = point(1,1)
-p2 = point(3,2)
-p3 = point(5,3)
-p4 = point(4,1)
-p5 = point(2,3)
-p6 = point(1,4)
-fa = firstApproach([p1,p2,p3,p4,p5,p6])
+#pl = pointList([[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]])
+pl = pointList([[0,9],[138,429],[115,359],[115,359],[-30,-102],[230,709],[-150,-686],[-135,-613],[-60,-248],[-161,-481],[207,639],[23,79],[-230,-691],[-115,-341],[92,289],[60,336],[-105,-467],[135,701],[-90,-394],[-184,-551],[150,774]])
+l = pl.getList()
+fa = firstApproach(l)
 fa.logic()
