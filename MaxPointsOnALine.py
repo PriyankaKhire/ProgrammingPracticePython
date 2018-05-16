@@ -17,6 +17,10 @@ class firstApproach(object):
         return False
 
     def logic(self):
+        if(len(self.inputList)==1):
+            return 1
+        if(len(self.inputList)==2):
+            return 2
         path = []
         mainPath = []
         for i in range(0, len(self.inputList)-2):
