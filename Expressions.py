@@ -27,6 +27,15 @@ class infix(operatorPrecedence):
         #Put the infix expression in ()
         self.infixExpression = "("+infixExpression+")"
         
+    #Explanation: at first put the expression in ()
+    #then as you are scanning the expression you first put ( in the bottom of the stack
+    #then you start scanning the expression, if you encounter operand such as A, B etc you add it to output
+    #if you encounter an operator such as + - * / then you put it in stack only if
+    #the top of stack has an operator with less than or equal to precedence than the operator you are trying to put.
+    #so if stack has + and you are trying to add * you can
+    #in case if you are trying to add + and stack has * then you start popping till top of stack has something
+    #that is less in precedence than the one you are currently trying to add
+    #finally when you encounter ) pop the stack and add it to output till you reach (
     def toPostfix(self):
         stack = []
         output = ""
