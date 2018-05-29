@@ -1,4 +1,5 @@
 #Expressions and conversion
+#http://interactivepython.org/runestone/static/pythonds/BasicDS/InfixPrefixandPostfixExpressions.html
 
 #Getting the operator precedence from wikipedia
 #https://en.wikipedia.org/wiki/Order_of_operations
@@ -18,14 +19,49 @@ class operatorPrecedence(object):
     def getPrecedence(self, operator):
         return self.precedence_levels[operator]
 
+class helperFunctions(object):
+    def reverse(self, string):
+        '''
+        for i in range((len(string))/2 ):
+            print "Swapping "+string[len(string) - 1 - i]+" with "+string[i]
+            temp = string[i]
+            string[i] = string[len(string) - 1 - i]
+            string[len(string) - 1 - i] = temp
+        '''
+        return string[::-1]
+
+    def invertBrackets(self, string):
+        s = ""
+        for char in string:
+            if char == "(":
+                s = s+")"
+            elif char == ")":
+                s = s+"("
+            else:
+                s = s+char
+        return s
+
 #Convert infix to postfix and prefix
-class infix(operatorPrecedence):
+class infix(operatorPrecedence, helperFunctions):
 
     def __init__(self, infixExpression):
         #Call constructor of base class
         super(infix, self).__init__()
         #Put the infix expression in ()
         self.infixExpression = "("+infixExpression+")"
+
+    #reverse the expression this means () will change to )(
+    # convert it into postfix expression
+    #reverse the expression again.
+    def toPrefix(self):
+        reversed_expression = self.reverse(self.infixExpression)
+        inverted_brackets_expression = self.invertBrackets(reversed_expression)
+        self.infixExpression = inverted_brackets_expression
+        postFixed = self.toPostfix()
+        reverse_postFixed = self.reverse(postFixed)
+        return reverse_postFixed
+        
+        
         
     #Explanation: at first put the expression in ()
     #then as you are scanning the expression you first put ( in the bottom of the stack
@@ -61,7 +97,7 @@ class infix(operatorPrecedence):
                         top = stack.pop()
                         output = output + top
                     stack.append(char)
-        print output
+        return output
                 
                 
         
@@ -71,6 +107,6 @@ class infix(operatorPrecedence):
 
 #Main Program
 #DONT use space in input expression
-i = infix("A+B+C+D")
-i.toPostfix()
-        
+i = infix("(A-B/C)*(A/K-L)")
+print i.toPostfix()
+print i.toPrefix()    
