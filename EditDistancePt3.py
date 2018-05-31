@@ -4,49 +4,54 @@
 class editFunctions():
     #insert a char, at given position in the string
     def insert(self, pos, char, string):
+        print "Inserting "+char+" at position "+str(pos)+" in string "+string
         return string[:pos]+char+string[pos:]
 
     def delete(self, pos, string):
+        print "deleting "+string[pos]+" at pos "+str(pos)+" from string "+string
         return string[:pos]+string[pos+1:]
 
     #replace a character at given pos with another 'char' in the string
     def replace(self, pos, char, string):
+        print "replacing "+string[pos]+" with "+char+" in string "+string+" at position "+str(pos)
         return string[:pos]+char+string[pos+1:]
     
 
 class backTrackingMethod(editFunctions):
+    def __init__(self):
+        self.actions = ["insert", "delete", "replace"]
     #Perform actions on s1 to convert it into s2
-    def logic(self, s1, s2, editCount, editAction, s1Index, s2Index):
-        #return condition
-        if(s1 == s2):
-            print "Edit distance "+str(editCount)
+    def logic(self, s1, s2, s1i, s2i, ed):
+        if(len(s1) < len(s2)):
             return
-        new_s1 = ""
-        #what is the current action that needs to be taken on the string
-        if editAction == "insert":
-            print "inserting "+s2[s2Index]+" at position "+str(s1Index)+" in "+s1
-            new_s1 = self.insert(s1Index,  s2[s2Index], s1)
-        elif editAction == "delete":
-            print "deleting "+s1[s1Index]+" from "+s1
-            new_s1 = self.delete(s1Index, s1)
-        elif editAction == "replace":
-            print "replacing "+s1[s1Index]+" of "+s1+" with "+s2[s2Index]
-            new_s1 = self.replace(s1Index, s2[s2Index], s1)
-        #get new s2Index
-        if s1[s1Index] == s2[s2Index]:
-            s2Index = s2Index + 1
-        print new_s1
-        self.logic(new_s1, s2, editCount+1, "insert", s1Index+1, s2Index)
-        self.logic(new_s1, s2, editCount+1, "delete", s1Index+1, s2Index)
-        self.logic(new_s1, s2, editCount+1, "replace", s1Index+1, s2Index)
-
-    def solution(self, s1, s2):
-        self.logic(s1, s2, 0, "insert", 0, 0)
-        self.logic(s1, s2, 0, "delete", 0, 0)
-        self.logic(s1, s2, 0, "replace", 0, 0)
+        if(s1 == ""):
+            return
+        if(s1 == s2):
+            print "edit distance "+str(ed)
+            return        
+        #Moving on
+        #print s1i, len(s1), s2i, len(s2)
+        while(s1i < len(s1) - 1 and s2i < len(s2) - 1 and s1[s1i] == s2[s2i]):
+            s1i = s1i+1
+            s2i = s2i+1
+        #delete end string
+        if(len(s1) > len(s2) and s1[s1i] == s2[s2i] and s2i == len(s2)-1):
+            print "edit distance "+str(ed+len(s1)-s1i-1)
+            return
+        for action in self.actions:
+            new_s1 = ""
+            if(action == "insert"):
+                new_s1 = self.insert(s1i, s2[s2i], s1)
+            if(action == "delete" and s1i < len(s1)):
+                new_s1 = self.delete(s1i, s1)
+            if(action == "replace" and s1i < len(s1)):
+                new_s1 = self.replace(s1i, s2[s2i], s1)
+            print "new s1 after editing it is "+new_s1
+            self.logic(new_s1, s2, s1i, s2i, ed+1)
+        
 
 #Main Program
 obj = backTrackingMethod()
-obj.solution("abc", "ac")
-        
+obj.logic("horse", "ros", 0, 0, 0)
+#string 1 should be always bigger than s2        
             
