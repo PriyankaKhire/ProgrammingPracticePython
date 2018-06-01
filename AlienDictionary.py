@@ -27,22 +27,16 @@ class CreateTrie():
                 return True, child
         
     def addWordToTrie(self, word):
-        childFlag, child = self.findChild(self.trieRoot, word[0])
         parentNode = self.trieRoot
-        #if child not found
-        if not childFlag:
-            #Add the word as is            
-            for letter in word:
-                #Create node for it
-                node = self.createNode(letter)
-                #Add node as child to parent node
-                self.addChildToTrieNode(node, parentNode)
-                #make current node as parent node
-                parentNode = node
-        else:
-            #if child is found then add to existing node
-            wordIndex = 0
-            while wordIndex < len(word):
+        for letter in word:
+            childFlag, childNode = self.findChild(parentNode, letter)
+            if childFlag:
+                parentNode = childNode
+            else:
+                #Create child node
+                cnode = self.createNode(letter)
+                self.addChildToTrieNode(cnode, parentNode)
+                parentNode = cnode
                 
         
 
