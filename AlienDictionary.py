@@ -1,5 +1,57 @@
 #Given a sorted dictionary of an alien language, find order of characters
+class graphNode(object):
+    def __init__(self, data):
+        self.data = data
+        self.link = []
 
+class CreateGraph():
+    def __init__(self):
+        #key is node data and value is node object
+        self.nodesDictionary = {}
+        self.root = None
+
+    def createNode(self, data):
+        node = graphNode(data)
+        return node
+
+    def addChildNode(self, parentNode, childNode):
+        parentNode.link.append(childNode)
+        return parentNode
+
+    #Creates uni directed graph from given array
+    #So if array is b,a,d then graph will be
+    #b->a->d
+    def createGraph(self, array):
+        #Create graph nodes and fill dictionary
+        for letter in array:
+            if not letter in self.nodesDictionary:
+                node = self.createNode(letter)
+                self.nodesDictionary[letter] = node
+                if self.root == None:
+                    self.root = node
+        #Add edges
+        for i in range(len(array)-1):
+            pnode = self.nodesDictionary[array[i]]
+            cnode = self.nodesDictionary[array[i+1]]
+            pnode = self.addChildNode(pnode, cnode)
+
+    def dfs(self, node, output):
+        if not node.link:
+            print output
+            return
+        for child in node.link:
+            output.append(child.data)
+            self.dfs(child, output)
+            output.pop()
+
+    def dfsTraversal(self):
+        self.dfs(self.root, [self.root.data])
+        
+        
+                
+                
+        
+        
 class trieNode(object):
     def __init__(self, letter):
         self.letter = letter
@@ -9,6 +61,26 @@ class trieNode(object):
 class CreateTrie():
     def __init__(self):
         self.trieRoot = trieNode("")
+        #keeps track of all letters of all words in trie
+        self.letterDictionary = []
+
+    def findWord(self, word):
+        parentNode = self.trieRoot
+        for letter in word:
+            childFlag, childNode = self.findChild(parentNode, letter)
+            if childFlag:
+                parentNode = childNode
+            else:
+                return False
+        return True
+
+    def returnChildNodeData(self, node):
+        if not node.childern:
+            return False
+        output = []
+        for child in node.childern:
+            output.append(child.letter)
+        return output
 
     def createNode(self, letter):
         node = trieNode(letter)
@@ -25,10 +97,14 @@ class CreateTrie():
         for child in node.childern:
             if(child.letter == childData):
                 return True, child
+        return False, -1
         
     def addWordToTrie(self, word):
         parentNode = self.trieRoot
         for letter in word:
+            #Add letter to letter dictionary
+            if not letter in self.letterDictionary:
+                self.letterDictionary.append(letter)
             childFlag, childNode = self.findChild(parentNode, letter)
             if childFlag:
                 parentNode = childNode
@@ -37,12 +113,27 @@ class CreateTrie():
                 cnode = self.createNode(letter)
                 self.addChildToTrieNode(cnode, parentNode)
                 parentNode = cnode
-                
+
+class AlienDictionary(object):
+    def __init__(self, words):
+        self.graph = CreateGraph()
+        self.trie = CreateTrie()
+        #Create a trie
+        for word in words:
+            self.trie.addWordToTrie(word)
+
+    def createGraph(self):
+        a = self.trie.returnChildNodeData(self.trie.trieRoot)
+        self.graph.createGraph(a)
+        parentNode = self.trie.trieRoot
+        for letter in a:
+            
         
+        self.graph.dfsTraversal()
 
 
 
 #Main program
 words = ["baa", "abcd", "abca", "cab", "cad"]
-o = CreateTrie()
-o.addWordToTrie("abcd")
+o = AlienDictionary(words)
+o.createGraph()
