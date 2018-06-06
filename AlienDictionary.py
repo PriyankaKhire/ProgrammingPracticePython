@@ -63,6 +63,22 @@ class CreateTrie():
         self.trieRoot = trieNode("")
         #keeps track of all letters of all words in trie
         self.letterDictionary = []
+        self.childCollector = []
+
+    def traverse_collectChildern(self, parentNode):
+        if not parentNode.childern:
+            return       
+        for child in parentNode.childern:
+            if child.childCount > 1:
+                childNodeData = self.returnChildNodeData(child)
+                self.childCollector.append(childNodeData)
+            self.traverse_collectChildern(child)
+    #Traverses the trie and returns all the intermediate node childern    
+    def collectChildern(self):
+        rootChildern = self.returnChildNodeData(self.trieRoot)
+        self.childCollector.append(rootChildern)
+        self.traverse_collectChildern(self.trieRoot)
+        return self.childCollector
 
     def findWord(self, word):
         parentNode = self.trieRoot
@@ -122,18 +138,17 @@ class AlienDictionary(object):
         for word in words:
             self.trie.addWordToTrie(word)
 
-    def createGraph(self):
-        a = self.trie.returnChildNodeData(self.trie.trieRoot)
-        self.graph.createGraph(a)
-        parentNode = self.trie.trieRoot
-        for letter in a:
-            
-        
+    def print_order(self):
+        allChildern = self.trie.collectChildern()
+        for child in allChildern:
+            self.graph.createGraph(child)
         self.graph.dfsTraversal()
 
 
 
 #Main program
-words = ["baa", "abcd", "abca", "cab", "cad"]
+#words = ["baa", "abcd", "abca", "cab", "cad"]
+#words = ["caa", "aaa", "aab"]
+words = ["wrt", "wrf", "er", "ett", "rftt"]
 o = AlienDictionary(words)
-o.createGraph()
+o.print_order()
