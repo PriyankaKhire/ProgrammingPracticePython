@@ -1,7 +1,42 @@
 #Trapping Rain Water
 # https://www.geeksforgeeks.org/trapping-rain-water/
+class TrappingRainWaterApproch2(object):
+    def __init__(self, inputArray):
+        self.inputArr = inputArray
+        #This array represents water trapped by each wall
+        self.waterTrapped = [0 for i in range(len(inputArray))]
 
-class TrappingRainWater(object):
+    #finds trapped water between highest wall and current wall and updates the waterTrapped Array
+    def trappedWater(self, highestWall, currentWall):
+        #if previous wall is greater than current wall then return
+        if(self.inputArr[currentWall-1] >self.inputArr[currentWall]):
+            return
+        waterIndex = currentWall - 1
+        while(waterIndex > highestWall  and self.inputArr[waterIndex] < self.inputArr[currentWall] and self.inputArr[waterIndex] < self.inputArr[highestWall]):
+            #find lowest wall between the 2
+            if(self.inputArr[highestWall] > self.inputArr[currentWall]):
+                self.waterTrapped[waterIndex] = self.inputArr[currentWall] - self.inputArr[waterIndex]
+            else:
+                self.waterTrapped[waterIndex] = self.inputArr[highestWall] - self.inputArr[waterIndex]
+            waterIndex = waterIndex - 1
+                             
+
+    def solution(self):
+        highestWallSoFarIndex = None
+        for wallIndex in range(len(self.inputArr)):
+            if self.inputArr[wallIndex] > 0:
+                if highestWallSoFarIndex == None:
+                    highestWallSoFarIndex = wallIndex
+                    continue
+                self.trappedWater(highestWallSoFarIndex, wallIndex)
+                if(self.inputArr[wallIndex] > self.inputArr[highestWallSoFarIndex]):
+                    highestWallSoFarIndex = wallIndex
+        print self.waterTrapped
+        print "Total water trapped "+str(sum(self.waterTrapped))
+
+
+#This approach adds additional rainwater.
+class TrappingRainWaterBadApproach(object):
     def __init__(self, inputArray):
         self.inputArr = inputArray
 
@@ -60,5 +95,7 @@ class TrappingRainWater(object):
         print rainWater
                 
 #Main Program
-o = TrappingRainWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])
+o = TrappingRainWaterBadApproach([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])
 o.trapWater()
+p = TrappingRainWaterApproch2([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])
+p.solution()
