@@ -6,7 +6,7 @@ class KMP(object):
         self.pattern = pattern
 
     #generate longest suffix which is same as suffix table for a Pattern
-    def lps(self):
+    def suffixTable(self):
         table = [0 for i in range(len(self.pattern))]
         prefix = 0
         suffix = prefix +1
@@ -24,10 +24,31 @@ class KMP(object):
                     table[suffix] = prefix + 1
                 prefix = 0
                 suffix = suffix + 1
-        print table
+        return table
+
+    def patternMatch(self):
+        patternTable = self.suffixTable()
+        patternIndex = 0
+        stringIndex = 0
+        while(stringIndex < len(self.string) and patternIndex < len(self.pattern)):
+            if(self.pattern[patternIndex] == self.string[stringIndex]):
+                stringIndex = stringIndex + 1
+                patternIndex = patternIndex + 1
+            else:
+                while(patternIndex > 0 and self.pattern[patternIndex] != self.string[stringIndex]):
+                    patternIndex = patternTable[patternIndex-1]
+                if(patternIndex == 0 and self.string[stringIndex] != self.pattern[patternIndex]):
+                    stringIndex = stringIndex+1
+        if(patternIndex == len(self.pattern)):
+            #pattern found
+            print "start index of pattern is "+str(stringIndex - len(self.pattern))
+            return True
+        print "pattern not found"
+        return False
+        
 
 
 #Main Program
-o = KMP("", "aaaabaacd")
-o.lps()
+o = KMP("abcxabcdabxabcdabcdabcy", "xzsdflkjg")
+print o.patternMatch()
         
