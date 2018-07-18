@@ -58,6 +58,8 @@ class Approch1(object):
                 enemy = self.updateOutput(self.matrix[row][col], enemy, row, col)
         print "The row and col where max enemies will be killed is ",
         print self.rowMax, self.colMax
+        print "the max enemies killed is ",
+        print self.killMax
                 
         
 
@@ -65,5 +67,6 @@ class Approch1(object):
 m = [[0, "E", 0, 0],
 ["E", 0, "W", "E"],
 [0, "E", 0, 0]]
+m = [["0","E","0","0"],["E","0","W","E"],["0","E","0","0"]]
 o = Approch1(m)
 o.logic()
