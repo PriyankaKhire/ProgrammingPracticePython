@@ -119,7 +119,7 @@ class Approch3(object):
 
     def findPower(self):
         for i in range(1,9):
-            if not (10**i < self.number):
+            if not (10**i <= self.number):
                 break
         self.power = i-1
 
@@ -179,5 +179,5 @@ class Approch3(object):
     
 
 #Main Program
-o = Approch3(10909091)
+o = Approch3(100)
 print o.solution()
