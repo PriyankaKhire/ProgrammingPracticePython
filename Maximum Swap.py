@@ -109,8 +109,75 @@ class Approch2(object):
             number = number%(10**self.power)
             self.power = self.power-1
         return "No swap"
-            
+
+class Approch3(object):
+    def __init__(self, number):
+        self.number = number
+        #uses constant space
+        self.digits = [False for i in range(10)]
+        self.power = 0
+
+    def findPower(self):
+        for i in range(1,9):
+            if not (10**i < self.number):
+                break
+        self.power = i-1
+
+    def scanDigits(self):
+        n = self.number
+        pos = 0
+        power = self.power
+        while power>=1:
+            d = n/(10**power)
+            n = n%(10**power)
+            if self.digits[d] == False:
+                self.digits[d] = pos
+            power = power-1
+            pos = pos+1
+
+    def findGreater(self, digit):
+        for i in range(9, digit, -1):
+            if(self.digits[i] != False):
+                return i, True
+        return digit, False
+
+    def findSwap(self):
+        pos = 0
+        n = self.number
+        power = self.power
+        while power >=1:
+            d = n/(10**power)
+            n = n%(10**power)
+            if(d!=9):
+                greater, flag = self.findGreater(d)
+                if(flag):
+                    return True, pos, self.digits[greater]
+            pos = pos+1
+            power = power-1
+        return False, -1, -1
+
+    def numSwap(self, pos1, pos2):
+        stringNum = str(self.number)
+        t = list(stringNum)
+        letter1 = t[pos1]
+        letter2 = t[pos2]
+        t[pos2] = letter1
+        t[pos1] = letter2
+        stringNum = ''.join(t)
+        stringNum = stringNum
+        return int(stringNum)
+                     
+    def solution(self):
+        self.findPower()
+        self.scanDigits()
+        flag, pos1, pos2 = self.findSwap()
+        if flag:
+            n = self.numSwap(pos1, pos2)
+            return n
+        else:
+            return "No Swap"      
+    
 
 #Main Program
-o = Approch2(10909091)
+o = Approch3(10909091)
 print o.solution()
