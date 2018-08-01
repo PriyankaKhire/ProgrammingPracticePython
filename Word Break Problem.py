@@ -77,12 +77,22 @@ class Approch2(object):
             if(word in self.wordDict):
                 if(self.solution(index+1, sentence+" "+word)):
                     return True
+
+class Approch3(object):
+    def __init__(self, s, wordDict):
+        self.s = s
+        self.wordDict = wordDict
+        #find lengths of word in dict
+        self.lengths = []
+        for word in wordDict:
+            if not(len(word) in self.lengths):
+                self.lengths.append(len(word))
             
 
 #Main Program
-o = Approch1()
-o.findAllOccourences("ilikesamsungmobile", "")
-o.findFirstOccourence("ilikeicecreamandmango", "")
-o2 = Approch2(["i", "like", "sam", "sung", "samsung", "mobile", "ice", "cream", "icecream", "man", "go", "mango", "and"]
-, "ilikeicecreamandmango")
-print o2.solution(0, "")
+#o = Approch1()
+#o.findAllOccourences("ilikesamsungmobile", "")
+#o.findFirstOccourence("ilikeicecreamandmango", "")
+#o2 = Approch2(["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"], "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab")
+#print o2.solution(0, "")
+o3 = Approch3("catsandog", ["cats", "dog", "sand", "and", "cat"])
