@@ -57,11 +57,11 @@
 #mines[i] will be length 2 and consist of integers in the range [0, N-1].
 #(Additionally, programs submitted in C, C++, or C# will be judged with a slightly smaller time limit.)
 class qObject(object):
-    def __init__(self, row, col, direction):
+    def __init__(self, row, col, direction, degree):
         self.row = row
         self.col = col
-        self.dir = direction
-        self.degr
+        self.direction = direction
+        self.degree = degree
 
 class Approch1(object):
     def __init__(self, N, mines):
@@ -76,7 +76,6 @@ class Approch1(object):
             r = mine[0]
             c = mine[1]
             self.matrix[r][c] =0
-        print self.matrix
 
     def newRowCol(self, row, col, direction):
         if(direction == "up"):
@@ -90,9 +89,9 @@ class Approch1(object):
         return (row, col)
 
     def isValid(self, row, col):
-        if(self.matrix[row][col] == 1):
-            if(row >= 0 and row < self.n):
-                if(col >=0 and col < self.n):
+        if(row >= 0 and row < self.n):
+            if(col >=0 and col < self.n):
+                if(self.matrix[row][col] == 1):          
                     return True
         return False
 
@@ -101,20 +100,23 @@ class Approch1(object):
         q = []
         for direction in self.directions:
             new_r, new_c = self.newRowCol(row, col, direction)
-            if not(isValid(new_r, new_c)):
+            if not(self.isValid(new_r, new_c)):
                 return 1
-            o = qObject(new_r, new_c, direction)
+            o = qObject(new_r, new_c, direction, 2)
             q.append(o)
-        degree = 2
         while(q):
             top = q.pop(0)
             new_r, new_c = self.newRowCol(top.row, top.col, top.direction)
-            if not(isValid(new_r, new_c)):
-                return degree
+            if not(self.isValid(new_r, new_c)):
+                return top.degree
+            o = qObject(new_r, new_c, top.direction, top.degree+1)
+            q.append(o)
+            
             
         
         
     def solution(self):
+        maxDegree = 0
         #generally if there are no mines then the axis-aligned plus sign of 1s would be
         #of order N-1 but if N = 1 then its 1
         if(self.n == 1):
@@ -122,13 +124,17 @@ class Approch1(object):
                 return 1
             else:
                 return 0
+        self.constructN()
         for row in range(self.n):
             for col in range(self.n):
                 if (self.matrix[row][col] == 1):
-                    self.bfs(row, col)
+                    d = self.bfs(row, col)
+                    if d > maxDegree:
+                        maxDegree = d
+        return maxDegree
         
 
 
 #Main
-o = Approch1(5, [[4,2]])
-o.constructN()
+o = Approch1(1, [0,0])
+print o.solution()
