@@ -77,9 +77,8 @@ class HeapApproch(object):
         while(self.lists):
             for i in range(len(self.lists)):
                 #Pop the list thats empty
-                #incomplete, complete it here
-                if not self.lists[i]:
-                    self.lists.pop(i)
+                if [] in self.lists:
+                    self.lists.remove([])
                     continue
                 top = self.h.pop()
                 self.h.push(self.lists[i].pop(0))
@@ -91,6 +90,14 @@ class HeapApproch(object):
                     else:
                         self.answerTail.next = topNode
                     self.answerTail = topNode
+        #put the rest of the elements in heap in list
+        while self.h.array:
+            print self.h.array
+            top = self.h.pop()
+            topNode = self.createNode(top)
+            print top
+            self.answerTail.next = topNode
+            self.answerTail = topNode
                         
 
 
