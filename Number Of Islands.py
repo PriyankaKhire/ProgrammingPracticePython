@@ -45,6 +45,8 @@ class BFS(object):
                     islandCount = islandCount + 1
                     self.count([[row, col]])
         print islandCount
+        print "you can do this inplace by using input matrix as memory"
+        print "by setting cell's that are visited as 0"
 
 
 #Main
