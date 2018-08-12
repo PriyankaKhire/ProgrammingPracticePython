@@ -12,6 +12,11 @@ class MinHeap(object):
 
     def getSmallerChildIndex(self, parentIndex):
         leftChildIndex, rightChildIndex = self.getChildern(parentIndex)
+        #if one child is valid and other is not
+        if(self.isValid(leftChildIndex) and not self.isValid(rightChildIndex)):
+            return leftChildIndex
+        elif(self.isValid(rightChildIndex) and not self.isValid(leftChildIndex)):
+            return rightChildIndex
         if(self.isValid(leftChildIndex) and self.isValid(rightChildIndex) and (self.array[leftChildIndex] < self.array[rightChildIndex])):
             return leftChildIndex
         return rightChildIndex
@@ -39,6 +44,8 @@ class MinHeap(object):
     def pop(self):
         if not self.array:
             return False
+        if len(self.array) == 1:
+            return self.array.pop()
         top = self.array[0]
         #put the last element on top
         self.array[0] = self.array.pop()
@@ -59,6 +66,12 @@ class ListNode(object):
          self.val = x
          self.next = None
 
+#This object helps us to keep track of top pointer of the lists
+class qObject(object):
+    def __init__(self, lst, ptr):
+        self.list = lst
+        self.ptr = ptr
+
 class HeapApproch(object):
     def __init__(self, lists):
         self.lists = lists
@@ -70,35 +83,36 @@ class HeapApproch(object):
         node = ListNode(val)
         return node
 
+    def createLinkedList(self, val):
+        print val
+
     def sol(self):
-        #create a heap of k size
-        for lst in self.lists:
-            self.h.push(lst.pop(0))
-        while(self.lists):
-            for i in range(len(self.lists)):
-                #Pop the list thats empty
-                if [] in self.lists:
-                    self.lists.remove([])
-                    continue
-                top = self.h.pop()
-                self.h.push(self.lists[i].pop(0))
-                if top:
-                    topNode = self.createNode(top)
-                    print top
-                    if self.answerRoot == None:
-                        self.answerRoot = topNode
-                    else:
-                        self.answerTail.next = topNode
-                    self.answerTail = topNode
-        #put the rest of the elements in heap in list
+        q = []
+        #create heap of k nodes and simultaneously create qObjects for lists
+        for l in self.lists:
+            #add to heap
+            self.h.push(l[0])
+            #create qObject for the list and add it to q
+            qo = qObject(l, 1)
+            q.append(qo)
+        #while the q is not empty
+        while q:
+            #pop the item
+            top = q.pop(0)
+            if(top.ptr < len(top.list)):
+                #pop from heap
+                val = self.h.pop()
+                #send value to make linked list
+                self.createLinkedList(val)
+                self.h.push(top.list[top.ptr])
+                top.ptr = top.ptr+1
+                q.append(top)
+        #remove remaining elements in heap
         while self.h.array:
-            print self.h.array
-            top = self.h.pop()
-            topNode = self.createNode(top)
-            print top
-            self.answerTail.next = topNode
-            self.answerTail = topNode
-                        
+            val = self.h.pop()
+            self.createLinkedList(val)
+                
+        
 
 
 #Main
