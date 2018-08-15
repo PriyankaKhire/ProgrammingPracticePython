@@ -11,7 +11,7 @@ class Approch1(object):
         while (i < len(self.intervals)):
             currInterval = self.intervals[i]
             while( i+1 < len(self.intervals) and (self.intervals[i+1][0] >= currInterval[0] and self.intervals[i+1][0] <= currInterval[1])):
-                currInterval[1] = self.intervals[i+1][1]
+                currInterval[1] = max(self.intervals[i+1][1], currInterval[1])
                 i = i+1
             i = i+1
             output.append(currInterval)
