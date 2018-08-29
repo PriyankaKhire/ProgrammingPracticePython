@@ -38,13 +38,92 @@ class BinaryTree(object):
             ch = raw_input("\n continue ? y/n")
         #print tree
         print "Printing inorder traversal of tree"
-        self.inorder(self.root)
+        self.display(self.root)
+
+    def display(self, root):
+        if root:
+            self.display(root.left)
+            print root.data
+            self.display(root.right)
+
+class SerilizationBinary(object):
+    def __init__(self, root):
+        self.root = root
+        self.inorderString = ""
+        self.preorderString = ""
 
     def inorder(self, root):
         if root:
             self.inorder(root.left)
-            print root.data
+            self.inorderString = self.inorderString + " " + root.data
             self.inorder(root.right)
+            
+    def preorder(self, root):
+        if root:
+            self.preorderString = self.preorderString +" "+root.data
+            self.preorder(root.left)
+            self.preorder(root.right)
+
+    def serilize(self):
+        self.inorder(self.root)
+        self.preorder(self.root)
+        print self.inorderString
+        print self.preorderString
+
+class DeserilizationBinary(BinaryTree):
+    def __init__(self, inorder, preorder):
+        self.inorder = inorder.strip().split(" ")
+        self.preorder = preorder.strip().split(" ")
+        self.inorderPosHash = {}
+        self.root = None
+
+    def insertInInorderPosHash(self):
+        for i in range(len(self.inorder)):
+            self.inorderPosHash[self.inorder[i]] = i
+
+    #what side is the child on the parent in inorder string
+    def whatSide(self, parent, child):
+        if(self.inorderPosHash[parent] < self.inorderPosHash[child]):
+            return "Right"
+        return "Left"
+
+    def addToRightOrLeft(self, stack, currentNode):
+        side = "Right"
+        popped = None
+        while ( (stack) and (side == "Right")):
+            popped = stack.pop()
+            if stack:
+                side = self.whatSide(stack[-1].data, currentNode.data)
+        #Add to right
+        side = self.whatSide(popped.data, currentNode.data)
+        if(side == "Left"):
+            self.addLeft(popped, currentNode)
+        else:
+            self.addRight(popped, currentNode)
+
+
+    def solution(self):
+        self.insertInInorderPosHash()
+        stack = []
+        #start reading preorder string
+        for element in self.preorder:
+            #create node
+            node = self.createNode(element)
+            #if we don't have root
+            if self.root == None:
+                self.root = node
+            else:
+                #find side of node in inorder travarsal of stack top
+                side = self.whatSide(stack[-1].data, element)
+                if(side == "Left"):
+                    self.addLeft(stack[-1], node)
+                else:
+                    self.addToRightOrLeft(stack, node)
+            stack.append(node)
+        print "printing inorder of newly created tree"
+        self.display(self.root)
+            
+        
 
 class NaryNode(object):
     def __init__(self, val):
@@ -131,8 +210,15 @@ class DeserilizationNary(NaryTree):
 
 
 #Main Program
+
 b = BinaryTree()
 b.createTree()
+
+sb = SerilizationBinary(b.root)
+sb.serilize()
+
+dsb = DeserilizationBinary(sb.inorderString, sb.preorderString)
+dsb.solution()
 
 n= NaryTree()
 n.createTree()
