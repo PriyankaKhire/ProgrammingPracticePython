@@ -2,6 +2,8 @@
 #https://leetcode.com/problems/remove-invalid-parentheses/description/
 
 class Solution(object):
+    def __init__(self):
+        self.output = []
 
     def isValid(self, string):
         stack = []
@@ -18,15 +20,28 @@ class Solution(object):
         return True
     
     def dfs(self, s, index, output):
-        if index == len(s)-1:
-            print output
+        if index == len(s):
+            if(self.isValid(output)):
+                self.output.append(output)
             return
-        
+        for i in range(index, len(s)):
+            self.dfs(s, i+1, output+s[i])
         
     def removeInvalidParentheses(self, s):
-        print s
+        self.dfs(s, 0, "")
+        maxLength = 0
+        #find max length in outputs
+        for o in self.output:
+            if(len(o) > maxLength):
+                maxLength = len(o)
+        #remove min length solutions
+        sol = []
+        for o in self.output:
+            if(len(o) == maxLength and not(o in sol)):
+                sol.append(o)
+        print sol
 
 #Main
 o = Solution()
-o.removeInvalidParentheses("()())()")
-print o.isValid("(a)(())()")
+o.removeInvalidParentheses("(a)())()")
+
