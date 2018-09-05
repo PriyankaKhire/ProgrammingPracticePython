@@ -64,5 +64,6 @@ o.lowestCommonAncestor(5,1)
 '''
 no need for preorder travarsal we can just take the tree and inorder travarsal and the
 travarsal hash and give the tree root and figure out.
+very similar to deserilization of binary tree
 not going to complete it.
 '''
