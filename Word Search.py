@@ -59,5 +59,11 @@ m = [
   ['S','F','C','S'],
   ['A','D','E','E']
 ]
+m = [
+  ['o','a','a','n'],
+  ['e','t','a','e'],
+  ['i','h','k','r'],
+  ['i','f','l','v']
+]
 o = Solution()
-print o.exist(m, "ABCB")
+print o.exist(m, "eat")
