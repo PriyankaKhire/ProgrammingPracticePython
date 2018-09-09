@@ -44,7 +44,33 @@ class DecodeWays(object):
         self.decode(self.s, 0, "")
         print "number of ways "+str(len(self.output))
 
+class Approch2(object):
+    def __init__(self):
+        self.dict = {1:'a',2:'b',3:'c',4:'d',5:'e',6:'f',7:'g',8:'h',9:'i',10:'j',11:'k',12:'l',13:'m',14:'n',15:'o',16:'p',17:'q',18:'r',19:'s',20:'t',21:'u',22:'v',23:'w',24:'x',25:'y',26:'z' }
+        self.ways = 0
+        
+    def isValid(self, number):
+        if(int(number) in self.dict):
+            return True
+        return False
+
+    def decode(self, number, output, index):
+        if(index == len(number)):
+            print output
+            self.ways = self.ways+1
+            return
+        if(self.isValid(number[index])):
+            self.decode(number, output+self.dict[int(number[index])], index+1)
+        if(index < len(number)-1 and self.isValid(number[index]+number[index+1])):
+           self.decode(number, output+self.dict[int(number[index]+number[index+1])], index+2)
+    
+    def numDecodings(self, s):
+        self.decode(s, "", 0)
+        print "Number of ways ", self.ways
+
 #Main Program
 o = DecodeWays("1234")
 o.numWays()
-            
+o1 = Approch2()
+o1.numDecodings("1234")
+           
