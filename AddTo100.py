@@ -4,24 +4,36 @@
 #example 1 + 2 + 34 - 5 + 67 - 8 + 9 = 100
 class Approch1(object):
     def __init__(self):
-        self.digits = [1,2,3,4,5,6,7,8,9,0]
+        self.digits = [1,2,3,0]
         self.operations = ['add', 'sub', 'nothing']
 
-    def logic(self, index, number, string, s):
-        if( index >= len(self.digits)-1):
-            if (s == 10):
-                print string, number, s
+    def logic(self, index, number, array, s):
+        if(index == len(self.digits)-1):
+            print array, s
             return
+        #for every index we have 3 operations
         for operation in self.operations:
-            if(operation == 'add'):
-                self.logic(index+1, self.digits[index+1], string+"+"+str(number), s+self.digits[index])
-            elif(operation == 'sub'):
-                self.logic(index+1, self.digits[index+1], string+"-"+str(number), s-self.digits[index])
-            elif(operation == 'nothing'):
-                self.logic(index+2, (number*10)+self.digits[index+1], string, s)
+            if(operation == "add"):
+                array.append(number)
+                self.logic(index+1, self.digits[index+1], array, s+number)
+                array.pop()
+            elif(operation == "sub"):
+                array.append(-number)
+                self.logic(index+1, self.digits[index+1], array, s-number)
+                array.pop()
+            else:
+                if array:
+                    top = array.pop()
+                    array.append((top*10)+number)
+                    self.logic(index+1, self.digits[index+1], array, s+((top*10)+number))
+                    array.pop()
+                    array.append(-((top*10)+number))
+                    self.logic(index+1, self.digits[index+1], array, s-((top*10)+number))
+                    array.pop()
                 
+                    
     def solution(self):
-        self.logic(0,1,"",0)
+        self.logic(0, self.digits[0], [], 0)
 
 #Main
 o = Approch1()
