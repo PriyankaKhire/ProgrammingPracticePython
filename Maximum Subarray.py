@@ -32,5 +32,8 @@ class Solution(object):
         print "The largest sum is ", self.largestSum
 
 #Main
-obj = Solution([-2,1,-3,4,-1,2,1,-5,4])
-obj.logic()
+obj1 = Solution([-2,1,-3,4,-1,2,1,-5,4])
+obj1.logic()
+
+obj2 = Solution([-2, -3, 4, -1, -2, 1, 5, -3])
+obj2.logic()
