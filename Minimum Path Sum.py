@@ -73,13 +73,13 @@ m2 = [
     [2,3,2,3]
     ]
 obj1 = Backtracking(m1)
-#obj1.logic()
+obj1.logic()
 print "\n"
 obj2 = Backtracking(m2)
-#obj2.logic()
-
+obj2.logic()
+print "\n"
 obj3 = DP()
 obj3.minPathSum(m1)
-
+print "\n"
 obj4 = DP()
 obj4.minPathSum(m2)
