@@ -17,7 +17,7 @@ class DP1(object):
         numSlices = 0
         while(startC < len(A)):
             if(length < 3):
-                self.matrix[row][col] = abs(A[row] - A[col])
+                self.matrix[row][col] = A[row] - A[col]
             else:
                 if(self.matrix[row][col-1] == self.matrix[row+1][col] and self.matrix[row][col-1] != -999):
                     self.matrix[row][col] = True
