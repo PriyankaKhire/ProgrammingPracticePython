@@ -51,3 +51,6 @@ obj2.numberOfArithmeticSlices([1,2,3,9,4,5])
 
 obj3 = DP1()
 obj3.numberOfArithmeticSlices([1,1,1,1])
+
+obj4 = DP1()
+obj4.numberOfArithmeticSlices([18, -36, 18])
