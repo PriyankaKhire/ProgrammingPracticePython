@@ -1,6 +1,6 @@
 #Decode ways
 #https://leetcode.com/problems/decode-ways/description/
-class DecodeWays(object):
+class Approch1(object):
     def __init__(self, s):
         self.dict = {1:'a',2:'b',3:'c',4:'d',5:'e',6:'f',7:'g',8:'h',9:'i',10:'j',11:'k',12:'l',13:'m',14:'n',15:'o',16:'p',17:'q',18:'r',19:'s',20:'t',21:'u',22:'v',23:'w',24:'x',25:'y',26:'z' }
         self.output = []
@@ -68,9 +68,35 @@ class Approch2(object):
         self.decode(s, "", 0)
         print "Number of ways ", self.ways
 
+class Approch3(object):
+    def __init__(self, number):
+        self.number = number
+
+    def recurrse(self, number, output, index):
+        if(index == len(number)):
+            print output
+            return
+        #1) add single digit indivudially
+        output.append(number[index])
+        self.recurrse(number, output, index+1)
+        output.pop()
+        #2) club 2 digits together if they are less than 27
+        if(index+1 < len(number) and int(number[index]+number[index+1]) < 27):
+            output.append(number[index]+number[index+1])
+            self.recurrse(number, output, index+2)
+            output.pop()
+            
+    def logic(self):
+        self.recurrse(self.number, [], 0)
+
 #Main Program
-o = DecodeWays("1234")
-o.numWays()
-o1 = Approch2()
-o1.numDecodings("1234")
+print " Approch 1"
+o1 = Approch1("1234")
+o1.numWays()
+print "\n Approch 2"
+o2 = Approch2()
+o2.numDecodings("1234")
+print "\n Approch 3"
+o3 = Approch3("1234")
+o3.logic()
            
