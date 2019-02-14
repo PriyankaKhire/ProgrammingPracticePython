@@ -61,8 +61,54 @@ class Approch1(object):
         self.enqueue()
         self.count()
 
+class Approch2(object):
+    def __init__(self, number):
+        self.number = number
+        self.output = ""
+        self.ones = {1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',9:'nine'}
+        self.tens = {1:'ten',2:'twenty',3:'thirty',4:'forty',5:'fifty',6:'sixty',7:'seventy',8:'eighty',9:'ninety'}
+        self.teens = {11:'eleven',12:'twelve',13:'thirteen',14:'fourteen',15:'fifteen',16:'sixteen',17:'seventeen',18:'eighteen',19:'nineteen'}
+        self.hundred = " Hundred"
+        self.thousand = " Thousand"
+        self.million = " Million"
+        self.billion = " Billion"
+
+    def switch(self, number, place):
+        case = {
+            0: self.ones[number],
+            1: self.tens[number],
+            2: self.ones[number]+self.hundred,
+            3: self.ones[number]+self.thousand,
+            4: self.tens[number],
+            5: self.ones[number]+self.hundred,
+            6: self.ones[number]+self.million,
+            7: self.tens[number],
+            8: self.ones[number]+self.hundred,
+            9: self.ones[number]+self.billion
+            }
+        return case[place]
+        
+    def recurrse(self, number, place, output):
+        if(number == 0):
+            print output
+            return
+        remainder = number%10
+        number = number/10
+        if(number > 0 and (place == 0 or place ==3 or place == 6) and number%10 == 1):
+            #we got a teen
+            self.recurrse(number/10, place+2, self.teens[((number%10)*10)+remainder]+" "+output)
+        else:
+            output = self.switch(remainder, place)+" "+output
+            self.recurrse(number, place+1, output)
+                
+    def logic(self):
+        self.recurrse(self.number, 0, "")
+        
+        
 
 #Main
-o = Approch1(1234567891)
-o.solution()
+#o = Approch1(1234567891)
+#o.solution()
 
+obj1 = Approch2(1234567891)
+obj1.logic()
