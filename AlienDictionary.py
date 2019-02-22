@@ -146,9 +146,58 @@ class AlienDictionary(object):
 
 
 
+#Leetcode solution
+class LeetCodeGraphNode(object):
+    def __init__(self, letter):
+        self.letter = letter
+        self.next = None
+        
+class Solution(object):
+    def __init__(self):
+        self.hashTable = {}
+        self.root = None
+        
+    def createNode(self, letter):
+        node = LeetCodeGraphNode(letter)
+        return node
+    
+    def addNextToNode(self, node, nextLink):
+        node.next = nextLink
+
+    def addToHashTable(self,letter):
+        if not(letter in self.hashTable):
+            self.hashTable[letter] = self.createNode(letter)
+        if(self.root == None):
+            self.root = self.hashTable[letter]
+
+    def logic(self, words):
+        for i in range(1, len(words)):
+            letterIndex = 0
+            while(letterIndex < len(words[i-1]) and letterIndex < len(words[i]) and words[i-1][letterIndex] == words[i][letterIndex]):
+                self.addToHashTable(words[i][letterIndex])
+                letterIndex = letterIndex+1
+            
+                
+            
+        
+    def alienOrder(self, words):
+        self.logic(words)
+        """
+        :type words: List[str]
+        :rtype: str
+        """
+
+
+
+
+
+
 #Main program
 #words = ["baa", "abcd", "abca", "cab", "cad"]
 #words = ["caa", "aaa", "aab"]
 words = ["wrt", "wrf", "er", "ett", "rftt"]
-o = AlienDictionary(words)
-o.print_order()
+#o = AlienDictionary(words)
+#o.print_order()
+
+obj1 = Solution()
+obj1.alienOrder(words)
