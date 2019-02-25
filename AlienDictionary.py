@@ -151,6 +151,8 @@ class LeetCodeGraphNode(object):
     def __init__(self, letter):
         self.letter = letter
         self.next = None
+        #To detect cycle
+        self.seen = False
         
 class Solution(object):
     def __init__(self):
@@ -168,20 +170,49 @@ class Solution(object):
         if not(letter in self.hashTable):
             self.hashTable[letter] = self.createNode(letter)
         if(self.root == None):
+            print "root is ", letter
             self.root = self.hashTable[letter]
+
+    #creates nodes from letters and adds edge between node1 -> node2
+    def connect2Letters(self, letter1, letter2):
+        #if the nodes are not in hash table then add them
+        self.addToHashTable(letter1)
+        self.addToHashTable(letter2)
+        #add edge from node1 -> node2
+        self.addNextToNode(self.hashTable[letter1], self.hashTable[letter2])
+        print "Added edge between ", letter1, " and ", letter2
+
+    #need to imporve this function, right now its only doing simple traversal, we need topo sort or dfs
+    def traverseLinkedList(self):
+        ptr = self.root
+        output = ""
+        while(ptr != None):
+            if(ptr.seen == True):
+                return ""
+            output = output +  ptr.letter
+            ptr.seen = True
+            ptr = ptr.next
+        #Go through hash table, if there is no edgebetween rest of them then add it to output by alphabetical order
+            
+        return output
 
     def logic(self, words):
         for i in range(1, len(words)):
+            if(words[i-1] == words[i]):
+                return ""
             letterIndex = 0
             while(letterIndex < len(words[i-1]) and letterIndex < len(words[i]) and words[i-1][letterIndex] == words[i][letterIndex]):
                 self.addToHashTable(words[i][letterIndex])
                 letterIndex = letterIndex+1
-            
+            if(letterIndex < len(words[i-1]) and letterIndex < len(words[i]) ):
+                self.connect2Letters(words[i-1][letterIndex], words[i][letterIndex])
+        #Traverse the created linked list
+        return self.traverseLinkedList()
                 
             
         
     def alienOrder(self, words):
-        self.logic(words)
+        print self.logic(words)
         """
         :type words: List[str]
         :rtype: str
@@ -193,11 +224,29 @@ class Solution(object):
 
 
 #Main program
-#words = ["baa", "abcd", "abca", "cab", "cad"]
-#words = ["caa", "aaa", "aab"]
-words = ["wrt", "wrf", "er", "ett", "rftt"]
+words1 = ["baa", "abcd", "abca", "cab", "cad"]
+words2 = ["caa", "aaa", "aab"]
+words3 = ["wrt", "wrf", "er", "ett", "rftt"]
+words4 = [ "z","x","z"]
+words5 = ["z", "z"]
+words6 = ["wrt","wrtkj"]
 #o = AlienDictionary(words)
 #o.print_order()
 
 obj1 = Solution()
-obj1.alienOrder(words)
+obj1.alienOrder(words1)
+
+obj2 = Solution()
+obj2.alienOrder(words2)
+
+obj3 = Solution()
+obj3.alienOrder(words3)
+
+obj4 = Solution()
+obj4.alienOrder(words4)
+
+obj5 = Solution()
+obj5.alienOrder(words5)
+
+obj6 = Solution()
+obj6.alienOrder(words6)
