@@ -53,6 +53,62 @@ class Backtracking(object):
             #print "When starting from index ", index
             self.recurrse(index, 0, 0, None, None)
         print "Max fruits collected is ", self.output, "at index ", self.outputIndex-self.output
+
+class DPWithExtraMemory(object):
+    def __init__(self):
+        self.matrix = []
+
+    def displayMatrix(self):
+        for row in range(len(self.matrix)):
+            print self.matrix[row]
+
+    def union2Lists(self, list1, list2):
+        return list(set(list1) | set(list2))
+
+    def fillCell(self, row, col, tree):
+        #basket type => self.matrix[row][col]
+        #make union of baket types from bottom and left
+        if(col-1 >= 0 and row+1 < len(self.matrix)):
+            self.matrix[row][col] = self.union2Lists(self.matrix[row][col-1], self.matrix[row+1][col])
+        if not(tree[col] in self.matrix[row][col]):
+            self.matrix[row][col].append(tree[col])
+
+    def fillMatrix(self, tree):
+        row = 0
+        col = 0
+        colStart = 0
+        while(colStart < len(self.matrix)):
+            self.fillCell(row, col, tree)
+            row = row+1
+            col = col+1
+            if(col == len(self.matrix)):
+                colStart = colStart+1
+                row = 0
+                col = colStart
+
+    def countFruits(self, numberOfBaskets):
+        maxRowCount = 0
+        for row in range(len(self.matrix)):
+            rowCount = 0
+            for col in range(len(self.matrix)):
+                if(len(self.matrix[row][col]) >= 1 and len(self.matrix[row][col]) <= numberOfBaskets):
+                    rowCount = rowCount + 1
+            print "row ", row, " count ", rowCount
+            if(rowCount > maxRowCount):
+                maxRowCount = rowCount
+        return maxRowCount
+        
+    def totalFruit(self, tree):
+        self.matrix = [[[] for col in range(len(tree))] for row in range(len(tree))]
+        self.fillMatrix(tree)
+        self.displayMatrix()
+        maxFruit = self.countFruits(2)
+        print "The max fruit collected is ", maxFruit
+        
+        """
+        :type tree: List[int]
+        :rtype: int
+        """
             
 
 #Main
@@ -67,3 +123,6 @@ obj3.logic()
 
 obj4 = Backtracking([1,2,1])
 obj4.logic()
+
+obj1 = DPWithExtraMemory()
+obj1.totalFruit([3,3,3,1,2,1,1,2,3,3,4])
