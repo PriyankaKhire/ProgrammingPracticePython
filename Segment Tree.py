@@ -42,14 +42,48 @@ class SegmentTree(object):
         #once we have filled the left child and right child, we now proceed to fill the parent based on given condition
         self.segmentTreeOperation(parentIndex, (2*parentIndex)+1, (2*parentIndex)+2)
 
-    def find(self, low, high):
-        #finds answer from given range of high and low
+    def partialOverlap(self, currentRange, queryRange, parentIndex):
+        #three stages of overlap
+        #1) query range falls under current range
+        #cr -------------------------
+        #qr          ----------
+        if(currentRange[0] <= queryRange[0] and currentRange[1] >= queryRange[1]):
+            #go both direcitons
+            return True, "both"
+        #2)second part of current range falls under query range
+        #cr -------
+        #qr       ---------
+        if(currentRange[0] <= queryRange[0] and currentRange[1] >= queryRange[0] and currentRange[1] <= queryRange[1]):
+            #go right
+            return True, "right"
+        #3)first part of current range falls under query range
+        #cr         -------------
+        #qr -----------
+        if(currentRange[0] >= queryRange[0] and currentRange[0] <= queryRange[1] and currentRange[1] >= queryRange[1]):
+            return True, "left"
+        return False, "none"
+             
+        
+    def find(self, currentRange, queryRange, parentIndex):
+        print currentRange, queryRange, parentIndex
+        #find if partial overlap
+        flag, direction  = self.partialOverlap(currentRange, queryRange, parentIndex)
+        if(flag):
+            mid = (currentRange[0] + currentRange[1])/2
+            if(direction == "both"):
+                self.find([currentRange[0], mid], queryRange, (2*parentIndex)+1)
+                self.find([mid+1, currentRange[1]], queryRange, (2*parentIndex)+2)
+            elif(direction == "right"):
+                self.find([mid+1, currentRange[1]], queryRange, (2*parentIndex)+2)
+            else:
+                self.find([currentRange[0], mid], queryRange, (2*parentIndex)+1)
         
 
     def logic(self):
         self.getTreeArraySize()
         self.fillTree(0, 0, len(self.array)-1, 0)
         print self.tree
+        print self.find([0, len(self.array)-1], [2,4], 0)
 
 #Main
 obj = SegmentTree([1,2,3,4,5,6])
