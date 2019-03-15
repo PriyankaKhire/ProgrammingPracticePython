@@ -48,43 +48,64 @@ class SegmentTree(object):
         #cr -------------------------
         #qr          ----------
         if(currentRange[0] <= queryRange[0] and currentRange[1] >= queryRange[1]):
+            print "go in both directions"
             #go both direcitons
             return True, "both"
         #2)second part of current range falls under query range
         #cr -------
         #qr       ---------
-        if(currentRange[0] <= queryRange[0] and currentRange[1] >= queryRange[0] and currentRange[1] <= queryRange[1]):
+        if(currentRange[0] < queryRange[0] and currentRange[1] >= queryRange[0] and currentRange[1] <= queryRange[1]):
+            print "partial overlap go right"
             #go right
             return True, "right"
         #3)first part of current range falls under query range
         #cr         -------------
         #qr -----------
-        if(currentRange[0] >= queryRange[0] and currentRange[0] <= queryRange[1] and currentRange[1] >= queryRange[1]):
+        if(currentRange[0] >= queryRange[0] and currentRange[0] <= queryRange[1] and currentRange[1] > queryRange[1]):
+            print "partial overlap  go left"
             return True, "left"
         return False, "none"
-             
+
+    def completeOverlap(self, currentRange, queryRange):
+        #cr        -------
+        #qr ------------------------
+        if(queryRange[0] <= currentRange[0] and queryRange[1] >= currentRange[1]):
+            return True
+        return False
         
     def find(self, currentRange, queryRange, parentIndex):
         print currentRange, queryRange, parentIndex
         #find if partial overlap
         flag, direction  = self.partialOverlap(currentRange, queryRange, parentIndex)
         if(flag):
+            print "partial overlap"
             mid = (currentRange[0] + currentRange[1])/2
             if(direction == "both"):
-                self.find([currentRange[0], mid], queryRange, (2*parentIndex)+1)
-                self.find([mid+1, currentRange[1]], queryRange, (2*parentIndex)+2)
+                l = self.find([currentRange[0], mid], queryRange, (2*parentIndex)+1)
+                r = self.find([mid+1, currentRange[1]], queryRange, (2*parentIndex)+2)
+                print "went left ", l," went right ", r
+                return min(l, r)
             elif(direction == "right"):
-                self.find([mid+1, currentRange[1]], queryRange, (2*parentIndex)+2)
+                print "went right"
+                return self.find([mid+1, currentRange[1]], queryRange, (2*parentIndex)+2)
             else:
-                self.find([currentRange[0], mid], queryRange, (2*parentIndex)+1)
-        
+                print "went left"
+                return self.find([currentRange[0], mid], queryRange, (2*parentIndex)+1)
+        #find if complete overlap
+        elif(self.completeOverlap(currentRange, queryRange)):
+            print "return tree ", self.tree[parentIndex]
+            return self.tree[parentIndex]
+        else:
+            #no overlap
+            print "return max"
+            return 999999
 
-    def logic(self):
+    def logic(self, low, high):
         self.getTreeArraySize()
         self.fillTree(0, 0, len(self.array)-1, 0)
-        print self.tree
-        print self.find([0, len(self.array)-1], [2,4], 0)
+        print "The tree is ", self.tree
+        print  self.find([0, len(self.array)-1], [low,high], 0)
 
 #Main
 obj = SegmentTree([1,2,3,4,5,6])
-obj.logic()
+obj.logic(2,4)
