@@ -6,6 +6,16 @@ class Solution1(object):
         self.ht = {}
         self.letters = {}
 
+    def explanation(self):
+        print "***************************************************************************************************************************"
+        print "So this solution first takes all the words puts them in the hast table with key as starting letter"
+        print "and value as list of words that start from that letter"
+        print "I handel the following cases"
+        print "1) null word:- if the current word is null we concatinate it with words in input array list that are palindromes"
+        print "2) if reverse exists:- if the reverse of the current word exist in hash table then we concatinate them"
+        print "3) take a word find all words in hash that start and end with our current word concatinate them and see if result is palindrome or not"
+        print "***************************************************************************************************************************"
+
     def isPalindrome(self, word):
         if word == "":
             return False
@@ -71,14 +81,53 @@ class Solution1(object):
         print [list(t) for t in set(tuple(element) for element in output)]
                 
     def palindromePairs(self, words):
+        self.explanation(self)
         self.putInHashTable(words)
         self.logic(words)
         """
         :type words: List[str]
         :rtype: List[List[int]]
         """
+#********************************************************************************************
+class trieNode(object):
+    def __init__(self, char):
+        self.char = char
+        self.endOfWord = False
+        self.next = [0 for i in range(26)]
 
+class Trie(object):
+    def __init__(self):
+        self.root = self.createNode("")
+
+    def createNode(self, char):
+        return trieNode(char)
+
+    def getCharIndex(self, char):
+        print ord(char)
+
+    #def addWord(self, word):
+    
+
+class Solution2(object):
+    def __init__(self):
+        self.trie = Trie() 
+
+    def explanation(self):
+        print "Now in this class we first understand how we check for palindrome"
+        print "We first start with last and first letter and check if ther are same"
+        print "If they are then we proceed to move the 2 pointers towards eachother,"
+        print "checking every letter on the way if they are same or not, if not we stop and return false \n"
+        print "We leverage this in the current solution, we first create a trie and put all words in the trie in reverse manner"
+
+
+    def palindromePairs(self, words):
+        print self.trie.getCharIndex('a')
+        """
+        :type words: List[str]
+        :rtype: List[List[int]]
+        """
 #Main
+'''
 a1 = ["abcd","dcba","lls","s","sssll"]
 obj1 = Solution1()
 obj1.palindromePairs(a1)
@@ -90,3 +139,6 @@ obj2.palindromePairs(a2)
 a3 = ["a",""]
 obj3 = Solution1()
 obj3.palindromePairs(a3)
+'''
+obj4 = Solution2()
+obj4.palindromePairs([])
