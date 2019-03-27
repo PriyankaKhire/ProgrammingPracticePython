@@ -93,7 +93,8 @@ class trieNode(object):
     def __init__(self, char):
         self.char = char
         self.endOfWord = False
-        self.next = [0 for i in range(26)]
+        #we are only supporting lower case alphabets
+        self.next = [None for i in range(26)]
 
 class Trie(object):
     def __init__(self):
@@ -103,14 +104,46 @@ class Trie(object):
         return trieNode(char)
 
     def getCharIndex(self, char):
-        print ord(char)
+        return ord('a') - ord(char.lower())
 
-    #def addWord(self, word):
+    def addWord(self, word):
+        ptr = self.root
+        for letter in word:
+            #get letter index
+            index = self.getCharIndex(letter)
+            if(ptr.next[index] == None):
+                #create a node for that letter
+                node = self.createNode(letter)
+                #add that node to next
+                ptr.next[index] = node
+            #increment ptr
+            ptr = ptr.next[index]
+        ptr.endOfWord = True
+
+    def dfs(self, node, output, wordList):
+        if(node.endOfWord == True):
+            print output
+            wordList.append(output)
+        for nextNode in node.next:
+            if(nextNode != None):
+                self.dfs(nextNode, output+nextNode.char, wordList)
+        return wordList
+
+    def display(self):
+        print self.dfs(self.root, "",[])
     
 
 class Solution2(object):
     def __init__(self):
-        self.trie = Trie() 
+        self.trie = Trie()
+
+    def isPalindrome(self, word):
+        if word == "":
+            return False
+        for i in range(len(word)/2):
+            if(word[i] != word[len(word)-1-i]):
+                return False
+        return True
 
     def explanation(self):
         print "Now in this class we first understand how we check for palindrome"
@@ -118,27 +151,64 @@ class Solution2(object):
         print "If they are then we proceed to move the 2 pointers towards eachother,"
         print "checking every letter on the way if they are same or not, if not we stop and return false \n"
         print "We leverage this in the current solution, we first create a trie and put all words in the trie in reverse manner"
+        print "Go through words and for each and every letter of the word see if you find a matching word in tire"
 
+    def addWordsToTrieInReverseOrder(self, words):
+        for word in words:
+            self.trie.addWord(word[::-1])
+        self.trie.display()
+
+    def logic(self, words):
+        output = []
+        for i in range(len(words)):
+            print "currently on word ", words[i]
+            ptr = self.trie.root
+            matchWord = ""
+            j = 0
+            breakFlag = False
+            while(j < len(words[i])):
+                letter = words[i][j]
+                print letter
+                letterIndex = self.trie.getCharIndex(letter)
+                if (ptr.next[letterIndex] == None):
+                    breakFlag = True
+                    break
+                ptr = ptr.next[letterIndex]
+                matchWord = matchWord + ptr.char
+                j = j+1
+            if(ptr.endOfWord== True and j == len(words[i])):
+                print "Found a match between ", words[i],matchWord[::-1]
+            else:
+                #break flag is just to prevent words that have no match like sssll cannot be matched with s or sll from trie
+                if(breakFlag == False):
+                    print "Rest of the word is ", matchWord, 
+                    restOfWords = self.trie.dfs(ptr, "", [])
+                    #if rest of the word is a palindrome then we found a match
+                    for word in restOfWords:
+                        if(self.isPalindrome(word)):
+                            print "it is a Match"
 
     def palindromePairs(self, words):
-        print self.trie.getCharIndex('a')
+        self.addWordsToTrieInReverseOrder(words)
+        self.logic(words)
         """
         :type words: List[str]
         :rtype: List[List[int]]
         """
 #Main
-'''
+
 a1 = ["abcd","dcba","lls","s","sssll"]
+'''
 obj1 = Solution1()
 obj1.palindromePairs(a1)
 
 a2 = ["bat","tab","cat"]
 obj2 = Solution1()
-obj2.palindromePairs(a2)
+                                 obj2.palindromePairs(a2)
 
 a3 = ["a",""]
 obj3 = Solution1()
 obj3.palindromePairs(a3)
 '''
 obj4 = Solution2()
-obj4.palindromePairs([])
+obj4.palindromePairs(a1)
