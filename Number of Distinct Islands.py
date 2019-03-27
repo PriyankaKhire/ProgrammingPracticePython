@@ -29,16 +29,32 @@ class Solution(object):
             backtrackingCount = backtrackingCount + 1
             encoding = self.encodeIsland(row, col+1, grid, encoding+"right "+str(backtrackingCount))
         return encoding
+
+    def encodeIslandByCoordinates(self, row, col, grid, originalRow, originalCol, encoding):
+        grid[row][col] = 0
+        #up
+        if(self.isValid(row-1, col, grid)):
+            encoding = self.encodeIslandByCoordinates(row-1, col, grid, originalRow, originalCol, encoding+" ["+str((row-1)-originalRow)+", "+str((col)-originalCol)+"]")
+        #down
+        if(self.isValid(row+1, col, grid)):
+            encoding = self.encodeIslandByCoordinates(row+1, col, grid, originalRow, originalCol, encoding+" ["+str((row+1)-originalRow)+", "+str((col)-originalCol)+"]")
+        #left
+        if(self.isValid(row, col-1, grid)):
+            encoding = self.encodeIslandByCoordinates(row, col-1, grid, originalRow, originalCol, encoding+" ["+str((row)-originalRow)+", "+str((col-1)-originalCol)+"]")
+        #right
+        if(self.isValid(row, col+1, grid)):
+            encoding = self.encodeIslandByCoordinates(row, col+1, grid, originalRow, originalCol, encoding+" ["+str((row)-originalRow)+", "+str((col+1)-originalCol)+"]")
+        return encoding
         
     def numDistinctIslands(self, grid):
         outputSet = []
         for row in range(len(grid)):
             for col in range(len(grid[0])):
                 if(grid[row][col] ==1):
-                    encodedIsland = self.encodeIsland(row, col, grid, "begin ")
+                    #encodedIsland = self.encodeIsland(row, col, grid, "begin ")
+                    encodedIsland =  self.encodeIslandByCoordinates(row, col, grid, row, col, "[0, 0]")
                     if not(encodedIsland in outputSet):
                         outputSet.append(encodedIsland)
-        print grid
         print len(outputSet)
         """
         :type grid: List[List[int]]
