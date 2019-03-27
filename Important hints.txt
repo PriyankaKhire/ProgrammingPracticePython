@@ -1,0 +1,2 @@
+How to return list from recurrssive function
+https://stackoverflow.com/questions/34077645/python-return-a-list-from-a-recursive-function
