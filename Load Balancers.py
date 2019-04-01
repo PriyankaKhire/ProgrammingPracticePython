@@ -19,6 +19,7 @@ class HashingLoadBalancer(object):
 
     def assignToServer(self, hashNumber, requestNumber):
         infoAboutRequestID = "requestID "+str(requestNumber)
+        #The treditional approch is to mod this hash number (hash ID) with available number of servers
         serverNumber = hashNumber%len(self.servers)
         server = self.servers[serverNumber]
         #add info about request to server cache
