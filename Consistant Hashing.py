@@ -99,7 +99,7 @@ class ConsistantHashing(object):
         print mappedID
         #dump the server's cache that's to the clock wise of our newly added server.
         self.dumpNextServerCache(server, mappedID+1)
-        print "Now what if we add or remove servers ?"
+        print "Now what if we add or remove servers ? the request load would be unevenly distributed"
         print "To tackle this issue we map 1 server to more than one id space and call it a virtual server"
         self.addVirtualServers(server)
 
