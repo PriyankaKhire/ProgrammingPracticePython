@@ -5,6 +5,7 @@ class Server(object):
         self.id = serverID
         self.name = "Server "+str(serverID)
         self.cache = []
+        self.type = ""
 
 class HashFunctions(object):
     def explanation(self):
@@ -22,6 +23,10 @@ class HashFunctions(object):
 
     def serverHashFunction3(self, serverID):
         return serverID*10+75
+
+    def serverHashFunction4(self, serverID):
+        return serverID*10+100
+    
         
 class ConsistantHashing(object):
     def __init__(self):
@@ -43,11 +48,11 @@ class ConsistantHashing(object):
             subctract_Space1 = 0
             subctract_Space2 = 0
             if(self.idSpace[n1]):
-                n1 = self.idSpace[n1].name
+                n1 = self.idSpace[n1].type + self.idSpace[n1].name
                 subctract_Space1 = 4
                 subctract_Space2 = 5
             if(self.idSpace[n2]):
-                n2 = self.idSpace[n2].name
+                n2 = self.idSpace[n2].type + self.idSpace[n2].name
                 subctract_Space2 = 4
             print ((self.idSpaceSize/2)-i-subctract_Space1)*" ", n1, (space-subctract_Space2)*" ", n2
             space = space+2
@@ -58,17 +63,26 @@ class ConsistantHashing(object):
             subctract_Space1 = 0
             subctract_Space2 = 0
             if(self.idSpace[n1]):
-                n1 = self.idSpace[n1].name
+                n1 = self.idSpace[n1].type + self.idSpace[n1].name
                 subctract_Space1 = 4
                 subctract_Space2 = 5
             if(self.idSpace[n2]):
-                n2 = self.idSpace[n2].name
+                n2 = self.idSpace[n2].type + self.idSpace[n2].name
                 subctract_Space2 = 4
             print (i+1-subctract_Space1)*" ", n1, (space-subctract_Space2)*" ", n2
             space = space-2
 
     def mapToIDSpace(self, hashID):
         return hashID%self.idSpaceSize
+
+    def mapToAdditionalIDSpace(self, server):
+        print "Since this is a large server we are mapping it to extra id space"
+        hashID = self.hashFunctions.serverHashFunction4(server.id)
+        mappedID = self.mapToIDSpace(hashID)
+        self.idSpace[mappedID] = server
+        print "Our large server is now additionally mapped to id space ", mappedID
+        #clean out cache
+        self.dumpNextServerCache(server, mappedID+1)
 
     def addVirtualServers(self, server):
         #since the server exists on more than one spot in the id space we call these virtual servers.
@@ -85,8 +99,6 @@ class ConsistantHashing(object):
         print "The next space we have added our virtual server to is ", mappedID3
         #clean out cache.
         self.dumpNextServerCache(server, mappedID3+1)
-        print "The id space now looks like "
-        self.printIDSpace()
 
     def mapServersToIDSpace(self, server):
         #Take the recently added server
@@ -118,8 +130,17 @@ class ConsistantHashing(object):
         #create new server
         new_server = Server(len(self.servers))
         self.servers.append(new_server)
-        self.mapServersToIDSpace(new_server)
-
+        largeServer = raw_input("Would you like to add large server ? Y/N ").lower()
+        if(largeServer == 'y'):
+            new_server.type = "Large"
+            self.mapServersToIDSpace(new_server)
+            self.mapToAdditionalIDSpace(new_server)
+        else:
+            new_server.type = "Small"
+            self.mapServersToIDSpace(new_server)
+        print "The id space now looks like "
+        self.printIDSpace()
+            
     def assignRequestToServer(self, requestID, cacheInfo):
         print "Assigning this request to server ",
         while not(self.idSpace[requestID]):
