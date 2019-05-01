@@ -14,9 +14,10 @@ class Solution(object):
         return Node(val, isLeaf, None, None, None, None)
     
     def logic(self, grid, topLeft, bottomLeft, topRight, bottomRight):
-        #print topLeft, bottomLeft, topRight, bottomRight
+        print topLeft, bottomLeft, topRight, bottomRight
         if(topLeft == bottomLeft and topRight == bottomRight and topLeft == bottomRight):
             node = self.createNode(grid[topLeft[0]][topLeft[1]], True)
+            print "created node with value", grid[topLeft[0]][topLeft[1]]
             return node
         #row mid and col mid
         colMid = (topLeft[1]+topRight[1])/2
@@ -30,9 +31,12 @@ class Solution(object):
         #bottomRight Node
         bottomRightNode = self.logic(grid, [rowMid+1, colMid+1], [bottomLeft[0], colMid+1], [rowMid+1, topRight[1]], bottomRight)
         #take all 4 nodes and see if their valuse are equal if they are then create a node and call that leaf.
+        print "Top left node = ", topLeftNode.val," Top Right node = ", topRightNode.val, " Bottom Right node = ",bottomRightNode.val, " Bottom left node  = ", bottomLeftNode.val
         if(topLeftNode.val == bottomLeftNode.val and topRightNode.val == bottomRightNode.val and topLeftNode.val == bottomRightNode.val):
+            print "Merged nodes and created leaf node with val ", bottomRightNode.val
             node = self.createNode(bottomRightNode.val, True)
         else:
+            print "Created node with * value and its 4 nodes are ", topLeftNode.val, topRightNode.val, bottomLeftNode.val, bottomRightNode.val
             node = self.createNode("*", False)
             node.topLeft = topLeftNode
             node.topRight = topRightNode
