@@ -69,13 +69,50 @@ class Solution(object):
         :type K: int
         :rtype: List[int]
         """
+class Solution2(object):
+    def __init__(self):
+        self.left = {}
+        self.right = {}
+
+    def indicesSort(self, index, heights):
+        #add indices to left of our index to hash table
+        for i in range(index-1, -1, -1):
+            #add to left
+            if not heights[i] in self.left:
+                self.left[heights[i]] = [i]
+            else:
+                self.left[heights[i]].append(i)
+        #add indices to right of our index to hash table
+        for i in range(index+1, len(heights)):
+            #add to right
+            if not heights[i] in self.right:
+                self.right[heights[i]] = [i]
+            else:
+                self.right[heights[i]].append(i)
+        print self.left, self.right
+
+    def logic(self, heights, waterUnits, index):
+        while(waterUnits > 0):
+            waterUnits = waterUnits - 1
+            #find if any height lesser than our current height
+            if(sorted(self.left)[0] < heights[index]):
+                for i in range(len(sorted(self.left))):
+                    
+            elif(sorted(self.right)[0] < heights[index]):
+            
+
+    def pourWater(self, heights, V, K):
+        self.indicesSort(K, heights)
+        
 
 #Main
-obj1 = Solution()
-obj1.pourWater([2,1,1,2,1,2,2], 4, 3)
+#obj1 = Solution()
+#obj1.pourWater([2,1,1,2,1,2,2], 4, 3)
+obj12 = Solution2()
+obj12.pourWater([2,1,1,2,1,2,2], 4, 3)
 print "\n"
-obj2 = Solution()
-obj2.pourWater([1,2,3,4], 2, 2)
+#obj2 = Solution()
+#obj2.pourWater([1,2,3,4], 2, 2)
 print "\n"
-obj3 = Solution()
-obj3.pourWater([3,1,3], 5, 1)
+#obj3 = Solution()
+#obj3.pourWater([3,1,3], 5, 1)
