@@ -200,6 +200,10 @@ class Solution(object):
         for i in range(1, len(words)):
             if(words[i-1] == words[i]):
                 return ""
+            self.root = self.hashTable[letter]
+
+    def logic(self, words):
+        for i in range(1, len(words)):
             letterIndex = 0
             while(letterIndex < len(words[i-1]) and letterIndex < len(words[i]) and words[i-1][letterIndex] == words[i][letterIndex]):
                 self.addToHashTable(words[i][letterIndex])
@@ -209,10 +213,9 @@ class Solution(object):
         #Traverse the created linked list
         return self.traverseLinkedList()
                 
-            
-        
     def alienOrder(self, words):
         print self.logic(words)
+        self.logic(words)
         """
         :type words: List[str]
         :rtype: str
@@ -230,6 +233,9 @@ words3 = ["wrt", "wrf", "er", "ett", "rftt"]
 words4 = [ "z","x","z"]
 words5 = ["z", "z"]
 words6 = ["wrt","wrtkj"]
+#words = ["baa", "abcd", "abca", "cab", "cad"]
+#words = ["caa", "aaa", "aab"]
+words = ["wrt", "wrf", "er", "ett", "rftt"]
 #o = AlienDictionary(words)
 #o.print_order()
 
@@ -250,3 +256,4 @@ obj5.alienOrder(words5)
 
 obj6 = Solution()
 obj6.alienOrder(words6)
+
