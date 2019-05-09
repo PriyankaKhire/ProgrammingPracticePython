@@ -76,6 +76,56 @@ class BFS(object):
         :type board: List[List[int]]
         :rtype: int
         """
+class BFS2(object):
+    def __init__(self):
+        #below hash map tells if 0 is at ith position in string what directions can it move
+        #example if 2 d list is [[1,2,3],[4,0,5]] here 0 is located at [1,1] location
+        #when we convert this 2d list to string 123405 it is located at 4th index in string
+        #we know it can move up, left, right so in a string it can have positions at index 1 for up, 3 for left and 5 for right
+        self.moves = {0:[1,3], 1:[0,2,4], 2:[1,5], 3:[0,4], 4:[3,1,5], 5:[2,4]}
+        self.seen = {}
+
+    def swap(self, c, src, dst):
+        c = list(c)
+        c[src], c[dst] = c[dst], c[src]
+        return ''.join(c)
+        
+    def convert2DListToStr(self, lst):
+        return ''.join(str(x) for x in sum(lst, []))
+
+    def logic(self, queue):
+        #print "Queue is ",queue,
+        if not queue:
+            print "not found"
+            return -1
+        top = queue.pop(0)
+        string = top[0]
+        zeroPosition = top[1]
+        moveNumber = top[2]
+        #print " top string is ", string, " zero position is ", zeroPosition, " move number ", moveNumber
+        if(string == "123450"):
+            print "found in ", moveNumber, " moves "
+            return moveNumber
+        for move in self.moves[zeroPosition]:
+            #print "move to swap is ", move
+            newStr = self.swap(string, zeroPosition, move)
+            #print "New string after swapping is ", newStr
+            if not (newStr in self.seen):
+                self.seen[string].append(newStr)
+                self.seen[newStr] = []
+                queue.append([newStr, move, moveNumber+1])
+        return self.logic(queue)
+        
+    
+    def slidingPuzzle(self, board):
+        string = self.convert2DListToStr(board)
+        zeroPos = string.find('0')
+        self.seen[string] = []
+        print self.logic([[string, zeroPos, 0]])
+        """
+        :type board: List[List[int]]
+        :rtype: int
+        """
 
 #Main
 '''
@@ -84,11 +134,24 @@ obj1.slidingPuzzle([[1,2,3],[4,0,5]])
 
 obj2 = BFS()
 obj2.slidingPuzzle([[4,1,2],[5,0,3]])
-'''
+
 obj3 = BFS()
 obj3.slidingPuzzle([[1,2,3],[5,4,0]])
 
-'''
+
 obj4 = BFS()
 obj4.slidingPuzzle([[3,2,4],[1,5,0]])
+
+obj21 = BFS2()
+obj21.slidingPuzzle([[1,2,3],[4,0,5]])
+
+obj22 = BFS2()
+obj22.slidingPuzzle([[4,1,2],[5,0,3]])
 '''
+obj23 = BFS2()
+obj23.slidingPuzzle([[1,2,3],[5,4,0]])
+'''
+obj24 = BFS2()
+obj24.slidingPuzzle([[3,2,4],[1,5,0]])
+'''
+
