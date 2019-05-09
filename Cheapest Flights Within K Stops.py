@@ -24,13 +24,13 @@ class Solution(object):
         visited = top[3][:]
         visited.append(src)
         print "Current node is ", src, " total price to reach dest is ", price, " move number ",moveNumber, " visited ", visited
-        if(src == dst):
-            if(moveNumber <= k):
+        if(moveNumber <= k):
+            if(src == dst):
                 self.paths.append(price)
-        else:
-            for destination in range(len(self.matrix)):
-                if(self.matrix[src][destination] != -1 and not(destination in top[3])):
-                    queue.append([destination, price+self.matrix[src][destination], moveNumber+1, visited])
+            else:
+                for destination in range(len(self.matrix)):
+                    if(self.matrix[src][destination] != -1 and not(destination in top[3])):
+                        queue.append([destination, price+self.matrix[src][destination], moveNumber+1, visited])
         self.bfs(queue, dst, k)
         
     def findCheapestPrice(self, n, flights, src, dst, K):
