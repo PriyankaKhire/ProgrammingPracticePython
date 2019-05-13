@@ -1,6 +1,6 @@
 #md5 approch to encode url.
 import sys
-sys.path.append("../..")
+sys.path.append("../../..")
 from ColorText import ColorText
 import md5
 class Explanation(object):
