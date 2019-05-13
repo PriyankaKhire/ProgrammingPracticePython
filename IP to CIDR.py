@@ -19,6 +19,18 @@
 #Now that we have this confusing problem statement out of the way let's reiterate what we have learnt so far
 # given ip address and integer n we need to find next n ip addressess along with their prefixes so we know that ip address along with its prefix covers how many ip addressess.
 class Solution(object):
+    def __init__(self):
+        self.binary = None
+
+    def convertBinaryToInt(self, binary):
+        index = len(binary) - 1
+        intNum = 0
+        powerOfTwo = 0
+        while(index >= 0):
+            intNum = intNum + (int(binary[index])*(2**powerOfTwo))
+            powerOfTwo = powerOfTwo + 1
+            index = index - 1
+        return intNum
 
     def return8bitBinary(self, num):
         binary = ""
@@ -31,11 +43,55 @@ class Solution(object):
     def convertIPToBinary(self, ip):
         binary = ""
         for num in ip.split("."):
-            print num
-            self.return8bitBinary(num)
+            binary = binary + " " + self.return8bitBinary(num)
+        self.binary = binary
+
+    '''
+    def binaryToIntAddition(self, binary, intNum):
+        binaryInt = self.convertBinaryToInt(binary)
+        addition = int(binaryInt) + int(intNum)
+        return addition
+    '''
+
+    def findZerosAtEnd(self, binary):
+        numZeros = 0
+        index = len(binary)-1
+        while(index >= 0 and binary[index] != '1'):
+            numZeros = numZeros + 1
+            index = index - 1
+        print numZeros
+
+    def addToIPAddress(self, ip, num):
+        #we want to circular add to ip address such that
+        #255.255.255.255 + 1 = 0.0.0.1
+        ip = ip.split(".")
+        ip[-1] = str(int(ip[-1])+num)
+        ipAddress = ""
+        carry = 0
+        for addrSpace in reversed(ip):
+            if(int(addrSpace)+carry > 255):
+                ipAddress = '0' + '.' + ipAddress
+                carry = carry + (int(addrSpace) - 255)
+            else:
+                ipAddress = str(int(addrSpace)+carry) + '.' + ipAddress
+                carry = 0
+        ipAddress = ipAddress[:-1]
+        if(carry > 0):
+            ipAddress = ipAddress.split(".")
+            print ipAddress
+            ipAddress[-1] = str(int(ipAddress[-1]) + carry)
+            ipAddress = '.'.join(ipAddress)
+        print ipAddress
+        
+
+    def logic(self, n, ip):
+        #find how many addressess spaces does the current address cover
+        #self.binaryToIntAddition("00001011", 2)
+        self.addToIPAddress("255.0.255.255", 2)
         
     def ipToCIDR(self, ip, n):
         self.convertIPToBinary(ip)
+        self.logic(n, ip)
         """
         :type ip: str
         :type n: int
