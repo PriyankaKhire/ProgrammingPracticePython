@@ -4,7 +4,7 @@ To start the project:
     
     open another cmd prompt then start Server.py from Server dir
     
-    then open third cmd prompt and start Client.py
+    then open IDLE window and start Client.py
     
 once you start client, it will ask you to type url
 
