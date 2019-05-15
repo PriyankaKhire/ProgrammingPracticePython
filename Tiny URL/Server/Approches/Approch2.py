@@ -1,10 +1,11 @@
 #Key Generation Service
 import sys
-import os.path
 import os,binascii
-import shelve
+import socket  
 sys.path.append("../../..")
 from ColorText import ColorText
+sys.path.append("../../DataBase")
+from DataBase import DataBase
 class Explanation(object):
     
     def explanation1(self):
@@ -22,75 +23,15 @@ class Explanation(object):
         print "This system needs to make sure that it doesn't hand out same key to different servers"
         print "For this it needs to have a proper lock over internal database"
 
-
-class DataBase(object):
-
-    def isEmpty(self, fileName):
-        file_object = open(fileName, "r")
-        for line in file_object:
-            if(line.strip() != ""):
-                file_object.close()
-                return False
-        file_object.close()
-        return True
-
-    def ifFile(self,fileName):
-        if not os.path.isfile(fileName):
-            #print "File does not exist"
-            return False
-        return True
-
-    def write(self, fileName, string):
-        file_object = open(fileName, "a")
-        file_object.write(string+"\n")
-        file_object.close()
-
-    def read(self, fileName):
-        if not self.ifFile(fileName):
-            return
-        file_object = open(fileName, "r")
-        for line in file_object:
-            print line,
-        file_object.close()
-
-    def getKey(self, fileName):
-        if not self.ifFile(fileName):
-            return
-        file_object = open(fileName, 'r')
-        lines = file_object.readlines()
-        file_object.close()
-        i = 0
-        while(lines[i].strip() == ""):
-            i = i+1
-        key = lines[i]
-        file_object = open(fileName, 'w')
-        file_object.write(''.join(lines[i+1:]))
-        file_object.close()
-        #if file empty then delete it
-        if(self.isEmpty(fileName)):
-            os.remove(fileName)
-        return key
-
-    def writeToHash(self, fileName, key, value):
-        hashFile_object = shelve.open(fileName)
-        hashFile_object[key] = value
-        hashFile_object.close()
-
-    def readFromHash(self, fileName, key):
-        hashFile_object = shelve.open(fileName)
-        if (key in hashFile_object):
-            value = hashFile_object[key]
-        hashFile_object.close()
-        return value
-
 class EncodeURL(object):
     def __init__(self):
         self.ct = ColorText()
         self.exp = Explanation()
         self.db = DataBase()
-        self.unUsedKeys = "unUsedKeys.txt"
-        self.usedKeys = "usedKeys.txt"
+        self.unUsedKeys = "../../DataBase/unUsedKeys.txt"
+        self.usedKeys = "../../DataBase/usedKeys.txt"
         self.cachedKeys = []
+        self.s = socket.socket()
 
     def generateKeysWriteToDB(self):
         keys = ""
@@ -106,20 +47,34 @@ class EncodeURL(object):
             self.db.writeToHash(self.usedKeys, key, "True")
         print self.cachedKeys
 
-    def run(self, string):
-        self.ct.display(4*"\t"+"Approch2", "black-highlight")
-        self.exp.explanation1()
+    def returnKey(self):
         if not (self.db.ifFile(self.unUsedKeys)):
+            self.exp.explanation1()
             self.generateKeysWriteToDB()
-        self.exp.explanation2()
         if not self.cachedKeys:
+            self.exp.explanation2()
             self.bringKeysToCache()
         self.exp.explanation4()
         return self.cachedKeys.pop()
-        
-        
-        
 
+    def server(self):
+        port = 5
+        self.s.bind(('', port))
+        self.s.listen(5)
+        print "Started server"
+
+    def run(self):
+        self.ct.display(4*"\t"+"Approch2", "black-highlight")
+        #Start the server
+        self.server()
+        while True:
+            key = self.returnKey()
+            #Send key to client
+            c, addr = self.s.accept()
+            c.send(key)
+            print "Sent key ",key, " to client ", addr
+            c.close()
+        
 #Main
 obj = EncodeURL()
-obj.run("google.com")
+obj.run()
