@@ -77,7 +77,7 @@ class Solution(object):
 
 #Main
 obj = Solution()
-#obj.wiggleSort([92, 56, 14, 38, 50, 44, 84, 67, 96, 20, 83, 39, 43, 85, 25, 91, 99])
+obj.wiggleSort([92, 56, 14, 38, 50, 44, 84, 67, 96, 20, 83, 39, 43, 85, 25, 91, 99])
 
 obj = Solution()
 obj.wiggleSort([1,5,1,1,6,4])
