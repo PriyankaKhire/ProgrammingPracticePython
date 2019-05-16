@@ -22,10 +22,10 @@ class FindMedian(object):
             medians = self.recurrse(medians, [], 0)
         return medians[0]
 
-    def partition(self, array, pivot):
+    def partition(self, array, pivot, low, high):
+        if (low == high):
+            return array, high
         #Step 5) Partition around pivot element.
-        low = 0
-        high = len(array)-1
         while(low < high):
             while(low < high and array[low] <= pivot):
                 low = low + 1
@@ -37,13 +37,13 @@ class FindMedian(object):
         low = 0
         pivotIndex = high - 1
         while(low < pivotIndex):
-            while(low < pivotIndex and array[low] < pivot):
+            while(low < pivotIndex and array[low] != pivot):
                 low = low + 1
             while(low < pivotIndex and array[pivotIndex] == pivot):
                 pivotIndex = pivotIndex - 1
             #Swap
             array[low], array[pivotIndex] = array[pivotIndex], array[low]
-        return array, high - 1
+        return array, pivotIndex
         
         
     def logic(self, array):
@@ -53,8 +53,9 @@ class FindMedian(object):
         low = 0
         high = (len(array)-1)
         while(pivotIndex != medianIndex):
-            pivot = self.mediansOfMedians(array[low:high])
-            array, pivotIndex = self.partition(array, pivot)
+            #Slicing an array: if a = [0,1,2,3,4,5] then a[0:3] = [0,1,2] and != [0,1,2,3] thats why we add extra one to high
+            pivot = self.mediansOfMedians(array[low:high+1])
+            array, pivotIndex = self.partition(array, pivot, low, high)
             #Step 6) if median index is less than pivot index then go search in left side else search in right side
             if(pivotIndex > medianIndex):
                 high = pivotIndex - 1
