@@ -92,22 +92,22 @@ class Solution2(object):
         """
 class Solution3(object):
 
-    def logic(self, candidates, target, output, finalResult):
+    def logic(self, candidates, target, output, finalResult, index):
         if(sum(output) > target):
             return
         if(sum(output) == target):
             finalResult.append(output)
             return
-        for num in candidates:
-            if(sum(output)+num <= target):
+        for i in range(index, len(candidates)):
+            if(sum(output)+candidates[i] <= target):
                 #notice output+[num] thats for appending to the list on the fly so we dont need
                 #extra line for backtracking
-                self.logic(candidates, target, output+[num], finalResult)
+                self.logic(candidates, target, output+[candidates[i]], finalResult, i)
     
     def combinationSum(self, candidates, target):
         #notice finalResult ? we do that so we dont need global variable to store output
         finalResult = []
-        self.logic(candidates, target, [], finalResult)
+        self.logic(candidates, target, [], finalResult, 0)
         print finalResult
 
 #Main
@@ -115,7 +115,7 @@ obj = Solution3()
 obj.combinationSum([2,3,5], 8)
 
 obj = Solution3()
-#obj.combinationSum([2,3,6,7], 7)
+obj.combinationSum([2,3,6,7], 7)
 
 obj = Solution3()
-#obj.combinationSum([7,3,2], 18)
+obj.combinationSum([7,3,2], 18)
