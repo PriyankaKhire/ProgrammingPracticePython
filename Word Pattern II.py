@@ -1,53 +1,53 @@
 #Word Pattern II
 #https://leetcode.com/problems/word-pattern-ii/
 class Solution(object):
-    #def __init__(self):
-
-    def formPiTable(self, string):
-        print string
-        piTable = [0 for i in range(len(string))]
-        index = 1
-        startIndex = 0
-        while(index < len(string)):
-            if(string[index] == string[startIndex]):
-                piTable[index] = startIndex + 1
-                index = index + 1
-                startIndex = startIndex + 1
-            else:
-                index = index + 1
-                startIndex = 0
-        print piTable
 
     def putInHash(self, pattern):
-        hashTable = {}
+        patternHash = {}
         for char in pattern:
-            if not(char in hashTable):
-                hashTable[char] = True
-        return hashTable
+            if not(char in patternHash):
+                patternHash[char] = True
+        return patternHash
 
-    def recurrse(self, pattern, string, patternIndex, stringIndex, hashTable):
-        print patternIndex, stringIndex, len(pattern), len(string), hashTable
-        if(patternIndex == len(pattern) or stringIndex == len(string)):
-            print "finish"
-            return
-        print patternIndex
-        if(hashTable[pattern[patternIndex]] != True):
-            if(hashTable[pattern[patternIndex]] != string[stringIndex:stringIndex+len(hashTable[pattern[patternIndex]])]):
-                return
+    #returns true if all values in hash table are assigned to some pattern in string
+    def checkpatternHash(self, patternHash):
+        for key in patternHash:
+            if(patternHash[key] == True):
+                return False
+        return True
+
+    def recurrse(self, pattern, string, patternIndex, stringIndex, patternHash, wordHash):
+        print patternIndex, stringIndex, len(pattern), len(string), patternHash, wordHash
+        if(patternIndex == len(pattern) and stringIndex == len(string)):
+            if(self.checkpatternHash(patternHash)):
+                return True
             else:
-                self.recurrse(pattern, string, patternIndex+1, stringIndex+len(hashTable[pattern[patternIndex]]), hashTable)
+                return False
+        if(patternHash[pattern[patternIndex]] != True):
+            if(patternHash[pattern[patternIndex]] != string[stringIndex:stringIndex+len(patternHash[pattern[patternIndex]])]):
+                return 
+            else:
+                self.recurrse(pattern, string, patternIndex+1, stringIndex+len(patternHash[pattern[patternIndex]]), patternHash, wordHash)
         for i in range(stringIndex, len(string)):
-            hashTable[pattern[patternIndex]] = string[stringIndex:i+1]
-            self.recurrse(pattern, string, patternIndex+1, i+1, hashTable)
-            
-            
-                
+            if(string[stringIndex:i+1] in wordHash and wordHash[string[stringIndex:i+1]] != pattern[patternIndex]):
+                continue
+            patternHash[pattern[patternIndex]] = string[stringIndex:i+1]
+            wordHash[string[stringIndex:i+1]] = pattern[patternIndex]
+            if(self.recurrse(pattern, string, patternIndex+1, i+1, patternHash, wordHash)):
+                return True
+            #backtrack
+            wordHash.pop(string[stringIndex:i+1], None)
+            patternHash[pattern[patternIndex]] = string[stringIndex:i]
                 
     def wordPatternMatch(self, pattern, str):
-        #self.formPiTable(pattern)
-        #self.formPiTable(str)
-        hashTable = self.putInHash(pattern)
-        self.recurrse(pattern, str, 0, 0, hashTable)
+        if(pattern == str):
+            return True
+        if(pattern == "" or str == ""):
+            return False
+        patternHash = self.putInHash(pattern)
+        if(self.recurrse(pattern, str, 0, 0, patternHash, {})):
+            return True
+        return False
         """
         :type pattern: str
         :type str: str
@@ -55,10 +55,20 @@ class Solution(object):
         """
 #Main
 obj1 = Solution()
-obj1.wordPatternMatch('abab', 'redblueredblue')
+print obj1.wordPatternMatch('abab', 'redblueredblue')
 
 obj2 = Solution()
-#obj2.wordPatternMatch('aaaa', 'asdasdasdasd')
+print obj2.wordPatternMatch('aaaa', 'asdasdasdasd')
 
 obj3 = Solution()
-#obj3.wordPatternMatch('aabb', 'xyzabcxzyabc')
+print obj3.wordPatternMatch('aabb', 'xyzabcxzyabc')
+
+obj4 = Solution()
+print obj4.wordPatternMatch('ab', 'aa')
+
+obj5 = Solution()
+print obj5.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes")
+
+obj6 = Solution()
+print obj6.wordPatternMatch('arora', 'aarrorraa')
+
