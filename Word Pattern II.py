@@ -53,22 +53,72 @@ class Solution(object):
         :type str: str
         :rtype: bool
         """
+
+class Solution2(object):
+    def __init__(self):
+        self.str = None
+        self.pattern = None
+
+    #We create a bijectional hash set such that key and value pair is unique.
+    def logic(self, pi, si, hsPattern, hsStr):
+        if(pi == len(self.pattern) and si < len(self.str)):
+            return
+        print "pattern Index ", pi, " string Index ", si, " pattern Hash ", hsPattern, " string hash ", hsStr
+        if(pi == len(self.pattern) and si == len(self.str)):
+            return True
+        #if current pattern already found
+        if(self.pattern[pi] in hsPattern):
+            index = hsPattern.index(self.pattern[pi])
+            string = hsStr[index]
+            print "pattern Index ", pi, " string Index ", si, " String ", self.str[si:(si+len(string))], " hash string ", string
+            if(string == self.str[si:(si+len(string))]):
+                if( self.logic(pi+1, si + len(string), hsPattern, hsStr)):
+                    return True
+        #Assign current string letter to pattern
+        i = si+1
+        while(i < len(self.str)):
+            if(self.str[si:i] in hsStr):
+                return
+            if((not (self.pattern[pi] in hsPattern)) and (not (self.str[si:i] in hsStr))):
+                if(self.logic(pi+1, i, hsPattern+[self.pattern[pi]], hsStr+[self.str[si:i]])):
+                    return True
+            i = i+1
+
+    def wordPatternMatch(self, pattern, str):
+        print "String is ", str, " Pattern is ", pattern
+        if(pattern == str):
+            return True
+        if(pattern == "" or str == ""):
+            return False
+        self.str = str
+        self.pattern = pattern
+        if( self.logic(0, 0, [], [])):
+            return True
+        return False
+    
 #Main
-obj1 = Solution()
-print obj1.wordPatternMatch('abab', 'redblueredblue')
+obj1 = Solution2()
+#print obj1.wordPatternMatch('abab', 'redblueredblue')
 
-obj2 = Solution()
-print obj2.wordPatternMatch('aaaa', 'asdasdasdasd')
+obj2 = Solution2()
+#print obj2.wordPatternMatch('aaaa', 'asdasdasdasd')
 
-obj3 = Solution()
-print obj3.wordPatternMatch('aabb', 'xyzabcxzyabc')
+obj3 = Solution2()
+#print obj3.wordPatternMatch('aabb', 'xyzabcxzyabc')
 
-obj4 = Solution()
-print obj4.wordPatternMatch('ab', 'aa')
+obj4 = Solution2()
+#print obj4.wordPatternMatch('ab', 'aa')
 
-obj5 = Solution()
-print obj5.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes")
+obj5 = Solution2()
+#print obj5.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes")
 
-obj6 = Solution()
-print obj6.wordPatternMatch('arora', 'aarrorraa')
+obj6 = Solution2()
+#print obj6.wordPatternMatch('arora', 'aarrorraa')
+
+obj7 = Solution2()
+print obj7.wordPatternMatch("edcs", "electronicengineeringcomputerscience")
+
+obj8 = Solution2()
+#print obj8.wordPatternMatch("d", "ef")
+
 
