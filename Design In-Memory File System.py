@@ -35,6 +35,8 @@ class FileSystem(object):
         return False
 
     def findDirectory(self, sourceDir, dirName):
+        if(dirName == ''):
+            return sourceDir
         for dirObject in sourceDir.directories:
             if(dirObject.name == dirName):
                 return dirObject
@@ -46,7 +48,32 @@ class FileSystem(object):
                 return fileObject
         return False
 
-    #def ls(self, path):
+    def ifFilePath(self, path):
+        potentialFileName = path.split("/")[-1]
+        sourceDir = self.root
+        for directory in path.split("/")[:-1]:
+            if(directory != ''):
+                sourceDir = self.findDirectory(sourceDir, directory)
+        self.lastVisitedDirectory = sourceDir
+        fileObject = self.findFile(sourceDir, potentialFileName)
+        if(fileObject != False):
+            return True
+        return False
+                
+                    
+
+    def ls(self, path):
+        if(self.ifFilePath(path)):
+            return [path.split("/")[-1]]
+        #get directory object
+        dirObj =  self.findDirectory(self.lastVisitedDirectory, path.split("/")[-1])
+        dirContents = []
+        for fileObj in dirObj.files:
+            dirContents.append(fileObj.name)
+        for dObj in dirObj.directories:
+            dirContents.append(dObj.name)
+        dirContents.sort()
+        return dirContents        
         """
         :type path: str
         :rtype: List[str]
@@ -76,7 +103,7 @@ class FileSystem(object):
         
 
     def addContentToFile(self, filePath, content):
-        self.mkdir(filePath[:-2])
+        self.mkdir('/'.join(filePath.split('/')[:-1]))
         fileName = filePath.split("/")[-1]
         #get the last directory and find if file with that name exists or not.
         if not(self.fileExists(self.lastVisitedDirectory, fileName)):
@@ -96,7 +123,13 @@ class FileSystem(object):
         """
         
 
-    #def readContentFromFile(self, filePath):
+    def readContentFromFile(self, filePath):
+        sourceDir = self.root
+        for directory in filePath.split("/")[:-1]:
+            if(directory != ''):
+                sourceDir = self.findDirectory(sourceDir, directory)
+        fileObj = self.findFile(sourceDir, filePath.split("/")[-1])
+        return fileObj.content
         """
         :type filePath: str
         :rtype: str
@@ -112,8 +145,33 @@ class FileSystem(object):
 # param_4 = obj.readContentFromFile(filePath)
 
 #Main
+
 obj = FileSystem()
-obj.mkdir("/a/b/c")
-obj.mkdir("/a/b/c/d/e")
-obj.addContentToFile("/a/b/c/d/e/f", "Hello World")
-obj.addContentToFile("/a/b/c/d/e/f", " How are you ?")
+print obj.mkdir("/a/b/c")
+print obj.mkdir("/a/b/c/d/e")
+print obj.addContentToFile("/a/b/c/d/e/f", "Hello World")
+print obj.addContentToFile("/a/b/c/d/e/f", " How are you ?")
+print obj.mkdir("/a/b/c/d/e/g/h")
+print obj.addContentToFile("/a/b/c/d/e/i", "Hello World")
+print obj.ls("/a/b/c/d/e")
+print obj.readContentFromFile("/a/b/c/d/e/f")
+
+obj2 = FileSystem()
+print obj2.ls("/")
+print obj2.mkdir('/a/b/c')
+print obj2.addContentToFile('/a/b/c/d', 'hello')
+print obj2.ls("/")
+print obj2.readContentFromFile('/a/b/c/d')
+
+
+obj3 = FileSystem()
+obj3.mkdir("/zijzllb")
+print obj3.ls('/')
+print obj3.ls('/zijzllb')
+obj3.mkdir('r')
+print obj3.ls('/')
+print obj3.ls('/r')
+obj3.addContentToFile("/zijzllb/hfktg","d")
+print obj3.readContentFromFile('/zijzllb/hfktg')
+print obj3.ls('/')
+print obj3.readContentFromFile("/zijzllb/hfktg")
