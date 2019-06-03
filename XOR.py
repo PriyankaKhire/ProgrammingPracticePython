@@ -1,4 +1,5 @@
 #XOR
+#xor of more than 2 inputs a,b,c is => a xor b = r, r xor c = answer
 class XOR(object):
 
     def intToBinary(self, num):
