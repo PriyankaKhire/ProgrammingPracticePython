@@ -41,7 +41,8 @@ print "lets say we wanna multiply by 3 then we take (multiplyer * 2)+(multiplyer
 print "So 5*3 = ", (5 << 1)+(5 << 0)
 
 
-
+#When you get time please see this resource
+#https://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary%3A-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently
 
 
 
