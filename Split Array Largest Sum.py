@@ -36,6 +36,8 @@ class Approch1(object):
                     self.matrix[row][col] = self.matrix[row][col-1] + self.array[col]
 
     def iterateMatrix(self, row, currSet, currM, remainingNumbers):
+        print "******************************************"
+        print "Row ", row, "Curr set ", currSet, "Curr M ", currM, "remaining Numbers", remainingNumbers, "self.smallMaxSum ", self.smallMaxSum
         if(currM == 0 and remainingNumbers != 0):
             return
         if(currM == 0 and remainingNumbers == 0):
@@ -46,10 +48,13 @@ class Approch1(object):
         #Add current number to current set
         numbersAdded = 0
         for c in range(row, len(self.array)):
+            print "numbersAdded", numbersAdded, "curr Set ", currSet
             numbersAdded = numbersAdded + 1
             currSet.append(self.matrix[row][c])
+            print "numbersAdded", numbersAdded, "curr Set ", currSet
             self.iterateMatrix(c+1, currSet, currM-1, remainingNumbers-numbersAdded)
             currSet.pop()
+            print "backtrack curr Set ", currSet
                 
         
     def solution(self):
