@@ -14,10 +14,12 @@ class splitArray(object):
             return
         subArray = []
         for i in range(index, len(self.array)):
+            #add numbers to subArray
             subArray.append(self.array[i])
             output.append(subArray)
             self.recurrse(output, i+1)
-            #Backtrack
+            #Backtrack, here you are popping subArray from output not popping contents of subArray.
+            #the subArray still holds previously added numbers in it.
             output.pop()
             
     def logic(self):
