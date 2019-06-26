@@ -14,9 +14,7 @@ class Server(object):
         print "Started server"
         return s
 
-    def approch1(self, pasteObj):
-        #Send data to Approch1 server
-        port = 1
+    def sendToApproches(self, pasteObj, port):
         s = socket.socket()
         s.connect(('127.0.0.1', port))
         object_string = pickle.dumps(pasteObj)
@@ -24,10 +22,20 @@ class Server(object):
         print s.recv(1024)
         s.close()
 
+    def approch1(self, pasteObj):
+        #Send data to Approch1 server
+        self.sendToApproches(pasteObj, 1)
+        
+
+    def approch2(self, pasteObj):
+        #Send data to Approch2 server
+        self.sendToApproches(pasteObj, 2)
+
     def processData(self, text, fileName, folderName, userId):
         #We first create Paste object.
         pasteObj = Paste(userId, text, fileName, folderName)
         self.approch1(pasteObj)
+        self.approch2(pasteObj)
         
 
     def run(self):
