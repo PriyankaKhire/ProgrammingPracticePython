@@ -2,14 +2,15 @@
 import os
 import socket, pickle
 import sys
-import shelve
+from HelperFunctions import HelperFunctions
 sys.path.append("../Server")
 from PasteClass import Paste
 
 class Database(object):
     def __init__(self):
-        self.port = 1007
+        self.port = 1009
         self.hashFile = "index.txt"
+        self.hs = HelperFunctions()
 
     def server(self):
         s = socket.socket()
@@ -18,48 +19,18 @@ class Database(object):
         print "Started server"
         return s
     
-    def createFolder(self, folderName):
-        if not os.path.exists(folderName):
-            os.makedirs(folderName)
-
-    def createFile(self, fileName, text):
-        f = open(fileName+".txt", "w")
-        f.write(text)
-        f.close()
-
-    def writeToHash(self, fileName, key, value):
-        hashFile_object = shelve.open(fileName)
-        hashFile_object[key] = value
-        hashFile_object.close()
-
-    def readFromHash(self, fileName, key):
-        hashFile_object = shelve.open(fileName)
-        if (key in hashFile_object):
-            value = hashFile_object[key]
-            hashFile_object.close()
-            return value
-        return False
-
-    def isKeyInHash(self, fileName, key):
-        hashFile_object = shelve.open(fileName)
-        if (key in hashFile_object):
-            value = hashFile_object[key]
-            hashFile_object.close()
-            return True
-        return False
-
     def logic(self, pasteObj, key):
         #The given key already exists 
-        if(self.isKeyInHash(self.hashFile, key)):
+        if(self.hs.isKeyInHash(self.hashFile, key)):
             return False
         #Write the text to file and put in folder
-        self.createFolder(pasteObj.folderName+"_"+pasteObj.userId)
-        self.createFile(os.path.join(pasteObj.folderName+"_"+pasteObj.userId, pasteObj.fileName), pasteObj.text)
+        self.hs.createFolder(pasteObj.folderName+"_"+pasteObj.userId)
+        self.hs.createFile(os.path.join(pasteObj.folderName+"_"+pasteObj.userId, pasteObj.fileName), pasteObj.text)
         #insert in hash key = key, value = path of text file
-        self.writeToHash(self.hashFile, key, os.path.join(pasteObj.folderName+"_"+pasteObj.userId, pasteObj.fileName))
+        self.hs.writeToHash(self.hashFile, key, os.path.join(pasteObj.folderName+"_"+pasteObj.userId, pasteObj.fileName))
+        print "File created"
         return True
         
-
     def run(self):
         #Start the server
         s = self.server()
@@ -70,11 +41,11 @@ class Database(object):
             connection.send('Database server has recieved the paste object successfully')
             key = connection.recv(1024)
             connection.send('Database server has recieved the key')
-            connection.close()
             if(self.logic(pasteObj, key)):
-                connection.send(True)
+                connection.send("True")
             else:
-                connection.send(False)
+                connection.send("False")
+            connection.close()
 
 #Main
 obj = Database()
