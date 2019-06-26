@@ -36,7 +36,7 @@ class Approch1(object):
         self.exp.mainExplanaiton()
         key = self.generateKey()
         #Send it to database
-        port = 1007
+        port = 1009
         s = socket.socket()
         s.connect(('127.0.0.1', port))
         object_string = pickle.dumps(pasteObj)
@@ -44,7 +44,7 @@ class Approch1(object):
         print s.recv(1024)
         s.send(key)
         print s.recv(1024)
-        if(s.recv(1024)):
+        if(s.recv(1024) == "True"):
             print "Successfully created and stored the text file in database"
         else:
             print "The key already exists in database, retrying..."
