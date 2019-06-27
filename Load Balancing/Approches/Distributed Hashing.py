@@ -3,8 +3,7 @@ import os, os.path
 import socket
 import sys
 sys.path.append("..")
-from Config import ApprochConfig
-from Config import ServerConfig
+from Config import ApprochConfig, ServerConfig
 
 class Explanation(object):
     
@@ -33,6 +32,7 @@ class Server(object):
         return len(os.listdir('../Servers'))
 
     def logic(self, requestId):
+        print "Total number of servers is ",self.getNumberOfServers()
         self.exp.explanation2()
         #server number is generated from 0 to numberOfServers-1, but our server numbers start from 1 to N
         serverNumber = requestId%self.getNumberOfServers()
