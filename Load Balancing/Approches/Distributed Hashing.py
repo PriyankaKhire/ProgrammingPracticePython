@@ -3,7 +3,7 @@ import os, os.path
 import socket
 import sys
 sys.path.append("..")
-from Config import ApprochConfig, ServerConfig
+from Config import ApprochConfig, ServerConfig, ClientData
 
 class Explanation(object):
     
@@ -27,6 +27,16 @@ class Server(object):
         self.port = ac.port[self.name]
         self.s.bind(('', self.port))
         self.s.listen(5)
+        self.cd = ClientData()
+        self.requestMap = {}
+
+    def putInRequestMap(self, requestId, serverNumber):
+        clientData = self.cd.data[requestId]
+        if(requestId in self.requestMap):          
+            print "Previously the data", clientData, "was in Server", self.requestMap[requestId]
+        print "The data ", clientData, " is now being placed in Server", serverNumber
+        self.requestMap[requestId] = serverNumber
+        
 
     def getNumberOfServers(self):
         return len(os.listdir('../Servers'))
@@ -37,6 +47,8 @@ class Server(object):
         #server number is generated from 0 to numberOfServers-1, but our server numbers start from 1 to N
         serverNumber = requestId%self.getNumberOfServers()
         sc = ServerConfig()
+        #Update the request map
+        self.putInRequestMap(requestId, serverNumber+1)
         #so we add one to even that out.
         return sc.port['Server'+str(serverNumber+1)]
 
@@ -54,6 +66,7 @@ class Server(object):
         print self.name+" server started...\n"
         while True:
             self.startServer()
+            print "\n"
 
 #Main
 obj = Server()
