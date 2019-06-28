@@ -11,7 +11,13 @@ class Draw(object):
         y0 = y - radius
         x1 = x + radius
         y1 = y + radius
-        self.canvas.create_oval(x0, y0, x1, y1, width=2, fill='white')   
+        self.canvas.create_oval(x0, y0, x1, y1, width=2, fill='white')
+
+    def drawOnCircumference2(self, x, y, radius, angle):
+        x1 = (radius*math.cos(angle)) + x
+        y1 = (radius*math.sin(angle)) + y
+        self.canvas.create_oval(x1-10, y1-10, x1+10, y1+10, width=2, fill='red')
+        self.canvas.create_text(x1, y1, text=angle)
 
     def drawOnCircumference(self, x, y, radius, angle):
         #parametric equation for a circle
@@ -64,8 +70,10 @@ class Draw(object):
         #self.drawOn4CircumferencePointsOfCircle(x1, y1, x2, y2)
         #self.originOfCircle(x1, y1, x2, y2)
         self.drawCircleWithRadiusAndCenterPoint(175, 175, 100)
-        self.drawOnCircumference(175, 175, 100, 180)
-        self.drawOnCircumference(175, 175, 100, 90)
+        self.drawOnCircumference(175, 175, 100, 0)
+        self.drawOnCircumference(175, 175, 100, 11)
+        self.drawOnCircumference(175, 175, 100, 22)
+        self.drawOnCircumference(175, 175, 100, 33)    
         mainloop()
 
 #Main
