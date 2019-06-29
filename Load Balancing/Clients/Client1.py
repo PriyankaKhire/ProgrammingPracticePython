@@ -12,7 +12,7 @@ class Client(object):
         self.cd = ClientData()
 
     def requestId(self):
-        return(randint(0, 10))
+        return(randint(0, 360))
 
     def connectToApprochServer(self, approchPort):
         s = socket.socket()
@@ -29,8 +29,13 @@ class Client(object):
         approchPort = self.approchPort.port['Approch1']
         return self.connectToApprochServer(approchPort)
 
+    def approch2(self):
+        approchPort = self.approchPort.port['Approch2']
+        return self.connectToApprochServer(approchPort)
+
     def choseServer(self):
-        return self.approch1()
+        #return self.approch1()
+        return self.approch2()
 
     def run(self):
         s = socket.socket()
