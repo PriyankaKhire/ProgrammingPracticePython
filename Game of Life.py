@@ -34,10 +34,7 @@ class Solution(object):
                 if(board[new_row][new_col] == 1 or board[new_row][new_col] == 'l'):
                     liveNeighbors = liveNeighbors + 1
         #print "live neighbor count ", liveNeighbors     
-        if(liveNeighbors == 2 or liveNeighbors == 3):
-            #print "Cell stays alive"
-            board[row][col] = 'o'
-        elif(liveNeighbors > 2 or liveNeighbors < 3):
+        if( not (liveNeighbors == 2 or liveNeighbors == 3) and (liveNeighbors > 2 or liveNeighbors < 3)):
             board[row][col] = 'l'
         
     def logic(self, board):
@@ -47,12 +44,32 @@ class Solution(object):
                     self.liveCellRules(row, col, board)
                 else:
                     self.deadCellRules(row, col, board)
+
+    def normalizeBoard(self, board):
+        #When cell goes from 1 -> 0 it becomes l
+        # when cell goes form 0 -> 1 it becomes o
+        for row in range(len(board)):
+            for col in range(len(board[0])):
+                if(board[row][col] == 'l'):
+                    board[row][col] = 0
+                elif(board[row][col] == 'o'):
+                    board[row][col] = 1
             
     def gameOfLife(self, board):
         self.logic(board)
+        self.normalizeBoard(board)
         print board
         """
         :type board: List[List[int]]
         :rtype: None Do not return anything, modify board in-place instead.
         """
+#Main
+board = [
+  [0,1,0],
+  [0,0,1],
+  [1,1,1],
+  [0,0,0]
+]
+obj = Solution()
+obj.gameOfLife(board)
         
