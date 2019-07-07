@@ -36,15 +36,24 @@ class ValidParenthesis(object):
         return True
                 
 
-class Solution(object):
-    def generateParenthesis(self, n):
-        anagram = GenerateAnagram()
+class BruteForce(object):
+    
+    def generateNPairsOfParenthesis(self, n):
         parenthesis = ''
         for i in range(n):
             parenthesis = parenthesis + '()'
-        parenthesisList = anagram.generateAnagrams(parenthesis)
+        return parenthesis
+        
+    def generateParenthesis(self, n):
+        #Declare Variables
+        anagram = GenerateAnagram()
         isValid = ValidParenthesis()
         output = []
+        #get the n pairs of parenthesis
+        parenthesis = self.generateNPairsOfParenthesis(n)
+        #get the anagram list of the parenthesis
+        parenthesisList = anagram.generateAnagrams(parenthesis)
+        #validate the parenthesis.
         for parenthesisCombination in parenthesisList:
             if(isValid.findValid(parenthesisCombination)):
                 if not(parenthesisCombination in output):
@@ -54,8 +63,44 @@ class Solution(object):
         :type n: int
         :rtype: List[str]
         """
+
+#Saw this approch on leetcode, didn't see the code though
+class Solution2(object):
+    def generateNPairsOfParenthesis(self, n):
+        parenthesis = ''
+        for i in range(n):
+            parenthesis = parenthesis + '()'
+        return parenthesis
+    
+    #let's combine generate anagram and ValidParenthesis
+    #to write this function, I first copied the logic function of generate anagrams class and added to it.
+    def logic(self, string, visited, output, anagrams, stack):
+        if(len(output) == len(string) and not(output in anagrams)):
+            anagrams.append(output)
+            return
+        for i in range(len(visited)):
+            if(visited[i] == 0):
+                visited[i] = 1
+                if(string[i] == '('):
+                    self.logic(string, visited, output+string[i], anagrams, stack+['('])
+                else:
+                    if(stack):
+                        self.logic(string, visited, output+string[i], anagrams, stack[:-1])
+                #Backtrack
+                visited[i] = 0
+                
+    def generateParenthesis(self, n):
+        #get the n pairs of parenthesis
+        parenthesis = self.generateNPairsOfParenthesis(n)
+        anagrams = []
+        self.logic(parenthesis, [0 for i in range(len(parenthesis))], '', anagrams, [])
+        print anagrams
+        """
+        :type n: int
+        :rtype: List[str]
+        """
 #Main
-obj = Solution()
+obj = Solution2()
 obj.generateParenthesis(3)
 
 
