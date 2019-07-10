@@ -11,5 +11,6 @@ class PortConfig(object):
             'Master3':3005,
             'Slave31': 3101,
             'Slave32': 3201,
-            'RangeBasedPartitioningServer': 102
+            'RangeBasedPartitioningServer': 102,
+            'FeatureBasedPartitioningServer': 801
             }
