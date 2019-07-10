@@ -15,3 +15,8 @@ When prompted by client give user id and data in string format</br>
 Go to the folder /Database Sharding/Partitioning Methods/Horizontal Partitioning/Range Based Sharding/UserNameBased </br>
 Double click on client and server</br>
 When prompted by client give user name and data in string format</br>
+<h2>Vertical Partitioning</h2>
+Go to the folder /Database Sharding/Partitioning Methods/Vertical Partitioning/FeatureBased/ </br>
+Double click on client and server</br>
+When prompted by client give user name, email, tweet(inspired by twitter) and chose an image </br>
+<b>Please open server file for more explanaiton as some of it doesn't print</b> </br>
