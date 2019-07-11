@@ -19,6 +19,27 @@ class Explanation(object):
         print "What happens if there are way too many users with username that begins with letter A as compared to users that have username starting with letter X"
         print "One shard will have too much data and others wont"
 
+    def con3(self):
+        print "How would we handle hot users ?"
+        print "Think about celebrities, there are many people following them, so the reads on those shards are going to be way more."
+
+    def con4(self):
+        print "What if we cannot store all data of one user on same shard ?"
+        print "In that case we'd have to find another shard to store rest of their data ?"
+        print "How would that work ? Won't that add to higher latency ?"
+
+    def con5(self):
+        print "What if a shard fails ?"
+        print "Does it take down all its users with it ?"
+        print "We do have slaves in place to handle that "
+
+    def solution(self):
+        print "To solve these problems, instead of partitioning data based on user ID, we can give our data an unique ID"
+        print "So we are still horizontally partitioning, but this time based on data ID and not user ID"
+        print "So all data with that ID will reside on one shard"
+        print "To go about this approch, we can maintain a table with key as user and value as it's data ID"
+        print "This can be similar to tiny url's  offline key generating server"
+
     def pro1(self):
         print "While finding data, what if we want to find data across shards ?"
         print "With this approch, since all data of one user lies on same shard, it would be easy"
