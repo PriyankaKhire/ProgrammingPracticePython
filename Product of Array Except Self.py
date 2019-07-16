@@ -1,6 +1,6 @@
 #Product of Array Except Self
 #https://leetcode.com/problems/product-of-array-except-self/
-class Solution(object):
+class ExtrsSpace(object):
     def productExceptSelf(self, nums):
         leftToRight = [nums[0]]
         #To get product from left to right 
@@ -22,6 +22,21 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
+
+class WithoutExtraSpace(object):
+    def productExceptSelf(self, nums):
+        #calculate product from left to right like we did previously
+        output = [nums[0]]
+        for i in range(1, len(nums)):
+            output.append(nums[i]*output[i-1])
+        #start tracing output array backwards
+        tempSpace = 1
+        for i in range(len(nums)-1, 0, -1):
+            output[i] = output[i-1]*tempSpace
+            tempSpace = tempSpace*nums[i]
+        #Finally we haven't filled the first space, and tempSpace holds the value
+        output[0] = tempSpace
+        print output
 #Main
-obj = Solution()
-obj.productExceptSelf([1,2,3,4])
+obj = WithoutExtraSpace()
+obj.productExceptSelf([1,2,3,4, 5])
