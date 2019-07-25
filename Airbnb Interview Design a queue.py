@@ -22,25 +22,25 @@ class LinkedList(object):
         node = self.createNode(data)
         if(self.tail == None):
             self.tail = node
-        #assign the next ptr, if head is none this shoudn't matter as it gets assigned to none.
+        # assign the next ptr, if head is none this shoudn't matter as it gets assigned to none.
         node.next = self.head
-        #assign the prev ptr
+        # assign the prev ptr
         if(self.head != None):
             self.head.prev = node
-        #move the head ptr upwards
+        # move the head ptr upwards
         self.head = node       
 
     def delFromBottom(self):
         if(self.tail == None):
             return
-        #if just one element
+        # if just one element
         if(self.tail == self.head):
             self.tail = None
             self.head = None
             return
-        #Move tail ptr up
+        # Move tail ptr up
         self.tail = self.tail.prev
-        #remove the next node reference since we want to delete it.
+        # remove the next node reference since we want to delete it.
         self.tail.next = None
 
     def display(self):
