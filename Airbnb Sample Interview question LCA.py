@@ -4,11 +4,10 @@
 class Solution(object):
     
     def scanForGarbage(self, regionName, data):
-        flag = False
         for regions in data:
             if(regionName in regions):
-                flag = True
-        return flag
+                return True
+        return False
         
     def recurrse(self, data, region1, region2):
         r1 = None
@@ -48,3 +47,18 @@ obj.logic(data, "WY", "NY")
 obj.logic(data, "Chile", "WY")
 obj.logic(data, "gibbrish", "WY")
 obj.logic(data, "America", "SAS")
+
+data = [
+['Earth', 'South America', 'North America', 'Asia', 'Pacific', 'Africa'],
+['Asia', 'China', 'Korea', 'Japan'],
+['North America', 'USA', 'Canada'],
+['South America', 'Brazil', 'Columbia'],
+['Africa', 'Algeria', 'Lybia'],
+['China', 'Beijing', 'Shanhai'],
+['Japan', 'Tokyo', 'Kyoto'],
+['Korea', 'Seoul']
+]
+obj = Solution()
+obj.logic(data, 'Tokyo', 'Kyoto')
+obj.logic(data, 'Beijing', 'Japan')
+obj.logic(data, 'Seoul', 'Africa')
