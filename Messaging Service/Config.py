@@ -2,5 +2,5 @@
 class PortConfig(object):
     def __init__(self):
         self.port = {
-            'SimpleChatServer' : 5014
+            'SimpleChatServer' : 5016
             }

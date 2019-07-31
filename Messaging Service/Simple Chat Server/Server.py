@@ -26,6 +26,14 @@ class Server(object):
         m.timeStamp = datetime.datetime.fromtimestamp(time.time())
         return m
 
+    def removeConnectionFromHash(self, connection):
+        for client in self.clients:
+            if(self.clients[client] == connection):
+                print "Removing the client ", client
+                del self.clients[client]
+                print self.clients
+                return
+
     def ClientThread(self, connection):
         try:
             while (self.ping(connection)):               
@@ -34,27 +42,22 @@ class Server(object):
                 self.sendMessage(connection, message)                
         except Exception as e:
             print "\nClosing the conneciton with ", connection
-            print e
+            print "Exception: ", e
             connection.close()
+            #Remove client from clients hash
+            self.removeConnectionFromHash(connection)
 
-    def messageDelivary(self, connection):
-        if(connection.recv(1024) == "Ack"):
-            print "Successfully delivered message to ", connection
-            return True
-        return False
+    def deliverMessage(self, connection, message):
+        connection.send(message)
 
     def sendMessage(self, connection, message):
         message_obj = pickle.loads(message)
         reciever = message_obj.receiver
         if not(reciever in self.clients):
             m = self.createMessage(reciever+" is not online")
-            connection.send(pickle.dumps(m))
-            self.messageDelivary(connection)
+            self.deliverMessage(connection, m)
             return
-        self.clients[reciever].send(message)
-        if(self.messageDelivary(self.clients[reciever])):
-            delivered = self.createMessage("Message delivered to "+reciever)
-            connection.send(pickle.dumps(delivered))
+        self.deliverMessage(self.clients[reciever], message)
 
     def AcceptConnections(self):
         while True:

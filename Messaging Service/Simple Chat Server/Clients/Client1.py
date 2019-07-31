@@ -6,8 +6,8 @@ from Config import PortConfig
 
 class Client(object):
     def __init__(self):
-        self.name = 'Client1'
-        self.reciever = None
+        self.name = os.path.basename(__file__)[:-3]
+        self.reciever = self.getFriend()
         self.serverName = 'SimpleChatServer'
         pc = PortConfig()
         port = pc.port[self.serverName]
@@ -15,6 +15,13 @@ class Client(object):
         self.server.connect(('localhost', port))
         #Send server your name so server can save it in a hash along with your conneciton id
         self.server.send(self.name)
+
+    def getFriend(self):
+        available_clients = self.getListOfAvailableClients()
+        index_number = input("Enter the index number of the client you'd like to send message to " + str(available_clients)+" ")
+        while(index_number < 0 or index_number > len(available_clients)-1):
+            index_number = input("Index number out of range, please enter a different number ")
+        return available_clients[index_number]
 
     def getListOfAvailableClients(self):
         #get all client file names
@@ -38,16 +45,17 @@ class Client(object):
             self.server.send(message_string)
             sequenceNumber = sequenceNumber+1
 
-    def processMessage(self, message):       
+    def processMessage(self, message):
         if(message == "ping"):
                 self.server.send("ping")
         elif(message == "Ack"):
             return
+        elif(message == "Delivered"):
+            print "Delivered"
         else:
             message_obj = pickle.loads(message)
             print message_obj.sender, " at ",message_obj.timeStamp
             print message_obj.message, "\n"
-            self.server.send("Ack")
 
     def getMessage(self):
         while True:
@@ -55,11 +63,7 @@ class Client(object):
             self.processMessage(message)
 
     def run(self):
-        available_clients = self.getListOfAvailableClients()
-        index_number = input("Enter the index number of the client you'd like to send message to " + str(available_clients)+" ")
-        while(index_number < 0 or index_number > len(available_clients)-1):
-            index_number = input("Index number out of range, please enter a different number ")
-        self.reciever = available_clients[index_number]
+        print "Started ", self.name
         background_thread = threading.Thread(target=self.putMessage)
         background_thread.daemon = True
         background_thread.start()
