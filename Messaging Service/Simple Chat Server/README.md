@@ -22,3 +22,5 @@ if the server fails to find the reciever in the hash table then it sends a messa
 <h3>If reciever is online</h3>
 Look at the image Receiver online</br>
 the server sends the message to reciever</br>
+</br></br></br></br>
+Once the client goes offline the server removes the client from the hash table of active connections.
