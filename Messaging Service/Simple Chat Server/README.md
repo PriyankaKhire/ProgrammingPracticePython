@@ -22,5 +22,8 @@ if the server fails to find the reciever in the hash table then it sends a messa
 <h3>If reciever is online</h3>
 Look at the image Receiver online</br>
 the server sends the message to reciever</br>
-</br></br></br></br>
+</br></br>
+The server constantly pings the client to see if they are online or not</br>
+The client sends a ping back when it gets pinged, this notifies my server that the client is online</br>
+If the client doesn't send the ping back, the server concludes that the client is no longer online</br>
 Once the client goes offline the server removes the client from the hash table of active connections.
