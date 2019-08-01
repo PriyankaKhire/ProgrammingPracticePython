@@ -24,7 +24,8 @@ class Server(object):
         m.message = message
         m.sender = self.name
         m.timeStamp = datetime.datetime.fromtimestamp(time.time())
-        return m
+        m_str = pickle.dumps(m)
+        return m_str
 
     def removeConnectionFromHash(self, connection):
         for client in self.clients:
