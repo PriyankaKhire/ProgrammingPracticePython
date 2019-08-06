@@ -28,12 +28,13 @@ class Monarchy(object):
         self.monarchs[child] = monarch
 
     def death(self, name):
-        # I don't understand the purpose of this function
         self.monarchs[name].isAlive = False
 
     def preOrder(self, node):
         if(node):
-            print node.name
+            if(node.isAlive == True):
+                # don't print dead people :'(
+                print node.name
             for child in node.childern:
                 self.preOrder(child)
 
