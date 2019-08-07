@@ -1,6 +1,5 @@
 #Client sending objects
 import socket, pickle
-import socket, pickle
 from SampleClass import SampleClass
 
 HOST = 'localhost'
