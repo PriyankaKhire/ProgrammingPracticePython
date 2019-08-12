@@ -1,4 +1,4 @@
-import sys, random, datetime
+import sys, random, datetime, time
 from os import path
 from thread import *
 sys.path.append("Class")
@@ -74,12 +74,20 @@ class GenerateFeed(object):
             print post.picture
         else:
             print post.text
+        # append post object to user object's posts list
+        user.posts.append(post)
+        # store it in database
+        DatabaseHelper().writeToHash(CreateUsers().userDbFile, user.userName, user)
+
+    def userThread(self, user):
+        while True:
+            self.userPost(user)
+            time.sleep(random.randint(10, 30))
 
     def feed(self):
         for user in self.users:
-            self.userPost(user)
-        
-        
+            start_new_thread(self.userThread, (user,))
+            time.sleep(2)
 
 
 # Main
