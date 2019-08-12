@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import random
 class AsciiImages(object):
     def __init__(self):
         self.images = {
@@ -23,6 +24,10 @@ class AsciiImages(object):
             "BigSword" : self.bigSword()
             }
 
+    def RandomImage(self):
+        imageNames = [imgName for imgName in self.images]
+        return self.images[imageNames[random.randint(0,len(imageNames)-1)]]
+        
     def bigSword(self):
         return ("""
 ----------------------//\\
