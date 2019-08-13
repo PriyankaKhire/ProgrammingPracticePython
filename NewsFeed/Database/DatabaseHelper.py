@@ -1,6 +1,5 @@
 #Database helper functions
-import os
-import shelve
+import os, shelve 
 
 class DatabaseHelper(object):
     
@@ -17,10 +16,24 @@ class DatabaseHelper(object):
             return True
         return False
 
-    def getAllValues(self, fileName):
+    def getValue(self, fileName, key):
         hashFile_object = shelve.open(fileName)
-        values = []
-        for key in hashFile_object:
-            values.append(hashFile_object[key])
+        value = hashFile_object[key]
+        hashFile_object.close()
+        return value
+
+    def getAllValues(self, fileName):
+        if not(os.path.isfile(fileName)):
+            return []
+        hashFile_object = shelve.open(fileName)
+        values = [hashFile_object[key] for key in hashFile_object]
         hashFile_object.close()
         return values
+
+    def getAllKeys(self, fileName):
+        if not(os.path.isfile(fileName)):
+            return []
+        hashFile_object = shelve.open(fileName)
+        keys = [key for key in hashFile_object]
+        hashFile_object.close()
+        return keys
