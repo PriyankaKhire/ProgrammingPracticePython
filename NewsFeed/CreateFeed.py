@@ -1,4 +1,4 @@
-import sys, random, datetime, time
+import sys, random, datetime, time, threading
 from os import path
 from thread import *
 sys.path.append("Class")
@@ -88,6 +88,9 @@ class GenerateFeed(object):
         for user in self.users:
             start_new_thread(self.userThread, (user,))
             time.sleep(2)
+        # this little hack to keep it running in cmd
+        while True:
+            time.sleep(5)
 
 
 # Main
