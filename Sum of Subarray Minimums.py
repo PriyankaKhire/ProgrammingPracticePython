@@ -30,10 +30,12 @@ class MonotonousStackApproch(object):
         stack = []
         answer = [None for i in range(len(A))]
         for i in range(len(A)):
-            while(stack and A[stack[-1]] > A[i]):
+            # to handle duplicates we do A[stack[-1]] >= A[i]
+            while(stack and A[stack[-1]] >= A[i]):
                 stack.pop()
             if not stack:
-                answer[i] = None
+                # because the min exist beyond index 0
+                answer[i] = -1
             else:
                 answer[i] = stack[-1]
             stack.append(i)
@@ -44,11 +46,13 @@ class MonotonousStackApproch(object):
         stack = []
         answer = [None for i in range(len(A))]
         # we do the same processing like how we did in findPreviousSmallElements but just in reverse order
-        for i in range(len(A)-1, -1, -1):           
+        for i in range(len(A)-1, -1, -1):
+            # to handle duplicates we do A[stack[-1]] > A[i]
             while(stack and A[stack[-1]] > A[i]):
                 stack.pop()
             if not stack:
-                answer[i] = None
+                # because the min exists beyond index len(A)-1
+                answer[i] = len(A)
             else:
                 answer[i] = stack[-1]
             stack.append(i)
@@ -96,22 +100,8 @@ class MonotonousStackApproch(object):
         print "You can see the sub arrays above if the indices are not clear"
         print "Ya i know the calculation for sub arrays is a bit weird, just look at the post if you are confused"
         print "So the total sub arrays with",A[currElementIndex],"is, sub arrays to left * sub arrays to right"
-        left = 0
-        if(previousSmall[currElementIndex] == None):
-            left = currElementIndex
-        else:
-            left = currElementIndex-previousSmall[currElementIndex]
-        if(left == 0):
-            # coz we cant multiply by 0
-            left = 1
-        right = 0
-        if(nextSmall[currElementIndex] == None):
-            right = len(A)-currElementIndex
-        else:
-            right = nextSmall[currElementIndex]-currElementIndex
-        if(right == 0):
-            # coz we cant multiply by 0
-            right = 1
+        left = (currElementIndex-previousSmall[currElementIndex])
+        right = (nextSmall[currElementIndex]-currElementIndex)
         print "Which is",left*right,"Compare this value to total number of sub arrays and you'll know what I mean"
         print "And since the original point of the quesiton was to add all these min elements we just multiply the value of current element to this number"
         print "that is",left*right*A[currElementIndex]
@@ -135,7 +125,8 @@ class MonotonousStackApproch(object):
         print "So the final answer is",answer
 # Main
 obj = BruteForce()
-obj.sumSubarrayMins([3,1,2,4])
+obj.sumSubarrayMins([7,5,8,5])
 print "=-"*30,"\n"
 obj = MonotonousStackApproch()
-obj.sumSubarrayMins([3,1,2,4])
+obj.sumSubarrayMins([7,5,8,5])
+print "To handle duplicates we do >= findPreviousSmallElements and > findNextSmallElements"
