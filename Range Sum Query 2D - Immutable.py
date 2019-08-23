@@ -1,5 +1,21 @@
 #Range Sum Query 2D - Immutable
 #https://leetcode.com/problems/range-sum-query-2d-immutable/
+'''
+For Problem
+# Range Sum Query 2D - Mutable
+https://leetcode.com/problems/range-sum-query-2d-mutable/
+You can use pretty much same formula, that you are using here.
+Say our size of the matrix is M x N = M -> rows and N -> cols
+But when you wanna update say row = i, col = j
+then all you do is first you find the diffeence, that is if matrix[i][j] = 3 and now you wanna update it to 5
+the difference is +2, so now you need to update all rows and cols from 
+matrix[i][j]...matrix[i][N-1]
+.
+.
+.
+matrix[M-1][j]...matrix[M-1][N-1]
+so the update will take worst O(n) time and sum will still be in o(1) time.
+'''
 class NumMatrix(object):
 
     def __init__(self, matrix):
