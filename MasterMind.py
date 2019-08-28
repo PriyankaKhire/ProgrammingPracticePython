@@ -29,18 +29,21 @@ class MasterMind(object):
 
 # Here I don't make use of the numberOfColorsInSamePlaceAndSameColor and numberOfColorsInDifferentPlaceButSameColor.
 # I just mindlessly generate all possible combinations of colors and match it and see if I can get a match.
+# Worst case guesses exponential
 class BruteForce(object):
     def __init__(self, master):
         self.master = master
         self.colors = master.colors[:]
         self.numberOfColorsInSequence = len(master.secretSequence)
+        self.attemptNumber = 0
 
     def logic(self, seqLen, output):
         if(seqLen == 0):
             print output
-            score = self.master.guess(output)            
+            score = self.master.guess(output)
+            self.attemptNumber = self.attemptNumber + 1
             if(score == (self.numberOfColorsInSequence,0)):
-                print "Correct Guess"
+                print "Correct Guess made in",self.attemptNumber,"attempts"
                 return True
             return
         for color in self.colors:            
@@ -49,8 +52,47 @@ class BruteForce(object):
 
     def run(self):
         self.logic(self.numberOfColorsInSequence, [])
-        
+
+# Lets try to use numberOfColorsInSamePlaceAndSameColor variable.
+# This solution works best if total number of colors is very large and number of colors in sequence is very small.
+# we eleminate the colors that are not present in secert.
+# ok so this improves the average case a LOT, but the worst case still remains the same.
+class Improvement1(object):
+    def __init__(self, master):
+        self.master = master
+        self.colors = master.colors[:]
+        self.numberOfColorsInSequence = len(master.secretSequence)
+        self.attemptNumber = 0
+
+    def findColorsInSequence(self):
+        colorsInSequence = []
+        for color in self.colors:
+            score = self.master.guess([color for i in range(self.numberOfColorsInSequence)])
+            if(score[0] > 0):
+                colorsInSequence.append(color)
+        print "The colors present in secret sequence are",colorsInSequence
+        return colorsInSequence
+
+    def allCombinationsOfColorsInSeq(self, colorsInSequence, seqLen, output):
+        if(seqLen == 0):
+            print output
+            score = self.master.guess(output)
+            self.attemptNumber = self.attemptNumber + 1
+            if(score == (self.numberOfColorsInSequence,0)):
+                print "Correct Guess made in",self.attemptNumber,"attempts"
+                return True
+            return
+        for color in colorsInSequence:
+            if(self.allCombinationsOfColorsInSeq(colorsInSequence, seqLen-1, output+[color])):
+                return True
+
+    def run(self):
+        colorsInSequence = self.findColorsInSequence()
+        self.allCombinationsOfColorsInSeq(colorsInSequence, self.numberOfColorsInSequence, [])
 # Main
 m = MasterMind(3, 4)
-obj = BruteForce(m)
-obj.run()
+brute = BruteForce(m)
+brute.run()
+print "First improvement"
+imp1 = Improvement1(m)
+imp1.run()
