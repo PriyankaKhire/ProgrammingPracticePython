@@ -89,10 +89,29 @@ class Improvement1(object):
     def run(self):
         colorsInSequence = self.findColorsInSequence()
         self.allCombinationsOfColorsInSeq(colorsInSequence, self.numberOfColorsInSequence, [])
+
+# Here I make use of dummy color -> 'd'
+class Improvement2(object):
+    def __init__(self, master):
+        self.master = master
+        self.colors = master.colors[:]
+        self.numberOfColorsInSequence = len(master.secretSequence)
+        self.guessSeq = ['d' for i in range(self.numberOfColorsInSequence)]
+
+    def findPosOfColor(self):
+        for color in self.colors:
+            score = self.master.guess([color for i in range(self.numberOfColorsInSequence)])
+            if(score[0] > 0):
+                print "Color",color,"present in sequence in",score[0],"positions"
+
+    def run(self):
+        self.findPosOfColor()
 # Main
 m = MasterMind(3, 4)
-brute = BruteForce(m)
-brute.run()
-print "First improvement"
-imp1 = Improvement1(m)
-imp1.run()
+#brute = BruteForce(m)
+#brute.run()
+#print "First improvement"
+#imp1 = Improvement1(m)
+#imp1.run()
+imp2 = Improvement2(m)
+imp2.run()
