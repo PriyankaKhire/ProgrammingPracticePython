@@ -1,3 +1,33 @@
+'''
+https://leetcode.com/discuss/interview-question/124625/Airbnb-or-Onsite-or-Max-Words-Package
+
+You are given a NxN matrix composed of lowercase letters and a list of words.
+Your task is to find out the largest list of words that can be formed by the letters in the matrix.
+
+Constraints:
+each letter can only be used once for a word;
+once the cell (letter) in the matrix is taken by a word,
+then the other words in the same list cannot use that cell again.
+
+Example:
+wordList = ["eat", "oath", "aak", "ner", "oei", "thfl"]
+matrix = [
+    ['o', 'a', 'a', 'n'],
+    ['e', 't', 'a', 'e'],
+    ['i', 'h', 'k', 'r'],
+    ['i', 'f', 'l', 'v']
+    ]
+Output: ['aak', 'ner', 'oei', 'thfl']
+
+Explanation:
+Actually all these words can be formed in the matrix,
+but we have to ensure the biggest list of words.
+
+if we take 'eat', then the list should be ['eat', 'oei']
+if we take 'oath', then the list should be ['oath', 'aak', 'ner']
+if we take 'aak', then the list should be ['oei', 'aak', 'ner', 'thfl']
+So we should return the biggest list ['aak', 'ner', 'oei', 'thfl'] as the final result.
+'''
 class Solution1(object):
     def __init__(self):
         # key is word value is [[matrix coordinates of the word]]
