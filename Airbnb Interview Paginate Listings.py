@@ -157,9 +157,47 @@ class Approch2(object):
             for listing in page.listings:
                 print listing
             print "\n"
-    
+
+import heapq
+# This approch requires more work, not getting correct answer.
+class Page3(object):
+    def __init__(self):
+        self.hosts = []
+        self.listings = []
+        
+class Approch3(object):
+    def __init__(self):
+        # key is host id and value is heap of duplicate listings.
+        self.hashTable = {}
+
+    def logic(self, data):
+        pages = []
+        for listing in data:
+            # Create new page
+            if(not pages or len(pages[-1].listings) == 12):
+                page = Page3()
+                pages.append(page)
+            array = listing.split(",")
+            # add the host to hash table
+            if not(array[0] in self.hashTable):
+                self.hashTable[array[0]] = []
+            # add current listing to heap, we negate the value to make it a max heap
+            heapq.heappush(self.hashTable[array[0]], (-int(array[1]), listing))
+            # if the host is not present in current page then
+            if not(array[0] in pages[-1].hosts):
+                # pop the top value
+                score, listing = heapq.heappop(self.hashTable[array[0]])
+                # add it to the page
+                pages[-1].hosts.append(listing.split(",")[0])
+                print pages[-1].hosts
+                pages[-1].listings.append(listing)
+                print pages[-1].listings
+                
+            
+            
+        
 # Main
-data1 = ["host_id,listing_id,score,city",
+data1 = [
     "1,28,300.1,San Francisco",
     "4,5,209.1,San Francisco",
     "20,7,208.1,San Francisco",
@@ -195,9 +233,13 @@ data1 = ["host_id,listing_id,score,city",
 dataObj = ProduceData()
 data2 = dataObj.allDifferentHosts()
 data3 = dataObj.oneHostDifferentListings()
-
+'''
 obj = Approch1()
 obj.logic(data3)
 print "****************************\n"
 obj = Approch2()
 obj.logic(data3)
+'''
+print "****************************\n"
+obj = Approch3()
+obj.logic(data1)
