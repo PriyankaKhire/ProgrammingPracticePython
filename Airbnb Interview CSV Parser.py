@@ -81,3 +81,7 @@ obj.csvParser('John,Smith,john.smith@gmail.com,Los Angeles,1')
 obj.csvParser('Jane,Roberts,janer@msn.com,"San Francisco, CA",0')
 obj.csvParser('"Alexandra ""Alex""",Menendez,alex.menendez@gmail.com,Miami,1')
 obj.csvParser('"""Alexandra Alex"""')
+
+# observation: for something like ""ab,c"",email@domain.com,city
+# we first apply rule 4/rule 3 to remove double quotes
+# then apply rule rule1  and 2 and the thing would still work.
