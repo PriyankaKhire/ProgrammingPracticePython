@@ -19,19 +19,19 @@ These key words are then used to find pages on the site when user performs a sea
 </ul>
 </br>
 
-        <li>Generate title of the page and a small snippet of the page.</li>
-        <content>
-            Something like this.</br>
-            <img src="img/TitleAndSnippet.PNG" />
-        </content>
-        </br>
+<li>Generate title of the page and a small snippet of the page.</li>
+<content>
+Something like this.</br>
+<img src="img/TitleAndSnippet.PNG" />
+</content>
+</br>
 
-        <li>User searches a search term, gets a list of pages containing that search term</li>
-        </br>
+<li>User searches a search term, gets a list of pages containing that search term</li>
+</br>
 
-        <li>The system needs to be higly available.</li>
-    </ul>
-    </br>
+<li>The system needs to be higly available.</li>
+</ul>
+</br>
 
     <h2>Constraints</h2>
     <ul>
