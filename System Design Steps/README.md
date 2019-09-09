@@ -23,7 +23,7 @@ Should I discuss end to end experience or just the API ? </br>
 
 <h2>Capacity estimation</h2>
 <p>
-How big of a system am I actually designing ?<?br>
+How big of a system am I actually designing ?</br>
 How much data would be produced ? </br>
 How many read write requests per second ? </br>
 </p>
