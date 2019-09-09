@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Design a web crawler</title>
-	<meta charset="utf-8" />
-    <h1>Design a web crawler</h1>
-</head>
-<body>
-    <h2>Use Case</h2>
-    <ul>
-        <li>Given a URL your application crawls it</li>
-        <ul>
-            <li>What do you mean by crawling ?</li>
-            <content> The crawler goes to each and every link on a given page and collects all links on that page. </content>
-        </ul>
-        </br>
+<h1>Design a web crawler</h1>
 
-        <li>Reverse indexes pages based on key words</li>
-        <ul>
-            <li> What is reverse indexing ?</li>
-            <content>
-                When the crawler is going through the webpage, it gets the keywords on that page, and then stores them.</br>
-                These key words are then used to find pages on the site when user performs a search.
-            </content>
-        </ul>
-        </br>
+<h2>Use Case</h2>
+<ul>
+<li>Given a URL your application crawls it</li>
+<ul>
+<li>What do you mean by crawling ?</li>
+<content> The crawler goes to each and every link on a given page and collects all links on that page. </content>
+</ul>
+</br>
+
+<li>Reverse indexes pages based on key words</li>
+<ul>
+<li> What is reverse indexing ?</li>
+<content>
+When the crawler is going through the webpage, it gets the keywords on that page, and then stores them.</br>
+These key words are then used to find pages on the site when user performs a search.
+</content>
+</ul>
+</br>
 
         <li>Generate title of the page and a small snippet of the page.</li>
         <content>
@@ -93,6 +87,3 @@
     <h2>User inputs a search term and sees a list of relevant pages with titles and snippets</h2>
     <img src="img/ClientServerInteraction.PNG" />
     </br>
-
-</body>
-</html>
