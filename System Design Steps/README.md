@@ -42,6 +42,8 @@ How many read write requests per second ? </br>
 <content> So you have taken a big problem of 500Million active users and broken it down </content></br>
 </ul>
 On basis of all this, you can scale the system</br>
+Also, don't forget about the overall consumer impact of your system.</br>
+Like, you are designing a system, but will the consumer benifit from your design ? because if they don't they wont use the system</br>
 </p>
 </br>
 
