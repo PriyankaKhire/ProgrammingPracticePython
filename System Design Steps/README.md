@@ -35,7 +35,11 @@ How many read write requests per second ? </br>
 <content>So the question you should be instead asking is: </content></br>
 <content>where are these users ?</content></br>
 <content>Are these users distributed evenly geographically ? Becasuse different countries will give you different traffic patterns</content></br>
-<content>How much percent of these monthly active users are actually active daily ?</content>
+<content>How much percent of these monthly active users are actually active daily ?</content></br></br>
+<content> Let's say our above calculations were correct, that there would be 10Thousand active users per min in worst case senario</content></br>
+<content>And we have written a server that can handle roughly about 1000 people per min.</content></br>
+<content>That means we'd need about 10 servers to handle the load at given time</content></br>
+<content> So you have taken a big problem of 500Million active users and broken it down </content></br>
 </ul>
 On basis of all this, you can scale the system</br>
 </p>
