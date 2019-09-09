@@ -33,57 +33,57 @@ Something like this.</br>
 </ul>
 </br>
 
-    <h2>Constraints</h2>
-    <ul>
-        <li>Traffic is not evenly distributed</li>
-        <content>May have some popular searches</content>
-        </br>
+<h2>Constraints</h2>
+<ul>
+<li>Traffic is not evenly distributed</li>
+<content>May have some popular searches</content>
+</br>
 
-        <li>Need to have low latency</li>
-        <content>Can we compromise on consistency ?</content>
-        </br>
+<li>Need to have low latency</li>
+<content>Can we compromise on consistency ?</content>
+</br>
 
-        <li>Need to detect cycles</li>
-        </br>
+<li>Need to detect cycles</li>
+</br>
 
-        <li>Pages need to be crawled regularly to ensure freshness</li>
-        <content>On an average 1ce per week</content>
-    </ul>
-    </br>
+<li>Pages need to be crawled regularly to ensure freshness</li>
+<content>On an average 1ce per week</content>
+</ul>
+</br>
 
-    <h2>Scale</h2>
-    <ul>
-        <li>1 billion links to crawl</li>
-        </br>
+<h2>Scale</h2>
+<ul>
+<li>1 billion links to crawl</li>
+</br>
 
-        <li>100 billion searches per month</li>
-    </ul>
-    </br>
+<li>100 billion searches per month</li>
+</ul>
+</br>
 
-    <h2>High Level design</h2>
-    <img src="img/HighLevelArchitecture.PNG" />
-    </br>
+<h2>High Level design</h2>
+<img src="img/HighLevelArchitecture.PNG" />
+</br>
 
-    <h2>Indivudial component design</h2>
-    <h3>Web crawler</h3>
-    <img src="img/WebCrawler Component.PNG" />
+<h2>Indivudial component design</h2>
+<h3>Web crawler</h3>
+<img src="img/WebCrawler Component.PNG" />
+</br>
 
-    <h3>Class Design</h3>
-    <pre><code>
-        class Page(object):
-            def __init__(self, url, title):
-                self.title = title
-                self.url = url
-                self.timeStamp = DateTime.now()
-                self.childUrls = []
-        </code></pre>
+<h3>Class Design</h3>
+<pre><code>
+class Page(object):
+    def __init__(self, url, title):
+        self.title = title
+        self.url = url
+        self.timeStamp = DateTime.now()
+        self.childUrls = []
+</code></pre>
 
-    <h2>Determining when to update the crawl results</h2>
-    <p>We can have another micro service that perodically updates all the crawled pages thus updating timeStamp.</br>
-    This service can update both pages and indexes database.
-    </p>
-    </br>
+<h2>Determining when to update the crawl results</h2>
+<p>We can have another micro service that perodically updates all the crawled pages thus updating timeStamp.</br>
+This service can update both pages and indexes database.
+</p>
+</br>
 
-    <h2>User inputs a search term and sees a list of relevant pages with titles and snippets</h2>
-    <img src="img/ClientServerInteraction.PNG" />
-    </br>
+<h2>User inputs a search term and sees a list of relevant pages with titles and snippets</h2>
+<img src="img/ClientServerInteraction.PNG" />
