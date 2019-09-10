@@ -56,4 +56,4 @@ Can scale up/down independently, so one cluster doen't have to be dependent on a
 Easy to debug</br>
 </br>
 Something like this </br>
-<img src = "img/Scalling.PNG" />
+<a href = "https://blog.treasuredata.com/blog/2016/08/03/distributed-logging-architecture-in-the-container-era/"><img src = "img/Scalling.PNG" /></a>
