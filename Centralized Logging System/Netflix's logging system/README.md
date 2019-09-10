@@ -54,3 +54,6 @@ One place to manage / track </br>
 No single point of faliure </br>
 Can scale up/down independently, so one cluster doen't have to be dependent on another </br>
 Easy to debug</br>
+</br>
+Something like this </br>
+<img src = "img/Scalling.PNG" />
