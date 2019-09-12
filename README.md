@@ -4,6 +4,8 @@ MIT course on hacking a google interview https://courses.csail.mit.edu/iap/inter
 
 System design primer https://github.com/donnemartin/system-design-primer </br>
 
+System Design Cheat Sheet https://gist.github.com/vasanthk/485d1c25737e8e72759f </br>
+
 Airbnb interview questions: </br> 
 <b> https://github.com/allaboutjst/airbnb </b> </br>
 https://yezizp2012.github.io/2017/06/01/airbnb%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB/ </br>

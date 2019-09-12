@@ -101,7 +101,38 @@ class FlipTree(object):
         self.tree.root = leftNodes[0]
         # display.
         self.tree.display()
+
+# the task is to flip it towards right direction, so we don't touch the right sub tree at all.
+class FlipTreeRecurrssive(object):
+    def __init__(self):
+        self.tree = Tree()
+        self.tree.createCompleteTree([1,2,3,4,5,6,7])
+        self.tree.display()
+
+    def recurrse(self, node):
+        if not node:
+            return
+        # if node is leaf node. that means this is the left most node.
+        if(node.left == None and node.right == None):
+            self.tree.root = node
+            return node
+        leftNode = self.recurrse(node.left)
+        if(leftNode!= None):
+            leftNode.left = node.right
+            node.right = None
+            leftNode.right = node
+            node.left = None
+        return node
+
+    def logic(self):
+        self.recurrse(self.tree.root)
+        self.tree.display()
+    
     
 #Main
 obj = FlipTree()
+obj.logic()
+
+print "Recurrssive class"
+obj = FlipTreeRecurrssive()
 obj.logic()
