@@ -83,3 +83,16 @@ obj.alienOrder(["wrt", "wrf", "er", "ett", "rftt"])
 
 obj = Solution()
 obj.alienOrder(["dvpzu","bq","lwp","akiljwjdu","vnkauhh","ogjgdsfk","tnkmxnj","uvwa","zfe","dvgghw","yeyruhev","xymbbvo","m","n"])
+
+
+print "In this problem there are 3 things to look out for"
+print "1) a Y joint in the graph, eg: a->b and c->b"
+print "You can solve this by not adding to result if already present in result\n\n"
+print "2) a cycle"
+print "You need to take 2 steps for this"
+print "i) get indegree of every graph node, if all have greater than 1 then there is a cycle"
+print "ii) instead of adding just the letter to the queue, we add the whole path to queue"
+print "we do this because there are many disjointed paths, and one disjoined path can have cycle"
+print "This also helps us from differentiating from accidently adding Y joint as a cycle\n\n"
+print "3) If the number of vertices we cover is not same as total chars present in dictionary"
+print "we solve this by comparing the length of result with length of chars"
