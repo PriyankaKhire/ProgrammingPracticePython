@@ -46,7 +46,9 @@ class Backtracking(object):
         :type words: List[str]
         :rtype: List[str]
         """
-
+######################################################
+######################################################
+######################################################
 # took help from https://leetcode.com/problems/word-search-ii/discuss/59814/A-detailed-explanation-C%2B%2B-solution-(Trie-%2B-backtracking)
 # https://www.youtube.com/watch?v=x02b8zfvGFU&t=614s
 class TrieNode(object):
@@ -139,6 +141,9 @@ class TrieDFS(object):
                 
         
     def findWords(self, board, words):
+        print "The board is"
+        for r in range(len(board)):
+            print board[r]
         #Add all words to trie
         for word in words:
             self.trie.addWord(word)
@@ -149,6 +154,10 @@ class TrieDFS(object):
         :type words: List[str]
         :rtype: List[str]
         """
+
+######################################################
+######################################################
+######################################################
 # without explanantion method, leetcode accepted
 class Node(object):
     def __init__(self, letter):
@@ -220,7 +229,6 @@ class Solution(object):
         
 # Main
 print "Backtracking"
-
 obj = Backtracking()
 obj.findWords([["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], ["oath","pea","eat","rain"])
 
@@ -232,11 +240,13 @@ obj.findWords([["a","a"]], ["a"])
 
 obj = Backtracking()
 obj.findWords([["a"]], ["ab"])
+print "=-"*30
 
 print "Trie Solution explanation"
 obj = TrieDFS()
 obj.findWords([["a","b"],["a","a"]], ["aba","baa","bab","aaab","aaa","aaaa","aaba"])
-
+print "=-"*30
 print "Without explanantion, leetcode accepted"
 obj = Solution()
 print obj.findWords([["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], ["oath","pea","eat","rain"])
+print "=-"*30
