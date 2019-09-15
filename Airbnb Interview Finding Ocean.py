@@ -1,4 +1,25 @@
 # Finding Ocean
+'''
+Given:
+An array of strings where L indicates land and W indicates water,
+and a coordinate marking a starting point in the middle of the ocean.
+
+Challenge:
+Find and mark the ocean in the map by changing appropriate Ws to Os.
+
+Example:
+
+Input:
+WWWLLLW
+WWLLLWW
+WLLLLWW
+row = 0 col = 1
+
+Output:
+OOOLLLW
+OOLLLWW
+OLLLLWW
+'''
 class Solution(object):
 
     def isValid(self, row, col, matrix):
