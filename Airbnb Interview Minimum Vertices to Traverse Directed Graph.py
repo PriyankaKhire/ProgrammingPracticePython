@@ -1,4 +1,5 @@
 #  Cover all vertices with the least number of vertices
+# https://leetcode.com/discuss/interview-question/124861/digraph-cover-all-vertices-with-the-least-number-of-vertices
 class Solution(object):
     def bfs(self, graphMatrix, vertex):
         queue = [vertex]
