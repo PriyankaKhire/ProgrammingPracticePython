@@ -67,7 +67,7 @@ So densely populated areas will have more rectangles on it, and sparsely populat
 For simplicity let's assume the most desely populated area has grid size of 2 miles by 2 miles.</br>
 Further more, the leaf nodes can be connected so we can easily search over large areas.</br>
 So for below use case:</br>
-<img src = "img/EdgeCase.PNG" /></br>
+<img src = "img/EdgeCase.png" /></br>
 Since the leafes are connected all we'd need to do is fetch the appropriate result from each leaf node.</br>
 <img src = "img/QuadTree.PNG" />
 The leaf nodes have the Ids of the restaurants contained within that grid locaiton.</br>
