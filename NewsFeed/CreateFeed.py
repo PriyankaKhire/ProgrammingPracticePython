@@ -31,6 +31,7 @@ class CreateUsers(object):
         if not(db.isKeyInHash(self.userDbFile, user.userName)):
             db.writeToHash(self.userDbFile, user.userName, user)
 
+
     def populateDB(self):
         # create 5 female users and 5 male users
         users = [self.createUser('female',i) for i in range(5)] + [self.createUser('male',i+5) for i in range(5)]
@@ -55,9 +56,10 @@ class GenerateFeed(object):
         rsg = RandomSentenceGenerator()
         return random.choice([['image', ai.RandomImage()], ['text', rsg.RandomSentence()]])
 
-    def createPostObject(self, userName):
+    def createPostObject(self, userName, postId, name):
         post = Post()
         post.userName = userName
+        post.name = name
         content = self.getPostContent()
         post.contentType = content[0]
         if(content[0] == 'image'):
@@ -65,10 +67,11 @@ class GenerateFeed(object):
         else:
             post.text = content[1]
         post.timeStamp = str(datetime.datetime.now())
+        post.id = postId
         return post
 
     def userPost(self, user):
-        post = self.createPostObject(user.userName)
+        post = self.createPostObject(user.userName, len(user.posts), str(user.firstName+" "+user.lastName))
         print user.firstName,user.lastName," "*5,'at',post.timeStamp
         if(post.contentType == 'image'):
             print post.picture
