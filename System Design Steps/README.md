@@ -75,6 +75,12 @@ Pick a component they are interested in and go deep there. </br>
 </p>
 </br>
 
+<h2>Bottleneck of the system designed so far </h2>
+<p>
+Before proceeding to scale the system, we look at the bottlenecks of the system designed so far and discuss that with the interviewer.
+</p>
+</br>
+
 <h2>Scale the system</h2>
 <p>
 Time to add Load balencers </br>
