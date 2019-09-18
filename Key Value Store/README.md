@@ -84,3 +84,8 @@ This approch will compromise the latency of the most consistent data.</br>
 </br></br>
 <h3>Cache</h3>
 We can put the most accessed data in LRU cache on the server.
+</br></br>
+<h3>Cluster</h3>
+As the data grows and the customers grow, we'd eventually need to split the architecture into multiple clusters. </br>
+We can use consistent hashing to add or remove the servers. </br>
+Since we have decided to shard based on hashId, and if we decide to add more servers, this approch of load balencing would make sense</br>
