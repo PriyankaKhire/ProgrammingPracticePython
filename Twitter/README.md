@@ -10,7 +10,12 @@ User should be able to:
 </ol>
 </li>
 <li>
-Create a news feed that consists of top tweets from the users our current user follows.
+Create a Time Line for:
+<ol>
+<li> Home Time Line/ News Feed: That consists of top tweets from the users our current user follows.</li>
+<li> User Time Line: That consist of top recent tweets our user has made</li>
+<li> Search Time Line: That consists of tweets based on a search term</li>
+</ol>
 </li>
 <li>
 The system needs to be:
@@ -74,3 +79,40 @@ Total storage required would be:</br>
 </br>
 <h3>Bandwidth Estimations</h3>
 So if 24GB per day then 24GB/24Hours = 1GB per hour, 1GB/60Mins*60Seconds per second
+</br></br>
+
+<h2>High Level Design</h2>
+<h3>Post Tweet</h3>
+<img src = "HighLevelDesign.PNG" />
+</br></br>
+<h3>Get News Feed</h3>
+<img src = "HighLevelDesign2.PNG" />
+</br></br>
+<h3>General system analysis</h3>
+We saw from Capacity Estimations we get 100,000 tweet writes per day but 140,000,000 tweet views per day.</br>
+So our system is <u>READ HEAVY</u> </br>
+</br></br>
+
+<h2>Code</h2>
+<h3>Classes</h3>
+<b>Tweet</b></br>
+UserId (who created the tweet)</br>
+TweetID</br>
+Text</br>
+Image</br>
+Video</br>
+TimeStamp</br>
+FavouritedBy = [List of UserID] (users that have marked this tweet as their favourite)</br>
+</br>
+<b>User</b></br>
+ID</br>
+UserName</br>
+Follows = [List of UserIDs]</br>
+FavouriteTweets = [List of TweetIDs]</br>
+</br></br>
+<h3>API</h3>
+<b>CreateTweet(UserId, Text, [Optional]Image, [Optional]Video)</b> </br>
+Creates a tweet object</br>
+Returns success if a tweet object is created successfully</br>
+<b>PostTweet(TweetObject)</b></br>
+Returns success if the tweet is posted successfully</br>
