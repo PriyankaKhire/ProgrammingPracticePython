@@ -128,7 +128,7 @@ The above tables explain this.</br>
 So in our above diagram the data is replicated 3 times in the Redis cluster </br>
 It is very easy to insert huge amounts of data easily</br>
 </br>
-<b>Bottleneck of the above approch</b>
+<b>Bottleneck of the above approch</b></br>
 Every time the user tweets the data is getting replicated 3 times, so what about hot users like celebs ? </br>
 To solve this problem, we can merge celeb tweets at load time of timeline.</br>
 So every time user tweets, all their follower's time line gets pre computed.</br>
