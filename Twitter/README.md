@@ -116,3 +116,20 @@ Creates a tweet object</br>
 Returns success if a tweet object is created successfully</br>
 <b>PostTweet(TweetObject)</b></br>
 Returns success if the tweet is posted successfully</br>
+</br></br>
+
+<h2>Detailed Component Design</h2>
+<h3>Post Tweet</h3>
+<img src = "UserRelationshipTable.PNG" />
+Generally the user has 1:Many relationship, when it comes to tweets and followers.</br>
+The above tables explain this.</br>
+<img src = "PostTweet.PNG" />
+<b>Redis Database</b>: Redis is in memory database, it has key value pairs kinda like hash table. It offers data replication.</br>
+So in our above diagram the data is replicated 3 times in the Redis cluster </br>
+It is very easy to insert huge amounts of data easily</br>
+</br>
+<b>Bottleneck of the above approch</b>
+Every time the user tweets the data is getting replicated 3 times, so what about hot users like celebs ? </br>
+To solve this problem, we can merge celeb tweets at load time of timeline.</br>
+So every time user tweets, all their follower's time line gets pre computed.</br>
+When the follower accesses their time line, during the access time, if the follower is following celeb that time the tweet is loaded.</br>
