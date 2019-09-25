@@ -134,3 +134,31 @@ To solve this problem, we can merge celeb tweets at load time of timeline.</br>
 So every time user tweets, all their follower's time line gets pre computed.</br>
 When the follower accesses their time line, during the access time, if the follower is following celeb that time the tweet is loaded.</br>
 <img src = "GetTimeLine.PNG" />
+</br></br>
+
+<h2>Scale the design</h2>
+<h3>Sharding</h3>
+<b>Sharding based on User ID</b></br>
+Store all data pertaining to one user Id on same shard.</br>
+What if a user becomed hot ?</br>
+What if one user has less data and other has more ? </br>
+<b>Sharding based on Tweet ID</b></br>
+A tweet is mapped to some random shard by a hashing server.</br>
+To search for tweets we'd have to query all the servers</br>
+This is time consuming</br>
+<b>Sharding based on Tweet Creation time</b></br>
+We store all the latest tweets on current shard.</br>
+But with this approch the traffic will hit mainly the current shard </br>
+<b>Sharding based on Tweet Creation time ans Tweet ID</b></br>
+We shard based on Tweet ID, but the id of the tweet is epoch time + random increasing number.</br>
+So we still need to get all tweets from all servers but we wont have to sort them, as they'd be sorted coz of their ID</br>
+</br></br>
+<h3>Cache</h3>
+What would you wanna cache ? </br>
+1) Hot tweets that are gonna be viewed by a lot of people</br>
+2) Hot users/ their timelines that are gonna be followed by a lot of people </br>
+A tweet is not hot after some period of time. So we can use LRU cache for this approch </br>
+<h3>Replication and Fault Tolerance</h3>
+We can use a master slave architecture here for database.</br>
+All reads go to one server and writes go to another server </br>
+And then the data from the write server is replicated </br>
