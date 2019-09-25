@@ -133,3 +133,4 @@ Every time the user tweets the data is getting replicated 3 times, so what about
 To solve this problem, we can merge celeb tweets at load time of timeline.</br>
 So every time user tweets, all their follower's time line gets pre computed.</br>
 When the follower accesses their time line, during the access time, if the follower is following celeb that time the tweet is loaded.</br>
+<img src = "GetTimeLine.PNG" />
