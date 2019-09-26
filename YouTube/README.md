@@ -103,4 +103,9 @@ There are 3 components to this system.</br>
 <h3>Search</h3>
 <img src = "Search.PNG" />
 </br>
-
+<h3>Database design</h3>
+The service is read heavy.</br>
+So we need to design a database server that can fetch content fast.</br>
+For this purposes we use relational database</br>
+The user to video relationship can be like this</br>
+<img src = "" />
