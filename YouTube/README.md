@@ -103,9 +103,20 @@ There are 3 components to this system.</br>
 <h3>Search</h3>
 <img src = "Search.PNG" />
 </br>
+Reason why I have 3 different databases for user content, video content, metadata content is because there are 3 different data types here. 1) videos 2) Text/objects (for user data) 3) Image data (metadata may contain thumbnail images).</br>
+So each database represents a storage system</br>
+We can use different storage systems for different types of data</br>
 <h3>Database design</h3>
 The service is read heavy.</br>
 So we need to design a database server that can fetch content fast.</br>
 For this purposes we use relational database</br>
 The user to video relationship can be like this</br>
-<img src = "" />
+<img src = "RelationalTable.PNG" />
+<b>Video storage system</b></br>
+For storing the video we can store it in a distributed file storage system.</br>
+Now if you are in USA and you want to watch a video that is stored in Indian database server, it will take time for that video to load.</br>
+So to avoid this issue we have CDN.(content delivary network)</br>
+A CDN is system if distributed servers, that are distributed over geographic locations.</br>
+The CDN server will host your content on their servers. So users instead of accessing content from the main server that may be far away from them, can instead access content from a server that's near to them physically.</br>
+Advantage: your content is replicated (that means it has a backup)</br>
+
