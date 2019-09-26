@@ -95,12 +95,12 @@ So if we decide to send the api key then APIs would look like this</br>
 <h2>Detailed Component Design</h2>
 There are 3 components to this system.</br>
 <h3>Upload</h3>
-<img src = "" />
+<img src = "Upload.PNG" />
 </br>
 <h3>Watch</h3>
-<img src = "" />
+<img src = "Watch.PNG" />
 </br>
 <h3>Search</h3>
-<img src = "" />
+<img src = "Search.PNG" />
 </br>
 
