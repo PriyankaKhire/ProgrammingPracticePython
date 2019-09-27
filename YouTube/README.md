@@ -106,6 +106,8 @@ There are 3 components to this system.</br>
 Reason why I have 3 different databases for user content, video content, metadata content is because there are 3 different data types here. 1) videos 2) Text/objects (for user data) 3) Image data (metadata may contain thumbnail images).</br>
 So each database represents a storage system</br>
 We can use different storage systems for different types of data</br>
+Why are we doing this ?</br>
+It’s recommended to store large static files like videos and images separately as it has better performance and is much easier to organize and scale. </br>
 <h3>Database design</h3>
 The service is read heavy.</br>
 So we need to design a database server that can fetch content fast.</br>
@@ -119,4 +121,10 @@ So to avoid this issue we have CDN.(content delivary network)</br>
 A CDN is system if distributed servers, that are distributed over geographic locations.</br>
 The CDN server will host your content on their servers. So users instead of accessing content from the main server that may be far away from them, can instead access content from a server that's near to them physically.</br>
 Advantage: your content is replicated (that means it has a backup)</br>
+<b>But we have a lot of data !! can we replicate all of it on CDN servers ?</b></br>
+One straightforward approach is to host popular videos in CDN and less popular videos are stored in our own servers by location</br>
+</br></br>
+
+<h2>Scale the system</h2>
+<h3>Sharding Metadata</h3>
 
