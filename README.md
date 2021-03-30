@@ -14,3 +14,5 @@ http://storypku.com/tag/airbnb/ </br>
 What happens when you type something in address bar https://github.com/alex/what-happens-when </br>
 
 https://www.1point3acres.com/
+
+ML system design http://patrickhalina.com/posts/ml-systems-design-interview-guide/
