@@ -68,3 +68,26 @@
        </ul>
    </li>
    </ul>
+   
+   <h3>Cache Invalidation Policies</h3>
+   <p>What happens when the data in the DB gets updated ? 
+   We'd also need to update the cache along with it so that it stays consistent.</p>
+   
+   <ol>
+       <li><b>Write through cache:</b>
+           <p>The data is written to both cache and DB at the same time.</p>
+           <img src="img/WriteThroughCache.PNG">
+           <p> Pros:
+               <ul>
+                   <li>Data consistency</li>
+                   <li>Partition tolerance, so in case of a failure you have backup (if DB goes down you can copy from cache and vice versa) </li>
+               </ul>
+               Cons:
+               <ul>
+                   <li>Higher latency during write.</li>
+               </ul>
+           </p>
+       </li>
+       <li>
+       </li>
+   </ol>
