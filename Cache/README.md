@@ -69,7 +69,7 @@
    </li>
    </ul>
    
-   <h3>Cache Invalidation Policies</h3>
+   <h3>When to update the cache ?</h3>
    <p>What happens when the data in the DB gets updated ? 
    We'd also need to update the cache along with it so that it stays consistent.</p>
    
@@ -77,17 +77,39 @@
        <li><b>Write through cache:</b>
            <p>The data is written to both cache and DB at the same time.</p>
            <img src="img/WriteThroughCache.PNG">
-           <p> Pros:
+           <p> <b>Pros:</b>
                <ul>
+                   <li>Low data read latency</li>
                    <li>Data consistency</li>
                    <li>Partition tolerance, so in case of a failure you have backup (if DB goes down you can copy from cache and vice versa) </li>
                </ul>
-               Cons:
+               <b>Cons:</b>
                <ul>
                    <li>Higher latency during write.</li>
+               </ul>               
+               <b>What is it good for?</b>
+               <ul>
+                   <li>For applications that write not that frequently but re-read data frequently. So essentially a read heavy system.</li>
                </ul>
            </p>
        </li>
-       <li>
+       <li><b>Write around cache:</b>
+           <p>Data is directly written to DB. Cache only gets updated in case of a miss.</p>
+           <img src="img/WriteAroundCache.PNG">
+           <p> <b>Pros:</b>
+               <ul>
+                   <li>Won't flood the cache with new data that may not be immediately re-read.</li>
+               </ul>
+               <b>Cons:</b>
+               <ul>
+                   <li>But if you try to read the recently written data, that will create a cache miss and thus higher read latency.</li>
+               </ul>
+               <b>What is it good for?</b>
+               <ul>
+                   <li>Applications that don't read as frequently, since write will be faster but reads can be slower. So essentially a write heavy system.</li>
+               </ul>
+           </p>
+       </li>
+       <li><b></b>
        </li>
    </ol>
