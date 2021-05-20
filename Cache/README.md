@@ -53,7 +53,7 @@
        <p>The App server has RAM and internal storage (Just like your computer). 
        Obviously, RAM is very fast but internal storage can be much quicker than going to an external DB server and fetching data from there.
        </p>
-       <p>So we can first check if the requesed data is present on app server, if not then we can go to the external DB and fetch it.</p>
+       <p>So we can first check if the requested data is present on app server, if not then we can go to the external DB and fetch it.</p>
        <img src="img/AppServerCaching.PNG">
        <p>But what happens when you start to scale the system and have many App server nodes ?</p>
        <p>Those individual app servers can still have their own caches, but if your load balancer distributes the load unevenly, then requests can go to different app servers and this will increase cache misses.</p>
@@ -110,6 +110,23 @@
                </ul>
            </p>
        </li>
-       <li><b></b>
+       <li><b>Write Back cache:</b>
+           <p>Data is first written to cache, the confirmation of this is sent to client. 
+           After certain time period(or some other conditions) the data is then written to DB.</p>
+           <img src="img/WriteBackCache.PNG">
+           <p> <b>Pros:</b>
+               <ul>
+                   <li>Data written has low latency and high throughput. (Throughput is the rate at which something is processed)</li>
+               </ul>
+               <b>Cons:</b>
+               <ul>
+                   <li>What if the cache fails before the data is written to DB ? So availability is at risk.</li>
+                   <li>You'd need to have cache backups to save it from the possibility of data loss, this can be a bit expensive.</li>
+               </ul>
+               <b>What is it good for?</b>
+               <ul>
+                   <li>Applications that write a lot and read that newly written data, so essentially both write and read heavy applications.</li>
+               </ul>
+           </p>
        </li>
    </ol>
