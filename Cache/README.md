@@ -129,4 +129,26 @@
                </ul>
            </p>
        </li>
+       <li><b>Refresh Ahead Cache:</b>
+           <p>Sometimes the entries in your cache can have certain time to live (TTL) before they expire.
+           In refresh ahead cache the data is refreshed once before it expires.
+           </p>
+           <p>The cache needs to accurately predict what data it needs to refresh, 
+           so as to not refresh data that won't be accessed and waste a DB call behind it.
+           </p>
+           <img src="img/RefreshAheadCache.PNG">
+           <p> <b>Pros:</b>
+               <ul>
+                   <li>Reduced read latency.</li>
+               </ul>
+               <b>Cons:</b>
+               <ul>
+                  <li>If cache can't accurately predict what data to refresh, it can lead to reduced preformance.</li>
+               </ul>
+               <b>What is it good for?</b>
+               <ul>
+                   <li>Read heavy applications that need frequent data refresh.</li>
+               </ul>
+           </p>
+       </li>
    </ol>
