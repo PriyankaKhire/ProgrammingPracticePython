@@ -152,3 +152,9 @@
            </p>
        </li>
    </ol>
+   
+   <h3>Cache eviction policies</h3>
+   <ul>
+       <li>Least recently used (LRU)</li>
+       <li>Least frequently used (LFU)</li>
+   </ul>
