@@ -7,9 +7,8 @@
             <li>When new post arrives, append it to the user's timeline</li>
             <li>We need a fast system, so low latency</li>
         </ol>
-    <h2>Scope of the system</h2>
-    <h3>Multi User, Probably 10 Users</h3>
-    <h4>Class Design</h4>
+    <h2>Scope: Multi User, Probably 10 Users</h2>
+    <h3>Class Design</h3>
         <p>
         <b>User Class</b> { <br/>
         Name: String <br/>
@@ -19,7 +18,6 @@
         Posts: [List of Post Objects] <br/>
         }
         </p>
-        <br/>
         <p>
         <b>Post Class</b> { <br/>
         Id: int <br/>
@@ -29,7 +27,7 @@
         Videos: storage url <br/>
         }
         </p>
-    <h4>API Design</h4>
+    <h3>API Design</h3>
         <p>
         <b>Get_Latest_User_Posts</b>(UserId, number of posts)
         </p>
@@ -39,6 +37,11 @@
         <p>
         <b>Post_Content</b>(UserId, PostObject)
         </p>
+    <h2>Scope: 100,000 Users</h2>
+    <h3>High Level Diagram</h3>
+    <img src="img/SavingPostHighLevelDiagram.PNG">
+    <br/>
+    <img src="img/GeneratingNewsFeedHighLevel.PNG">
     
     
     
