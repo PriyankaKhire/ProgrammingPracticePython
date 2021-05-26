@@ -38,10 +38,15 @@
         <b>Post_Content</b>(UserId, PostObject)
         </p>
     <h2>Scope: 100,000 Users</h2>
-    <h3>High Level Diagram</h3>
-    <img src="img/SavingPostHighLevelDiagram.PNG">
-    <br/>
-    <img src="img/GeneratingNewsFeedHighLevel.PNG">
+        <h3>High Level Diagram</h3>
+        <img src="img/SavingPostHighLevelDiagram.PNG">
+        <br/>
+        <img src="img/GeneratingNewsFeedHighLevel.PNG">
+    <h2>Scope: 1M Users</h2>
+        <h3>Detailed Diagram</h3>
+        <img src="img/DetailedDiagram.PNG">
+    
+    
     
     
     
