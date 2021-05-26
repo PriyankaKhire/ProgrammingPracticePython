@@ -8,7 +8,7 @@
             <li>We need a fast system, so low latency</li>
         </ol>
     <h2>Scope of the system</h2>
-    <h3><span style="color:blue">Multi User, Probably 10 Users</span></h3>
+    <h3>Multi User, Probably 10 Users</h3>
     <h4>Class Design</h4>
         <p>
         <b>User Class</b> { <br/>
@@ -29,6 +29,17 @@
         Videos: storage url <br/>
         }
         </p>
+    <h4>API Design</h4>
+        <p>
+        <b>Get_Latest_User_Posts</b>(UserId, number of posts)
+        </p>
+        <p>
+        <b>Generate_newsfeed</b>(userId, Number of posts, How many hours of data)
+        </p>
+        <p>
+        <b>Post_Content</b>(UserId, PostObject)
+        </p>
+    
     
     
     
