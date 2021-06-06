@@ -41,5 +41,6 @@
   <p>The main advantage of WebSockets is speed: the client and server don’t have to find and reestablish their connection with each other every time a message is sent.</p>
   <p>TCP ensures that the messages will always arrive in order.</p>
   <p>The main downside of WebSockets is it takes a good amount of initial developer work to implement. </p>
-  <img src="img/WebSockets.png">  
+  <img src="img/WebSockets.png">
+  <p>An example where WebSockets is really useful is multiplayer online gaming, </p>  
   
