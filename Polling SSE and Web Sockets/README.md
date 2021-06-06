@@ -18,4 +18,16 @@
     <p>The server has to handle the case where it gets new information to send, but the client hasn’t sent a new request yet.</p>
     <img src="img/LongPolling.png">
   
+<h1>Server Sent Events (SSE)</h1>  
+  <p>In this process, the server establishes a one way, long term connection with the client. Only the server is allowed to push data to the client. If the client wants to send data to the server, it needs to use another technology/protocol to do so.</p>
+  <p>This way the client can send data to the server, without having to re-establish a connection every time.</p>
+  <ol>
+    <li>The client requests for a new SSE connection. </li>
+    <li>The server registers the new SSE connection.</li>
+    <li>The server begins pushing new data to the client.</li>
+    <li>Either sides are allowed to close the connection.</li>
+  </ol>
+  <p>The main benefit of SSEs is it provides an efficient one directional data stream where the client and server don’t need to constantly reestablish the connection.</p>
+  <img src="img/SSE.png">
+    
   
