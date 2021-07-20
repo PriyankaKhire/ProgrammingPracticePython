@@ -8,6 +8,7 @@
     </ul>
   </li>
   <li><a href="https://www.1point3acres.com/">1 point 3 acers</a> </li>
+  <li><a href="https://leetcode.com/problems/subarray-sum-equals-k/discuss/301242/General-summary-of-what-kind-of-problem-can-cannot-solved-by-Two-Pointers">What kind of problems can be solved using sliding window.</a> </li>
 </ul>
 
 
