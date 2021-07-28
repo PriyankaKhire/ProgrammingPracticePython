@@ -5,7 +5,7 @@
       <li><a href="Programs/Course Schedule.py">Course Schedule</a>
         <p>Approach: Used BFS topological sort. Understood the approach from <a href="https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort">this article</a>.<br/>
           The following pseudo code helped. <br/>
-          <code>
+          <pre><code>
             L = Empty list that will contain the sorted elements <br/>
             S = Set of all nodes with no incoming edge <br/>
             <br/>
@@ -21,7 +21,7 @@
                 &ensp; return error   (graph has at least one cycle) <br/>
               else <br/>
                 &ensp; return L   (a topologically sorted order) <br/>
-          </code>
+          </code></pre>
         </p>
       </li>
     </ul>
