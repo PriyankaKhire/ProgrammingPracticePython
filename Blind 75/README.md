@@ -1,5 +1,12 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
+  <h2>Array</h2>
+    <ul>
+      <li> <a href="Programs/Container With Most Water.py">Container With Most Water</a>
+        <p> Approach: 2 Pointers to keep track of left and right poles.
+        </p>
+      </li>
+    </ul>
   <h2>Graph</h2>
     <ul>
       <li><a href="Programs/Course Schedule.py">Course Schedule</a>
