@@ -5,6 +5,11 @@
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
         <p>Approach: Solved using hash table, you can even solve this using 2 pointer approach where you'd have to sort the array, but then you won't be able to return index. </p>
       </li>
+      <li> Three Sum
+      <ol>
+        <li><a href="Programs/Three Sum - Recursion.py">Solved using Recursion</a>: Leetcode time limit exceeded. </li>
+      </ol>
+      </li>
       <li> <a href="Programs/Container With Most Water.py">Container With Most Water</a>
         <p> Approach: 2 Pointers to keep track of left and right poles.
         </p>
