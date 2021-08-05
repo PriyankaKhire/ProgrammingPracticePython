@@ -7,6 +7,7 @@
       </li>
       <li> Three Sum
       <ol>
+        <li><a href="Programs/Three Sum - ForLoops.py">Solved using 3 for loops</a>: Time complexity O(n^3), Leetcode time limit exceeded. </li>
         <li><a href="Programs/Three Sum - Recursion.py">Solved using Recursion</a>: Leetcode time limit exceeded. </li>
       </ol>
       </li>
