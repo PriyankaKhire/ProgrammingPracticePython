@@ -53,6 +53,12 @@
         </p>
       </li>
     </ul>
+  <h2>Tree</h2>
+    <ul>
+      <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
+        <p>Thoughts: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
+      </li>
+    </ul>
 
 
 
