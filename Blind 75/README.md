@@ -3,7 +3,7 @@
   <h2>Array</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
-        <p>Approach: Solved using hash table, you can even solve this using 2 pointer approach where you'd have to sort the array, but then you won't be able to return index. </p>
+        <p><b>Approach</b>: Solved using hash table, you can even solve this using 2 pointer approach where you'd have to sort the array, but then you won't be able to return index. </p>
       </li>
       <li> Three Sum
       <ol>
@@ -13,17 +13,17 @@
       </ol>
       </li>
       <li> <a href="Programs/Container With Most Water.py">Container With Most Water</a>
-        <p> Approach: 2 Pointers to keep track of left and right poles.
+        <p> <b>Approach</b>: 2 Pointers to keep track of left and right poles.
         </p>
       </li>
     </ul>
   <h2>Graph</h2>
     <ul>
       <li><a href="Programs/Clone Graph.py">Clone Graph</a>
-        <p>Approach: Used both dfs and bfs to copy the graph. Leetcode accepted.</p>
+        <p><b>Approach</b>: Used both dfs and bfs to copy the graph. Leetcode accepted.</p>
       </li>
       <li><a href="Programs/Course Schedule.py">Course Schedule</a>
-        <p>Approach: Used BFS topological sort. Understood the approach from <a href="https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort">this article</a>.<br/>
+        <p><b>Approach</b>: Used BFS topological sort. Understood the approach from <a href="https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort">this article</a>.<br/>
           The following pseudo code helped. <br/>
           <pre><code>
             L = Empty list that will contain the sorted elements <br/>
@@ -48,10 +48,10 @@
   <h2>String</h2>
     <ul>
       <li><a href="Programs/Longest%20Substring%20Without%20Repeating%20Characters.py">Longest Substring Without Repeating Characters</a> <br/>
-        <p>Approach: We use sliding window for this one. Use hash table to keep track of the letters in the window.</p>
+        <p><b>Approach</b>: We use sliding window for this one. Use hash table to keep track of the letters in the window.</p>
       </li>
       <li><a href="Programs/Longest Repeating Character Replacement.py">Longest Repeating Character Replacement</a> 
-        <p>Approach: Following formula used <br/>
+        <p><b>Approach</b>: Following formula used <br/>
           (length of substring - number of times of the maximum occurring character in the substring) <= k  
         </p>
       </li>
@@ -59,13 +59,18 @@
   <h2>Tree</h2>
     <ul>
       <li><a href="Programs/Maximum Depth of Binary Tree.py">Maximum Depth of Binary Tree</a>
-        <p>Approach: done using simple (any)-order traversal.</p>
-      </li>
-      <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
-        <p>Thoughts: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
+        <p><b>Approach</b>: done using simple (any)-order traversal.</p>
       </li>
       <li><a href="Programs/Same Tree.py">Same Tree</a>
-        <p>Approach: do any 2 traversals and compare them. I did in-order and post-order.</p>
+        <p><b>Approach</b>: do any 2 traversals and compare them. I did in-order and post-order.</p>
+      </li>
+      <li><a href="Programs/Invert Binary Tree.py">Invert/Flip Binary Tree</a>
+        <p><b>Thoughts</b>: My initial thought was to do level order traversal and then flip the nodes. But this approach was unnecessarily complicated. <br/>
+          <b>Approach</b>: Perform a post-order traversal and flip left and right child of each node. What this creates is that even if you flip 1 node at a time, since you'll be flipping their parent too, all the nodes get flipped automatically.
+        </p>
+      </li>
+      <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
+        <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
     </ul>
 
