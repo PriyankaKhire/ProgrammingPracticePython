@@ -69,6 +69,9 @@
           <b>Approach</b>: Perform a post-order traversal and flip left and right child of each node. What this creates is that even if you flip 1 node at a time, since you'll be flipping their parent too, all the nodes get flipped automatically.
         </p>
       </li>
+      <li><a href="Programs/Binary Tree Maximum Path Sum.py">Binary Tree Maximum Path Sum</a>
+        <p><b>Approach</b>: It's pretty similar to finding height of a tree. The only catch is what to return.</p>
+      </li>
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
