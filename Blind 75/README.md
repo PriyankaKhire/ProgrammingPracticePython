@@ -19,6 +19,9 @@
     </ul>
   <h2>Graph</h2>
     <ul>
+      <li><a href="Programs/Clone Graph.py">Clone Graph</a>
+        <p>Approach: Used both dfs and bfs to copy the graph. Leetcode accepted.</p>
+      </li>
       <li><a href="Programs/Course Schedule.py">Course Schedule</a>
         <p>Approach: Used BFS topological sort. Understood the approach from <a href="https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort">this article</a>.<br/>
           The following pseudo code helped. <br/>
