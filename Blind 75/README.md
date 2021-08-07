@@ -16,6 +16,35 @@
         <p> <b>Approach</b>: 2 Pointers to keep track of left and right poles.
         </p>
       </li>
+      <li>Best Time to Buy and Sell Stock</li>
+      <li>Contains Duplicate</li>
+      <li>Product of Array Except Self</li>
+      <li>Maximum Subarray</li>
+      <li>Maximum Product Subarray</li>
+      <li>Find Minimum in Rotated Sorted Array</li>
+      <li>Search in Rotated Sorted Array</li>
+    </ul>
+  <h2>Binary</h2>
+    <ul>
+      <li>Sum of Two Integers</li>
+      <li>Number of 1 Bits</li>
+      <li>Counting Bits</li>
+      <li>Missing Number</li>
+      <li>Reverse Bits</li>
+    </ul>
+  <h2>Dynamic Programming</h2>
+    <ul>
+      <li>Climbing Stairs</li>
+      <li>Coin Change</li>
+      <li>Longest Increasing Subsequence</li>
+      <li>Longest Common Subsequence</li>
+      <li>Word Break Problem</li>
+      <li>Combination Sum</li>
+      <li>House Robber</li>
+      <li>House Robber II</li>
+      <li>Decode Ways</li>
+      <li>Unique Paths</li>
+      <li>Jump Game</li>
     </ul>
   <h2>Graph</h2>
     <ul>
@@ -44,6 +73,36 @@
           </code></pre>
         </p>
       </li>
+      <li>Pacific Atlantic Water Flow</li>
+      <li>Number of Islands</li>
+      <li>Longest Consecutive Sequence</li>
+      <li>Alien Dictionary</li>
+      <li>Graph Valid Tree</li>
+      <li>Number of Connected Components in an Undirected Graph</li>
+    </ul>
+  <h2>Interval</h2>
+    <ul>
+      <li>Insert Interval</li>
+      <li>Merge Intervals</li>
+      <li>Non-overlapping Intervals</li>
+      <li>Meeting Rooms</li>
+      <li>Meeting Rooms II</li>
+    </ul>
+  <h2>Linked List</h2>
+    <ul>
+      <li>Reverse a Linked List</li>
+      <li>Detect Cycle in a Linked List</li>
+      <li>Merge Two Sorted Lists</li>
+      <li>Merge K Sorted Lists</li>
+      <li>Remove Nth Node From End Of List</li>
+      <li>Reorder List</li>
+    </ul>
+  <h2>Matrix</h2>
+    <ul>
+      <li>Set Matrix Zeroes</li>
+      <li>Spiral Matrix</li>
+      <li>Rotate Image</li>
+      <li>Word Search</li>
     </ul>
   <h2>String</h2>
     <ul>
@@ -55,6 +114,14 @@
           (length of substring - number of times of the maximum occurring character in the substring) <= k  
         </p>
       </li>
+      <li>Minimum Window Substring</li>
+      <li>Valid Anagram</li>
+      <li>Group Anagrams</li>
+      <li>Valid Parentheses</li>
+      <li>Valid Palindrome</li>
+      <li>Longest Palindromic Substring</li>
+      <li>Palindromic Substrings</li>
+      <li>Encode and Decode Strings (Leetcode Premium)</li>
     </ul>
   <h2>Tree</h2>
     <ul>
@@ -72,9 +139,26 @@
       <li><a href="Programs/Binary Tree Maximum Path Sum.py">Binary Tree Maximum Path Sum</a>
         <p><b>Approach</b>: It's pretty similar to finding height of a tree. The only catch is what to return.</p>
       </li>
+      <li><a href="Programs/Binary Tree Level Order Traversal.py">Binary Tree Level Order Traversal</a>
+        <p><b>Approach</b>: Used a modified iterative BFS</p>
+      </li>
+      <li>Serialize and Deserialize Binary Tree</li>
+      <li>Subtree of Another Tree</li>
+      <li>Construct Binary Tree from Preorder and Inorder Traversal</li>
+      <li>Validate Binary Search Tree</li>
+      <li>Kth Smallest Element in a BST</li>
+      <li>Lowest Common Ancestor of BST</li>
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
+      <li>Add and Search Word</li>
+      <li>Word Search II</li>
+    </ul>
+  <h2>Heap</h2>
+    <ul>
+      <li>Merge K Sorted Lists</li>
+      <li>Top K Frequent Elements</li>
+      <li>Find Median from Data Stream</li>
     </ul>
 
 
