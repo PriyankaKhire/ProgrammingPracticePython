@@ -61,6 +61,9 @@
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p>Thoughts: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
+      <li><a href="Programs/Same Tree.py">Same Tree</a>
+        <p>Approach: do any 2 traversals and compare them. I did in-order and post-order.</p>
+      </li>
     </ul>
 
 
