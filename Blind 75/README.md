@@ -97,7 +97,12 @@
       <li><a href="Programs/Reverse Linked List.py">Reverse Linked List</a>
         <p><b>Approach</b>: Used 3 pointer approach </p>
       </li>
-      <li>Detect Cycle in a Linked List</li>
+      <li><a href="Programs/Linked List Cycle.py">Linked List Cycle</a>
+        <p><b>Approach</b>: Used rabbit and tortoise method, where we move rabbit by 2 positions and tortoise by 1. 
+          If at any given point the 2 meet then we got a cycle. 
+          You can also solve this porblem by having a hash table and making note of all the nodes seen so far. 
+        </p>
+      </li>
       <li>Merge Two Sorted Lists</li>
       <li>Merge K Sorted Lists</li>
       <li>Remove Nth Node From End Of List</li>
