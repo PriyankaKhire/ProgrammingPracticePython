@@ -16,7 +16,9 @@
         <p> <b>Approach</b>: 2 Pointers to keep track of left and right poles.
         </p>
       </li>
-      <li>Best Time to Buy and Sell Stock</li>
+      <li><a href="Programs/Best Time to Buy and Sell Stock.py">Best Time to Buy and Sell Stock</a>
+        <p> <b>Approach</b>: O(n) approach, just keep track of lowest on left and compare with current price. </p>
+      </li>
       <li>Contains Duplicate</li>
       <li>Product of Array Except Self</li>
       <li>Maximum Subarray</li>
