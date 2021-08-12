@@ -94,7 +94,9 @@
     </ul>
   <h2>Linked List</h2>
     <ul>
-      <li>Reverse a Linked List</li>
+      <li><a href="Programs/Reverse Linked List.py">Reverse Linked List</a>
+        <p><b>Approach</b>: Used 3 pointer approach </p>
+      </li>
       <li>Detect Cycle in a Linked List</li>
       <li>Merge Two Sorted Lists</li>
       <li>Merge K Sorted Lists</li>
