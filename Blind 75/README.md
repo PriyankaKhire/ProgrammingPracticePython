@@ -78,7 +78,9 @@
       <li><a href="Programs/Pacific Atlantic Water Flow.py">Pacific Atlantic Water Flow</a>
         <p><b>Approach</b>: Variation of island problem, solved using DFS. Can be solved using BFS</p>
       </li>
-      <li>Number of Islands</li>
+      <li><a href="Programs/Number of Islands.py">Number of Islands</a> 
+        <p><b>Approach</b>: Solved using DFS.</p>
+      </li>
       <li>Longest Consecutive Sequence</li>
       <li>Alien Dictionary</li>
       <li>Graph Valid Tree</li>
