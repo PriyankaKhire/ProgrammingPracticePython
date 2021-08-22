@@ -30,7 +30,7 @@
     <ul>
       <li><a href="Programs/Sum of Two Integers.py">Sum of Two Integers</a> 
         <p><b>Approach</b>: We can add 2 integers without using any arithmetic operator by using half adder.<br/>
-          <img src="img/Half-Adder.PNG"> <br/>
+          <img src="img/Half-Adder.PNG" height="200" width="200"> <br/>
           We need XOR for sum and AND for carry. <br/>
           This is the truth table for it. <br/>
           <table>
@@ -63,7 +63,7 @@
           Here's a catch though, when you AND 01 with 01 it gives you 01. <br/>
           So how do you implement 1 ADDER 1 = 10 by using LEFT SHIFT << <br/><br/>
           Similarly we can subtract 2 numbers with the help of half subtractor. <br/>
-          <img src="img/Half-Subtractor.PNG"> <br/>
+          <img src="img/Half-Subtractor.PNG" height="200" width="200"> <br/>
           We need XOR for the difference but we need to compliment part of the carry.<br/>
           This is the truth table for it.<br/>
           <table>
