@@ -222,13 +222,16 @@
       <li><a href="Programs/Binary Tree Level Order Traversal.py">Binary Tree Level Order Traversal</a>
         <p><b>Approach</b>: Used a modified iterative BFS</p>
       </li>
-      <li>Serialize and Deserialize Binary Tree
+      <li><a href="Programs/Serialize and Deserialize Binary Tree - PreOrder.py">Serialize and Deserialize Binary Tree</a> 
+        <p><b>Approach</b>: Use preorder to serialize it using comma as delimiter. <br/>
+          Then use similar method we use to find height of tree to first add left child of sub tree and then add right child of sub tree, all while traversing the array.
+        </p>
         <p><b>Thoughts</b>: Initially I thought of using tries to do this, but it can create problems if all nodes of the tree have same value. <br/>
           My next thought was to do inOrder and preOrder traversal and then build the tree, but I was plagued by the same above problem, what if all tree nodes have same value. <br/>
           Then I thought about level order traversal but use delimiter for null nodes, this will waste a LOT of space (what if the tree is skewed), but I will end up with correct answer. <br/>
         </p>
         <ul>
-          <li><a href="Programs/Serialize and Deserialize Binary Tree - LevelOrder Toomuch Space.py">Too much space with level order</a> </li>
+          <li><a href="Programs/Serialize and Deserialize Binary Tree - LevelOrder Toomuch Space.py">Too much space with level order</a>: This exceeded leetcode space limit. </li>
         </ul>
       </li>
       <li>Subtree of Another Tree</li>
