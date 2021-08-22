@@ -28,7 +28,74 @@
     </ul>
   <h2>Binary</h2>
     <ul>
-      <li>Sum of Two Integers</li>
+      <li><a href="Programs/Sum of Two Integers.py">Sum of Two Integers</a> 
+        <p><b>Approach</b>: We can add 2 integers without using any arithmetic operator by using half adder.<br/>
+          <img src="img/Half-Adder.PNG"> <br/>
+          We need XOR for sum and AND for carry. <br/>
+          This is the truth table for it. <br/>
+          <table>
+            <tr>
+              <th>a + b</th>
+              <th>carry</th>
+              <th>sum</th>
+            </tr>
+            <tr>
+              <td>0 + 0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>0 + 1</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>1 + 0</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>1 + 1</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+          </table>
+          Here's a catch though, when you AND 01 with 01 it gives you 01. <br/>
+          So how do you implement 1 ADDER 1 = 10 by using LEFT SHIFT << <br/><br/>
+          Similarly we can subtract 2 numbers with the help of half subtractor. <br/>
+          <img src="img/Half-Subtractor.PNG"> <br/>
+          We need XOR for the difference but we need to compliment part of the carry.<br/>
+          This is the truth table for it.<br/>
+          <table>
+            <tr>
+              <th>a - b</th>
+              <th>borrow</th>
+              <th>difference</th>
+            </tr>
+            <tr>
+              <td>0 - 0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>0 - 1</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>1 - 0</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>1 - 1</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          </table>
+          We use similar logic that we used for half adder above and get subtraction.
+        </p>
+      </li>
       <li>Number of 1 Bits</li>
       <li>Counting Bits</li>
       <li>Missing Number</li>
@@ -79,7 +146,7 @@
         <p><b>Approach</b>: Variation of island problem, solved using DFS. Can be solved using BFS</p>
       </li>
       <li><a href="Programs/Number of Islands.py">Number of Islands</a> 
-        <p><b>Approach</b>: Solved using DFS.</p>
+        <p><b>Approach</b>: Solved using DFS.f</p>
       </li>
       <li>Longest Consecutive Sequence</li>
       <li>Alien Dictionary</li>
