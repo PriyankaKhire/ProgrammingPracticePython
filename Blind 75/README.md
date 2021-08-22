@@ -184,7 +184,13 @@
         <p><b>Approach</b>: Use rabbit and tortoise method. Move rabbit n spaces, then move tortoise along with rabbit unitl rabbit reaches end of the list.
         </p>
       </li>
-      <li>Reorder List</li>
+      <li><a href="Programs/Reorder List.py">Reorder List</a> 
+      <p><b>Approach</b>: Detached list in the middle using rabbit and tortoise method. 
+        Put the second list in stack and detached it's nodes. 
+        Traversed the first list and added the stack nodes in between.
+        Total time O(n), space O(n/2)
+      </p>
+      </li>
     </ul>
   <h2>Matrix</h2>
     <ul>
