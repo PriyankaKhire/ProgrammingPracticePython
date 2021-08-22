@@ -194,7 +194,12 @@
     </ul>
   <h2>Matrix</h2>
     <ul>
-      <li>Set Matrix Zeroes</li>
+      <li><a href="Programs/Set Matrix Zeroes.py">Set Matrix Zeroes</a> 
+        <p><b>Approach</b>: Set the row and col of the cell with zero to value "x". 
+          Then in second pass, change all the cells with "x" to zero.
+          This ensures we use no extra space and do it in O(n) time.
+        </p>
+      </li>
       <li>Spiral Matrix</li>
       <li>Rotate Image</li>
       <li>Word Search</li>
