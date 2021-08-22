@@ -176,7 +176,10 @@
         <p><b>Approach</b>: Simple O(n) merging, by traversing both lists at the same time.
         </p>
       </li>
-      <li>Merge K Sorted Lists</li>
+      <li><a href="Programs/Merge K Sorted Lists.py">Merge K Sorted Lists</a> 
+        <p><b>Approach</b>: Use heap sort to merge k lists.
+        </p>
+      </li>
       <li>Remove Nth Node From End Of List</li>
       <li>Reorder List</li>
     </ul>
