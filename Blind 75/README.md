@@ -172,7 +172,10 @@
           You can also solve this porblem by having a hash table and making note of all the nodes seen so far. 
         </p>
       </li>
-      <li>Merge Two Sorted Lists</li>
+      <li><a href="Programs/Merge Two Sorted Lists.py">Merge Two Sorted Lists</a>
+        <p><b>Approach</b>: Simple O(n) merging, by traversing both lists at the same time.
+        </p>
+      </li>
       <li>Merge K Sorted Lists</li>
       <li>Remove Nth Node From End Of List</li>
       <li>Reorder List</li>
