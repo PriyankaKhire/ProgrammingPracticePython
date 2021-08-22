@@ -1,5 +1,6 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
+  <h4>Total Completed: 25</h4>
   <h2>Array</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
