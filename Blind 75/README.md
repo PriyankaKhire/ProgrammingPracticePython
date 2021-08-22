@@ -146,7 +146,7 @@
         <p><b>Approach</b>: Variation of island problem, solved using DFS. Can be solved using BFS</p>
       </li>
       <li><a href="Programs/Number of Islands.py">Number of Islands</a> 
-        <p><b>Approach</b>: Solved using DFS.f</p>
+        <p><b>Approach</b>: Solved using DFS</p>
       </li>
       <li>Longest Consecutive Sequence</li>
       <li>Alien Dictionary</li>
@@ -222,7 +222,15 @@
       <li><a href="Programs/Binary Tree Level Order Traversal.py">Binary Tree Level Order Traversal</a>
         <p><b>Approach</b>: Used a modified iterative BFS</p>
       </li>
-      <li>Serialize and Deserialize Binary Tree</li>
+      <li>Serialize and Deserialize Binary Tree
+        <p><b>Thoughts</b>: Initially I thought of using tries to do this, but it can create problems if all nodes of the tree have same value. <br/>
+          My next thought was to do inOrder and preOrder traversal and then build the tree, but I was plagued by the same above problem, what if all tree nodes have same value. <br/>
+          Then I thought about level order traversal but use delimiter for null nodes, this will waste a LOT of space (what if the tree is skewed), but I will end up with correct answer. <br/>
+        </p>
+        <ul>
+          <li><a href="Programs/Serialize and Deserialize Binary Tree - LevelOrder Toomuch Space.py">Too much space with level order</a> </li>
+        </ul>
+      </li>
       <li>Subtree of Another Tree</li>
       <li>Construct Binary Tree from Preorder and Inorder Traversal</li>
       <li>Validate Binary Search Tree</li>
