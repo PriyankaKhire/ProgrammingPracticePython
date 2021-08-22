@@ -180,7 +180,10 @@
         <p><b>Approach</b>: Use heap sort to merge k lists.
         </p>
       </li>
-      <li>Remove Nth Node From End Of List</li>
+      <li><a href="Programs/Remove Nth Node From End of List.py">Remove Nth Node From End Of List</a> 
+        <p><b>Approach</b>: Use rabbit and tortoise method. Move rabbit n spaces, then move tortoise along with rabbit unitl rabbit reaches end of the list.
+        </p>
+      </li>
       <li>Reorder List</li>
     </ul>
   <h2>Matrix</h2>
