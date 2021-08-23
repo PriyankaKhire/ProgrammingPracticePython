@@ -1,6 +1,6 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
-  <h4>Total Completed: 27</h4>
+  <h4>Total Completed: 28</h4>
   <h2>Array</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
@@ -207,7 +207,12 @@
           Don't forget the mark the cells visited to avoid duplicates.
         </p>
       </li>
-      <li>Rotate Image</li>
+      <li><a href="Programs/Rotate Image.py">Rotate Image</a> 
+        <p><b>Approach</b>: First swap the elements under red triangle with the green triangle.<br/>
+          <img src="img/Diagonal-Swap.png" height="200" width="200"><br/>
+          Then flip the matrix upside down.
+        </p>
+      </li>
       <li>Word Search</li>
     </ul>
   <h2>String</h2>
