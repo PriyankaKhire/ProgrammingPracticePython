@@ -1,6 +1,6 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
-  <h4>Total Completed: 25</h4>
+  <h4>Total Completed: 27</h4>
   <h2>Array</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
@@ -201,7 +201,12 @@
           This ensures we use no extra space and do it in O(n) time.
         </p>
       </li>
-      <li>Spiral Matrix</li>
+      <li><a href="Programs/Spiral Matrix.py">Spiral Matrix</a> 
+        <p><b>Approach</b>: Had to see this idea from leetcode solutions. <br/>
+          First write a function that first prints the spiral of rows and cols, then just reduce the bounds and do the same. <br/>
+          Don't forget the mark the cells visited to avoid duplicates.
+        </p>
+      </li>
       <li>Rotate Image</li>
       <li>Word Search</li>
     </ul>
