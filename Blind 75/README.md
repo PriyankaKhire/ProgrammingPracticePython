@@ -255,7 +255,11 @@
           <li><a href="Programs/Serialize and Deserialize Binary Tree - LevelOrder Toomuch Space.py">Too much space with level order</a>: This exceeded leetcode space limit. </li>
         </ul>
       </li>
-      <li>Subtree of Another Tree</li>
+      <li><a href="Programs/Subtree of Another Tree.py">Subtree of Another Tree</a>
+        <p><b>Approach</b>: Recursive function similar to inorder traversal that checks if 2 sub trees are same or not.
+          Another function that checks if the current node in the larger tree is same as the root of sub tree, then it calls the previous function to check if the subtrees are same or not.
+        </p>
+      </li>
       <li>Construct Binary Tree from Preorder and Inorder Traversal</li>
       <li>Validate Binary Search Tree</li>
       <li>Kth Smallest Element in a BST</li>
