@@ -1,7 +1,7 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
   <h4>Total Completed: 29</h4>
-  <h2>Array</h2>
+  <h2>Array (Solved: 4, Unsolved: 6)</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
         <p><b>Approach</b>: Solved using hash table, you can even solve this using 2 pointer approach where you'd have to sort the array, but then you won't be able to return index. </p>
@@ -27,7 +27,7 @@
       <li>Find Minimum in Rotated Sorted Array</li>
       <li>Search in Rotated Sorted Array</li>
     </ul>
-  <h2>Binary</h2>
+  <h2>Binary (Solved: 1, Unsolved: 4)</h2>
     <ul>
       <li><a href="Programs/Sum of Two Integers.py">Sum of Two Integers</a> 
         <p><b>Approach</b>: We can add 2 integers without using any arithmetic operator by using half adder.<br/>
@@ -102,7 +102,7 @@
       <li>Missing Number</li>
       <li>Reverse Bits</li>
     </ul>
-  <h2>Dynamic Programming</h2>
+  <h2>Dynamic Programming (Not started this)</h2>
     <ul>
       <li>Climbing Stairs</li>
       <li>Coin Change</li>
@@ -116,7 +116,7 @@
       <li>Unique Paths</li>
       <li>Jump Game</li>
     </ul>
-  <h2>Graph</h2>
+  <h2>Graph (Solved: 4, Unsolved: 4)</h2>
     <ul>
       <li><a href="Programs/Clone Graph.py">Clone Graph</a>
         <p><b>Approach</b>: Used both dfs and bfs to copy the graph. Leetcode accepted.</p>
@@ -154,7 +154,7 @@
       <li>Graph Valid Tree</li>
       <li>Number of Connected Components in an Undirected Graph</li>
     </ul>
-  <h2>Interval</h2>
+  <h2>Interval (Not started this)</h2>
     <ul>
       <li>Insert Interval</li>
       <li>Merge Intervals</li>
@@ -162,7 +162,7 @@
       <li>Meeting Rooms</li>
       <li>Meeting Rooms II</li>
     </ul>
-  <h2>Linked List</h2>
+  <h2>Linked List (Solved all)</h2>
     <ul>
       <li><a href="Programs/Reverse Linked List.py">Reverse Linked List</a>
         <p><b>Approach</b>: Used 3 pointer approach </p>
@@ -193,7 +193,7 @@
       </p>
       </li>
     </ul>
-  <h2>Matrix</h2>
+  <h2>Matrix (Solved all)</h2>
     <ul>
       <li><a href="Programs/Set Matrix Zeroes.py">Set Matrix Zeroes</a> 
         <p><b>Approach</b>: Set the row and col of the cell with zero to value "x". 
@@ -219,7 +219,7 @@
         </p>
       </li>
     </ul>
-  <h2>String</h2>
+  <h2>String (Solved: 2, Unsolve: 8)</h2>
     <ul>
       <li><a href="Programs/Longest%20Substring%20Without%20Repeating%20Characters.py">Longest Substring Without Repeating Characters</a> <br/>
         <p><b>Approach</b>: We use sliding window for this one. Use hash table to keep track of the letters in the window.</p>
@@ -238,7 +238,7 @@
       <li>Palindromic Substrings</li>
       <li>Encode and Decode Strings (Leetcode Premium)</li>
     </ul>
-  <h2>Tree</h2>
+  <h2>Tree (Solved: 8, Unsolved: 6)</h2>
     <ul>
       <li><a href="Programs/Maximum Depth of Binary Tree.py">Maximum Depth of Binary Tree</a>
         <p><b>Approach</b>: done using simple (any)-order traversal.</p>
@@ -284,10 +284,15 @@
       <li>Add and Search Word</li>
       <li>Word Search II</li>
     </ul>
-  <h2>Heap</h2>
+  <h2>Heap (Solved: 1, Unsolved: 2)</h2>
     <ul>
-      <li>Merge K Sorted Lists</li>
-      <li>Top K Frequent Elements</li>
+      <li><a href="Programs/Merge K sorted Lists.py">Merge K Sorted Lists</a> </li>
+      <li><a href="Programs/Top K Frequent Elements.py">Top K Frequent Elements</a> 
+        <p><b>Approach</b>: First build a hash table with key: element, value: frequency.<br/>
+          Then Create a heap and add all elements from the hash to the heap in form of tuple (python thing).<br/>
+          Remove the top k elements from the heap.
+        </p>
+      </li>
       <li>Find Median from Data Stream</li>
     </ul>
 
