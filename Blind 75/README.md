@@ -1,6 +1,6 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
-  <h4>Total Completed: 28</h4>
+  <h4>Total Completed: 29</h4>
   <h2>Array</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
@@ -213,7 +213,11 @@
           Then flip the matrix upside down.
         </p>
       </li>
-      <li>Word Search</li>
+      <li><a href="Programs/Word Search.py">Word Search</a> 
+        <p><b>Approach</b>: Similar to island problem, dfs and backtracking for visited cells. <br/>
+          Make sure to check if all the letters in the word are present on the board before proceeding to find the word.
+        </p>
+      </li>
     </ul>
   <h2>String</h2>
     <ul>
