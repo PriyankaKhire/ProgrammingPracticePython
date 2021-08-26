@@ -280,7 +280,11 @@
         <p><b>Approach</b>: User inorder traversal to find the kth smallest element.
         </p>
       </li>
-      <li>Lowest Common Ancestor of BST</li>
+      <li><a href="Programs/Lowest Common Ancestor of a Binary Search Tree.py">Lowest Common Ancestor of a Binary Search Tree</a>
+        <p><b>Approach</b>: First search for the nodes in left sub tree, and right sub tree. If found return the root. <br/>
+           Don't forget to trickle the answer upwards if nothing is found. Approach similar to postOrder traversal of the tree.
+        </p>
+      </li>
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
