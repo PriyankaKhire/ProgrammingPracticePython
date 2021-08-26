@@ -1,6 +1,6 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
-  <h4>Total Completed: 29</h4>
+  <h4>Total Completed: 31</h4>
   <h2>Array (Solved: 4, Unsolved: 6)</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
@@ -284,7 +284,7 @@
       <li>Add and Search Word</li>
       <li>Word Search II</li>
     </ul>
-  <h2>Heap (Solved: 1, Unsolved: 2)</h2>
+  <h2>Heap (Solved: 2, Unsolved: 1)</h2>
     <ul>
       <li><a href="Programs/Merge K sorted Lists.py">Merge K Sorted Lists</a> </li>
       <li><a href="Programs/Top K Frequent Elements.py">Top K Frequent Elements</a> 
@@ -293,7 +293,13 @@
           Remove the top k elements from the heap.
         </p>
       </li>
-      <li>Find Median from Data Stream</li>
+      <li><a href="Programs/Find Median from Data Stream.py">Find Median from Data Stream</a> 
+        <p><b>Approach</b>: Keep 2 heaps, max heap to hold all elements less than median and min heap to hold elements greater than the median. <br/>
+          Finding median: which ever heap has more elements, the top element of that heap is the median. <br/>
+          If both heaps have same elements, then median is (minHeapTop+maxHeapTop) / 2 <br/>
+          If at any point one heap has 2 elements more than other heap, pop an element from that heap and add it to another heap.
+        </p>
+      </li>
     </ul>
 
 
