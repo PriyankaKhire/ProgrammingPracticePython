@@ -292,7 +292,10 @@
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
-      <li>Add and Search Word</li>
+      <li><a href="Programs/Design Add and Search Words Data Structure.py">Add and Search Word</a>
+        <p><b>Approach</b>: Use trie for this.
+        </p>
+      </li>
       <li>Word Search II</li>
     </ul>
   <h2>Heap (Solved all)</h2>
