@@ -275,7 +275,11 @@
         </p>
       </li>
       <li>Construct Binary Tree from Preorder and Inorder Traversal</li>
-      <li>Validate Binary Search Tree</li>
+      <li><a href="Programs/Validate Binary Search Tree.py">Validate Binary Search Tree</a>
+        <p><b>Approach</b>: Do an inorder traversal of the BST. <br/>
+          Then validate if the traversal is in ascending order or not. 
+        </p>
+      </li>
       <li><a href="Programs/Kth Smallest Element in a BST.py">Kth Smallest Element in a BST</a> 
         <p><b>Approach</b>: User inorder traversal to find the kth smallest element.
         </p>
