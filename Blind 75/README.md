@@ -276,7 +276,10 @@
       </li>
       <li>Construct Binary Tree from Preorder and Inorder Traversal</li>
       <li>Validate Binary Search Tree</li>
-      <li>Kth Smallest Element in a BST</li>
+      <li><a href="Programs/Kth Smallest Element in a BST.py">Kth Smallest Element in a BST</a> 
+        <p><b>Approach</b>: User inorder traversal to find the kth smallest element.
+        </p>
+      </li>
       <li>Lowest Common Ancestor of BST</li>
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
@@ -284,7 +287,7 @@
       <li>Add and Search Word</li>
       <li>Word Search II</li>
     </ul>
-  <h2>Heap (Solved: 2, Unsolved: 1)</h2>
+  <h2>Heap (Solved all)</h2>
     <ul>
       <li><a href="Programs/Merge K sorted Lists.py">Merge K Sorted Lists</a> </li>
       <li><a href="Programs/Top K Frequent Elements.py">Top K Frequent Elements</a> 
