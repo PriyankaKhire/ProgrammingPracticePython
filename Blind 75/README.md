@@ -278,16 +278,27 @@
         </p>
       </li>
       <li>Construct Binary Tree from Preorder and Inorder Traversal</li>
-      <li>Validate Binary Search Tree</li>
+      <li><a href="Programs/Validate Binary Search Tree.py">Validate Binary Search Tree</a>
+        <p><b>Approach</b>: Do an inorder traversal of the BST. <br/>
+          Then validate if the traversal is in ascending order or not. 
+        </p>
+      </li>
       <li><a href="Programs/Kth Smallest Element in a BST.py">Kth Smallest Element in a BST</a> 
         <p><b>Approach</b>: User inorder traversal to find the kth smallest element.
         </p>
       </li>
-      <li>Lowest Common Ancestor of BST</li>
+      <li><a href="Programs/Lowest Common Ancestor of a Binary Search Tree.py">Lowest Common Ancestor of a Binary Search Tree</a>
+        <p><b>Approach</b>: First search for the nodes in left sub tree, and right sub tree. If found return the root. <br/>
+           Don't forget to trickle the answer upwards if nothing is found. Approach similar to postOrder traversal of the tree.
+        </p>
+      </li>
       <li><a href="Programs/Implement Trie.py">Implement Trie (Prefix Tree)</a>
         <p><b>Thoughts</b>: You can also use this approach to serialise and de-serialise an n-ary tree.</p>
       </li>
-      <li>Add and Search Word</li>
+      <li><a href="Programs/Design Add and Search Words Data Structure.py">Add and Search Word</a>
+        <p><b>Approach</b>: Use trie for this.
+        </p>
+      </li>
       <li>Word Search II</li>
     </ul>
   <h2>Heap (Solved all)</h2>
