@@ -230,7 +230,10 @@
         </p>
       </li>
       <li>Minimum Window Substring</li>
-      <li>Valid Anagram</li>
+      <li><a href="Programs/Valid Anagram.py">Valid Anagram</a> 
+        <p><b>Approach</b>: Used hash table.
+        </p>
+      </li>
       <li>Group Anagrams</li>
       <li>Valid Parentheses</li>
       <li>Valid Palindrome</li>
