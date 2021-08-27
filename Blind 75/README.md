@@ -234,7 +234,10 @@
         <p><b>Approach</b>: Used hash table.
         </p>
       </li>
-      <li>Group Anagrams</li>
+      <li><a href="Programs/Group Anagrams.py">Group Anagrams</a> 
+        <p><b>Approach</b>: Sort the strings and store them in hash table.
+        </p>
+      </li>
       <li>Valid Parentheses</li>
       <li>Valid Palindrome</li>
       <li>Longest Palindromic Substring</li>
