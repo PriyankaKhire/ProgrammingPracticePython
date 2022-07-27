@@ -20,7 +20,9 @@
       <li><a href="Programs/Best Time to Buy and Sell Stock.py">Best Time to Buy and Sell Stock</a>
         <p> <b>Approach</b>: O(n) approach, just keep track of lowest on left and compare with current price. </p>
       </li>
-      <li>Contains Duplicate</li>
+      <li><a href="Programs/Contains Duplicate.py">Contains Duplicate</a>
+        <p> <b>Approach</b>: Space O(n) Time O(n), add all elements one by one to hash map, if you find a duplicate then return true else return false.</p>
+      </li>
       <li>Product of Array Except Self</li>
       <li>Maximum Subarray</li>
       <li>Maximum Product Subarray</li>
