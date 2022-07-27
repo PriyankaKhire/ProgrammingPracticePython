@@ -1,7 +1,7 @@
 <h1>Blind 75</h1>
   <a href="https://leetcode.com/discuss/general-discussion/460599/blind-75-leetcode-questions">Leetcode link to the post.</a>
   <h4>Total Completed: 31</h4>
-  <h2>Array (Solved: 4, Unsolved: 6)</h2>
+  <h2>Array (Solved: 6, Unsolved: 4)</h2>
     <ul>
       <li><a href="Programs/Two Sum.py">Two Sum</a> 
         <p><b>Approach</b>: Solved using hash table, you can even solve this using 2 pointer approach where you'd have to sort the array, but then you won't be able to return index. </p>
@@ -23,7 +23,13 @@
       <li><a href="Programs/Contains Duplicate.py">Contains Duplicate</a>
         <p> <b>Approach</b>: Space O(n) Time O(n), add all elements one by one to hash map, if you find a duplicate then return true else return false.</p>
       </li>
-      <li>Product of Array Except Self</li>
+      <li><a href="Programs/Product of Array Except Self.py">Product of Array Except Self</a>
+      <p><b>Approach</b>: 2 pass approach where you store the product from left to right in one array (let's call it LRArray) and right to left in another array (let's call it RLArray) </br>
+      Then for each index of the element multiply LRArray[i-1]*RLArray[i+1] </br>
+      Time O(3n)
+      Space O(2n)
+      </p>
+      </li>
       <li>Maximum Subarray</li>
       <li>Maximum Product Subarray</li>
       <li>Find Minimum in Rotated Sorted Array</li>
