@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ba5bb3-c56e-4318-911a-d7ee0cc00057" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Pan Balance (Amazon OA).py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pascal's Triangle Pt3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +101,7 @@
       <workItem from="1708289678332" duration="6978000" />
       <workItem from="1708330257232" duration="2289000" />
       <workItem from="1708363104608" duration="903000" />
+      <workItem from="1708912762204" duration="72000" />
     </task>
     <servers />
   </component>
